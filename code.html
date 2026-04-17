@@ -125,10 +125,10 @@
                 </a>
             </nav>
             <div class="flex gap-4">
-                <button
+                <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
                     class="hidden sm:flex bg-primary text-background-dark px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-110 hover:-translate-y-0.5 hover:shadow-primary/40 active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20">
                     Agenda Gratis
-                </button>
+                </a>
             </div>
         </div>
     </header>
@@ -148,14 +148,14 @@
                     Innovación Financiera no solo te guiamos, te proporcionamos las estrategias necesarias para que
                     reactives tu vida y vuelvas a experimentar la tranquilidad financiera.</p>
                 <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                    <button
+                    <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
                         class="bg-primary text-background-dark h-14 px-8 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/40 active:translate-y-0 active:scale-95 transition-all duration-300 shadow-xl shadow-primary/30">
                         Agenda tu asesoría gratuita
-                    </button>
-                    <button
+                    </a>
+                    <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
                         class="border-2 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white h-14 px-8 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-lg hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 active:translate-y-0 active:scale-95 transition-all duration-300">
                         <span class="material-symbols-outlined">chat</span> WhatsApp
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="relative">
@@ -163,7 +163,7 @@
                 <div
                     class="relative rounded-[2rem] overflow-hidden aspect-[4/3] shadow-2xl bg-slate-100 dark:bg-slate-800 border-4 border-white dark:border-slate-900">
                     <video autoplay loop muted playsinline class="w-full h-full object-cover">
-                        <source src="video oficina.mp4" type="video/mp4">
+                        <source src="video_oficina.mp4" type="video/mp4">
                         Tu navegador no soporta el elemento de video.
                     </video>
                 </div>
@@ -507,10 +507,10 @@
                         volver a dormir tranquilo?</h2>
                     <p class="text-slate-400 text-lg md:text-xl max-w-2xl">Únete a los miles de colombianos que ya
                         recuperaron su libertad financiera con nuestra ayuda.</p>
-                    <button
+                    <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
                         class="bg-primary text-background-dark h-16 px-12 rounded-2xl font-bold text-xl hover:scale-105 transition-transform shadow-2xl shadow-primary/40 mt-4">
                         Agenda tu asesoría hoy
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -546,20 +546,27 @@
                                 class="material-symbols-outlined text-primary text-lg">phone</span> +57 (310) 555-0123
                         </li>
                         <li class="flex items-center gap-3"><span
-                                class="material-symbols-outlined text-primary text-lg">location_on</span> Bogotá,
-                            Colombia</li>
+                                class="material-symbols-outlined text-primary text-lg">location_on</span> Carrera 24 #51-21, Bogotá</li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-white font-bold mb-6">Síguenos</h4>
                     <div class="flex gap-4">
                         <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
-                            href="#">
-                            <span class="material-symbols-outlined">share</span>
+                            href="https://www.facebook.com/share/1H8QWxxbe5/?mibextid=wwXIfr" target="_blank">
+                            <span class="material-symbols-outlined">facebook</span>
                         </a>
                         <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
-                            href="#">
-                            <span class="material-symbols-outlined">linked_camera</span>
+                            href="https://www.instagram.com/mcinnovacionfinanciera?igsh=dXVubmQ4bGR0aHlu&utm_source=qr" target="_blank">
+                            <span class="material-symbols-outlined">camera_alt</span>
+                        </a>
+                        <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
+                            href="https://www.tiktok.com/@mcinnovacionfinanciera?_r=1&_t=ZS-95PGQr4PYXg" target="_blank">
+                            <span class="material-symbols-outlined">music_note</span>
+                        </a>
+                        <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
+                            href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank">
+                            <span class="material-symbols-outlined">chat</span>
                         </a>
                     </div>
                 </div>
@@ -665,211 +672,5 @@
     </script>
     </script>
     
-    <!-- Widget Chatbot Gemini (Frontend + Fetch JS) -->
-    <div id="ai-chatbot-widget" class="fixed bottom-6 right-6 z-[100] font-display">
-        <!-- Botón Burbuja -->
-        <button id="chatbot-toggle" class="bg-primary text-background-dark w-14 h-14 rounded-full flex items-center justify-center shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:-translate-y-1 hover:brightness-110 active:scale-95 transition-all duration-300 relative z-10">
-            <span class="material-symbols-outlined text-3xl">smart_toy</span>
-        </button>
-
-        <!-- Ventana del Chat Oculta por defecto -->
-        <div id="chatbot-window" class="absolute bottom-20 right-0 w-80 sm:w-96 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 transition-all duration-300 opacity-0 scale-95 pointer-events-none origin-bottom-right overflow-hidden flex flex-col h-[500px] max-h-[70vh]">
-            
-            <!-- Encabezado del Chat -->
-            <div class="bg-[#221f10] dark:bg-slate-950 p-4 flex items-center gap-3 border-b-2 border-primary">
-                <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-                    <span class="material-symbols-outlined text-primary">smart_toy</span>
-                </div>
-                <div class="flex-1">
-                    <h4 class="text-white font-bold text-sm">Sandy</h4>
-                    <p class="text-slate-400 text-xs flex items-center gap-1">
-                        <span class="w-2 h-2 rounded-full bg-green-500 inline-block animate-pulse"></span> Asesora IA en Línea
-                    </p>
-                </div>
-                <button id="chatbot-close" class="text-slate-400 hover:text-white transition-colors cursor-pointer">
-                    <span class="material-symbols-outlined">close</span>
-                </button>
-            </div>
-            
-            <!-- Zona de Intercambio de Mensajes -->
-            <div id="chatbot-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50 dark:bg-slate-900/50 scroll-smooth">
-                <!-- Mensaje Inicial de Bienvenida -->
-                <div class="flex gap-2 max-w-[85%] animate-fade-in-up">
-                    <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0 mt-1">
-                        <span class="material-symbols-outlined text-primary text-sm">smart_toy</span>
-                    </div>
-                    <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 dark:border-slate-700 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                        ¡Hola! Soy <strong>Sandy</strong>, tu asesora legal interactiva de MC Innovación Financiera. Estoy entrenada en la Ley 1266 de 2008. ¿Qué problema financiero deseas consultar?
-                    </div>
-                </div>
-            </div>
-
-            <!-- Input del Usuario -->
-            <div class="p-4 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex gap-2">
-                <input type="text" id="chatbot-input" placeholder="Escribe tu mensaje legal..." class="flex-1 bg-slate-100 dark:bg-slate-800 border-none rounded-xl px-4 py-3 text-sm text-slate-700 dark:text-slate-300 focus:ring-2 focus:ring-primary outline-none">
-                <button id="chatbot-send" class="w-12 h-12 bg-primary text-[#221f10] rounded-xl flex items-center justify-center hover:bg-yellow-400 hover:shadow-lg transition-all shrink-0 cursor-pointer">
-                    <span class="material-symbols-outlined">send</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Script de Integración con FastAPI -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggleBtn = document.getElementById('chatbot-toggle');
-            const closeBtn = document.getElementById('chatbot-close');
-            const chatWindow = document.getElementById('chatbot-window');
-            const chatInput = document.getElementById('chatbot-input');
-            const sendBtn = document.getElementById('chatbot-send');
-            const messagesContainer = document.getElementById('chatbot-messages');
-
-            // URL del servidor FastAPI corriendo Python localmente
-            const API_URL = "http://localhost:8000/chat";
-
-            // Inyectamos CSS mínimo para animación fluida si no existe en Tailwind standard
-            if(!document.getElementById('chatbot-custom-style')) {
-                const style = document.createElement('style');
-                style.id = 'chatbot-custom-style';
-                style.innerHTML = `
-                    @keyframes fade-in-up {
-                        from { opacity: 0; transform: translateY(10px); }
-                        to { opacity: 1; transform: translateY(0); }
-                    }
-                    .animate-fade-in-up { animation: fade-in-up 0.3s ease-out forwards; }
-                `;
-                document.head.appendChild(style);
-            }
-
-            // Alternar Ventana
-            const toggleChat = () => {
-                const isHidden = chatWindow.classList.contains('opacity-0');
-                if (isHidden) {
-                    chatWindow.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
-                    chatWindow.classList.add('opacity-100', 'scale-100');
-                    setTimeout(() => chatInput.focus(), 300);
-                } else {
-                    chatWindow.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-                    chatWindow.classList.remove('opacity-100', 'scale-100');
-                }
-            };
-
-            if (toggleBtn) toggleBtn.addEventListener('click', toggleChat);
-            if (closeBtn) closeBtn.addEventListener('click', toggleChat);
-
-            // Función para Renderizar Burbujas
-            const appendMessage = (text, isUser = false) => {
-                const msgDiv = document.createElement('div');
-                msgDiv.className = `flex gap-2 max-w-[85%] animate-fade-in-up ${isUser ? 'ml-auto flex-row-reverse' : ''}`;
-                
-                const avatar = isUser ? '' : `
-                    <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0 mt-1">
-                        <span class="material-symbols-outlined text-primary text-sm">smart_toy</span>
-                    </div>
-                `;
-
-                const bubbleClass = isUser 
-                    ? 'bg-primary text-[#221f10] p-3 rounded-2xl rounded-tr-none shadow-sm text-sm font-medium' 
-                    : 'bg-white dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 dark:border-slate-700 text-sm text-slate-700 dark:text-slate-300 leading-relaxed';
-                
-                let finalText = isUser ? text.replace(/</g, "&lt;").replace(/>/g, "&gt;") : text;
-
-                // Detectar link de WhatsApp y convertir en botón
-                if (!isUser && finalText.includes("https://wa.me/")) {
-                    const waRegex = /https:\/\/wa\.me\/[^\s]+/g;
-                    finalText = finalText.replace(waRegex, (url) => {
-                        return `<br><a href="${url.replace(/[.)]*$/, '')}" target="_blank" class="mt-4 inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2.5 px-5 rounded-full transition-all shadow-lg hover:scale-105 active:scale-95 no-underline">
-                            <span class="material-symbols-outlined">chat</span>
-                            Hablar con un Asesor en WhatsApp
-                        </a><br>`;
-                    });
-                }
-                
-                msgDiv.innerHTML = avatar + `<div class="${bubbleClass}">${finalText.replace(/\n/g, '<br>')}</div>`;
-                messagesContainer.appendChild(msgDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            };
-
-
-            // Animación "Pensando..."
-            const showTypingIndicator = () => {
-                const typingId = 'typing-' + Date.now();
-                const typingDiv = document.createElement('div');
-                typingDiv.id = typingId;
-                typingDiv.className = `flex gap-2 max-w-[85%] animate-fade-in-up`;
-                typingDiv.innerHTML = `
-                    <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0 mt-1">
-                        <span class="material-symbols-outlined text-primary text-sm">smart_toy</span>
-                    </div>
-                    <div class="bg-white dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 dark:border-slate-700 text-sm flex gap-1.5 items-center h-10 px-4 w-16">
-                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-pulse"></span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-pulse" style="animation-delay: 0.2s"></span>
-                        <span class="w-1.5 h-1.5 rounded-full bg-slate-400 animate-pulse" style="animation-delay: 0.4s"></span>
-                    </div>
-                `;
-                messagesContainer.appendChild(typingDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                return typingId;
-            };
-
-            const removeTypingIndicator = (id) => {
-                const typingEl = document.getElementById(id);
-                if (typingEl) typingEl.remove();
-            };
-
-
-            let chatHistory = []; // Variable para guardar el contexto de la conversación
-
-            // Ejecución al Enviar
-            const handleSend = async () => {
-                const userMsg = chatInput.value.trim();
-                if (!userMsg) return;
-                
-                // Mostrar usuario
-                appendMessage(userMsg, true);
-                chatInput.value = '';
-                
-                // Animación "Pensando"
-                const typingId = showTypingIndicator();
-
-                try {
-                    // Fetch request hacia el script FastAPI enviando el HISTORIAL
-                    const response = await fetch(API_URL, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ 
-                            message: userMsg,
-                            history: chatHistory 
-                        })
-                    });
-
-                    if (!response.ok) throw new Error("Asegúrate de que el backend (/main.py) esté corriendo.");
-
-                    const data = await response.json();
-                    
-                    // Actualizar Historial Local (formato Gemini: user/model)
-                    chatHistory.push({ role: "user", parts: userMsg });
-                    chatHistory.push({ role: "model", parts: data.response });
-
-                    // Mostrar Gemini response real
-                    removeTypingIndicator(typingId);
-                    appendMessage(data.response, false);
-
-                } catch (error) {
-                    console.error("Fetch Error:", error);
-                    removeTypingIndicator(typingId);
-                    appendMessage(`⚠️ Error técnico: Verifica que el servidor Python esté encendido.`, false);
-                }
-            };
-
-            // Clicks o Enter
-            if (sendBtn) sendBtn.addEventListener('click', handleSend);
-            if (chatInput) {
-                chatInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') handleSend();
-                });
-            }
-        });
-    </script>
 </body>
 </html>
