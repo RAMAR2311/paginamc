@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Buzón de PQRS - MC Innovación Financiera</title>
+    <meta name="description"
+        content="Radique sus peticiones, quejas, reclamos, sugerencias o felicitaciones ante MC Innovación Financiera.">
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#eccb13",
+                        "accent-pink": "#f472b6",
+                        "background-light": "#f8f8f6",
+                        "background-dark": "#221f10",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Top Navigation -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-white/40 dark:border-white/10 bg-white/40 dark:bg-background-dark/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a class="flex items-center" href="/">
+                <img alt="Logo MC Innovación Financiera" class="h-12 w-auto object-contain" src="favicon.jpg" />
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider">
+                <a class="relative group hover:text-primary transition-all duration-300"
+                    href="code.html">Inicio
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300"
+                    href="nosotros.html">Nosotros
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300"
+                    href="code.html#servicios">Servicios
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300"
+                    href="#contacto">Contacto
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300 text-primary"
+                    href="code.html#aplicativos">Aplicativos MC
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+            </nav>
+            <div class="flex gap-4">
+                <a href="#contacto"
+                    class="hidden sm:flex bg-primary text-background-dark px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-110 hover:-translate-y-0.5 hover:shadow-primary/40 active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20 items-center justify-center">
+                    Agenda Gratis
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content: PQRS Form -->
+    <main class="flex-grow py-16 px-6 bg-[#f8f8f6] dark:bg-black/20">
+        <div
+            class="max-w-3xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-8 md:p-10 border border-slate-200 dark:border-slate-800">
+
+            <!-- Header -->
+            <div class="text-center mb-10 border-b border-slate-200 dark:border-slate-800 pb-8">
+                <div
+                    class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-primary/20 mb-6 font-display">
+                    <span class="material-symbols-outlined text-sm">support_agent</span> Atención al Usuario
+                </div>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-[#221f10] dark:text-white leading-tight mb-4">
+                    Buzón de PQRS
+                </h1>
+                <h2 class="text-lg text-slate-600 dark:text-slate-400 font-medium">
+                    Radique aquí sus Peticiones, Quejas, Reclamos, Sugerencias o Felicitaciones de manera formal y segura. Sus datos personales serán tratados estrictamente conforme a la Ley 1581 de 2012.
+                </h2>
+            </div>
+
+            <!-- Form -->
+            <form action="#" method="POST" class="space-y-8">
+
+                <!-- Tipo de Solicitud -->
+                <section>
+                    <label for="tipo_solicitud"
+                        class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Tipo de Solicitud
+                        (<span class="text-accent-pink">*</span>)</label>
+                    <select id="tipo_solicitud" name="tipo_solicitud" required
+                        class="w-full rounded-xl border-slate-300 dark:border-slate-700 bg-transparent px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all dark:text-white cursor-pointer">
+                        <option value="" disabled selected>Seleccione una opción...</option>
+                        <option value="peticion">Petición</option>
+                        <option value="queja">Queja</option>
+                        <option value="reclamo">Reclamo</option>
+                        <option value="sugerencia">Sugerencia</option>
+                        <option value="felicitacion">Felicitación</option>
+                    </select>
+                </section>
+
+                <!-- Datos Personales -->
+                <section>
+                    <h3
+                        class="text-xl font-bold text-[#221f10] dark:text-white mb-6 border-b border-slate-100 dark:border-slate-800 pb-2">
+                        Datos Personales</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <!-- Nombre Completo -->
+                        <div class="flex flex-col gap-2 md:col-span-2">
+                            <label for="nombreCompleto"
+                                class="text-sm font-semibold text-slate-700 dark:text-slate-300">Nombre Completo
+                                (<span class="text-accent-pink">*</span>)</label>
+                            <input type="text" id="nombreCompleto" name="nombreCompleto" required
+                                class="w-full rounded-xl border-slate-300 dark:border-slate-700 bg-transparent px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all dark:text-white">
+                        </div>
+
+                        <!-- Tipo de Documento -->
+                        <div class="flex flex-col gap-2">
+                            <label for="tipo_documento"
+                                class="text-sm font-semibold text-slate-700 dark:text-slate-300">Tipo de Documento
+                                (<span class="text-accent-pink">*</span>)</label>
+                            <select id="tipo_documento" name="tipo_documento" required
+                                class="w-full rounded-xl border-slate-300 dark:border-slate-700 bg-transparent px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all dark:text-white cursor-pointer">
+                                <option value="" disabled selected>Seleccione...</option>
+                                <option value="CC">Cédula de Ciudadanía (CC)</option>
+                                <option value="CE">Cédula de Extranjería (CE)</option>
+                                <option value="NIT">NIT</option>
+                                <option value="Pasaporte">Pasaporte</option>
+                            </select>
+                        </div>
+
+                        <!-- Número de Documento -->
+                        <div class="flex flex-col gap-2">
+                            <label for="numero_documento"
+                                class="text-sm font-semibold text-slate-700 dark:text-slate-300">Número de Documento
+                                (<span class="text-accent-pink">*</span>)</label>
+                            <input type="text" id="numero_documento" name="numero_documento" required
+                                class="w-full rounded-xl border-slate-300 dark:border-slate-700 bg-transparent px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all dark:text-white">
+                        </div>
+
+                        <!-- Teléfono -->
+                        <div class="flex flex-col gap-2">
+                            <label for="telefono"
+                                class="text-sm font-semibold text-slate-700 dark:text-slate-300">Teléfono Celular
+                                (<span class="text-accent-pink">*</span>)</label>
+                            <input type="tel" id="telefono" name="telefono" required
+                                class="w-full rounded-xl border-slate-300 dark:border-slate-700 bg-transparent px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all dark:text-white">
+                        </div>
+
+                        <!-- Correo Electrónico -->
+                        <div class="flex flex-col gap-2">
+                            <label for="correo" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Correo
+                                Electrónico (<span class="text-accent-pink">*</span>)</label>
+                            <input type="email" id="correo" name="correo" required
+                                class="w-full rounded-xl border-slate-300 dark:border-slate-700 bg-transparent px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all dark:text-white">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Detalle de la Solicitud -->
+                <section>
+                    <h3
+                        class="text-xl font-bold text-[#221f10] dark:text-white mb-6 border-b border-slate-100 dark:border-slate-800 pb-2">
+                        Detalle de la Solicitud</h3>
+                    <div class="flex flex-col gap-2">
+                        <label for="detalle" class="text-sm font-semibold text-slate-700 dark:text-slate-300">Describa
+                            detalladamente su caso o mensaje (<span class="text-accent-pink">*</span>)</label>
+                        <textarea id="detalle" name="detalle" rows="6" required
+                            placeholder="Por favor, incluya toda la información relevante que nos permita atender su solicitud de manera precisa..."
+                            class="w-full rounded-xl border-slate-300 dark:border-slate-700 bg-transparent px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all dark:text-white resize-y"></textarea>
+                    </div>
+                </section>
+
+                <!-- Botón de Envío -->
+                <div class="pt-6 border-t border-slate-200 dark:border-slate-800">
+                    <button type="submit"
+                        class="w-full bg-[#eccb13] text-[#221f10] h-16 rounded-xl font-bold text-xl hover:bg-yellow-400 hover:-translate-y-1 hover:shadow-md transition-all duration-300 flex items-center justify-center gap-3">
+                        <span class="material-symbols-outlined">send</span> Enviar Solicitud
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-16" id="contacto">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 border-b border-slate-900 pb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center mb-6">
+                        <a href="code.html">
+                            <img alt="MC Innovación Financiera Logo" class="h-10 w-auto object-contain"
+                                src="favicon.jpg" />
+                        </a>
+                    </div>
+                    <p class="text-sm leading-relaxed">Expertos en asesoría financiera y soluciones de deuda en todo el
+                        territorio colombiano.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Empresa</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="nosotros.html">Sobre Nosotros</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="nosotros.html#equipo">Nuestro
+                                Equipo</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="code.html#testimonios">Casos de
+                                Éxito</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Blog Financiero</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Contacto</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-center gap-3"><span
+                                class="material-symbols-outlined text-primary text-lg">mail</span> info@mcinnovacion.co
+                        </li>
+                        <li class="flex items-center gap-3"><span
+                                class="material-symbols-outlined text-primary text-lg">phone</span> +57 (310) 555-0123
+                        </li>
+                        <li class="flex items-center gap-3"><span
+                                class="material-symbols-outlined text-primary text-lg">location_on</span> Bogotá,
+                            Colombia</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Síguenos</h4>
+                    <div class="flex gap-4">
+                        <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined">share</span>
+                        </a>
+                        <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined">linked_camera</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-medium uppercase tracking-widest">
+                <p>© 2024 MC Innovación Financiera. Todos los derechos reservados.</p>
+                <div class="mt-4 md:mt-0 text-[10px] md:text-xs text-slate-500 normal-case">
+                    *Toda nuestra gestión se realiza bajo el estricto marco legal de la Ley 1266 de 2008 (Ley de Habeas Data) y la Ley 1581 de 2012.
+                </div>
+                <div class="flex gap-8">
+                    <a class="hover:text-white" href="#">Aviso Legal</a>
+                    <a class="hover:text-white" href="#">Políticas de Privacidad</a>
+                    <a class="hover:text-white" href="#">Términos de Servicio</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

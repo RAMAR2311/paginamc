@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Portal Cliente - MC Innovación Financiera</title>
+    <meta name="description"
+        content="Accede a tu portal de cliente para dar seguimiento a tus casos legales y procesos financieros.">
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#eccb13",
+                        "accent-pink": "#f472b6",
+                        "background-light": "#f8f8f6",
+                        "background-dark": "#221f10",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Top Navigation -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-white/40 dark:border-white/10 bg-white/40 dark:bg-background-dark/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a class="flex items-center" href="/">
+                <img alt="Logo MC Innovación Financiera" class="h-12 w-auto object-contain" src="favicon.jpg" />
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider">
+                <a class="relative group hover:text-primary transition-all duration-300"
+                    href="code.html">Inicio
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300"
+                    href="nosotros.html">Nosotros
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300"
+                    href="code.html#servicios">Servicios
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300"
+                    href="#contacto">Contacto
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300 text-primary"
+                    href="code.html#aplicativos">Aplicativos MC
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+            </nav>
+            <div class="flex gap-4">
+                <a href="#contacto"
+                    class="hidden sm:flex bg-primary text-background-dark px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-110 hover:-translate-y-0.5 hover:shadow-primary/40 active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20 items-center justify-center">
+                    Agenda Gratis
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+
+        <!-- Sección de Instrucciones (Cómo ingresar) -->
+        <section class="py-20 bg-[#f8f8f6] dark:bg-black/20">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-[#221f10] dark:text-white mb-4">¿Cómo ingresar
+                        al portal?</h1>
+                    <p class="text-lg text-slate-500 dark:text-slate-400">Sigue estos simples pasos para acceder a tu
+                        cuenta centralizada.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                    <!-- Conector visual (solo desktop) -->
+                    <div
+                        class="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent">
+                    </div>
+
+                    <!-- Paso 01 -->
+                    <div class="relative flex flex-col items-center text-center group">
+                        <div
+                            class="text-6xl md:text-8xl font-black text-[#eccb13]/20 dark:text-[#eccb13]/10 mb-[-2rem] md:mb-[-3rem] select-none group-hover:text-[#eccb13]/40 transition-colors duration-500">
+                            01</div>
+                        <div
+                            class="relative z-10 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/50 dark:border-slate-800/50 w-full h-full flex flex-col items-center">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Solicita tus credenciales
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Contacta a tu analista
+                                financiera para obtener tu usuario y contraseña de acceso al portal.</p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 02 -->
+                    <div class="relative flex flex-col items-center text-center group">
+                        <div
+                            class="text-6xl md:text-8xl font-black text-[#eccb13]/20 dark:text-[#eccb13]/10 mb-[-2rem] md:mb-[-3rem] select-none group-hover:text-[#eccb13]/40 transition-colors duration-500">
+                            02</div>
+                        <div
+                            class="relative z-10 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/50 dark:border-slate-800/50 w-full h-full flex flex-col items-center">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Ingresa al portal</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Utiliza las
+                                credenciales proporcionadas para acceder por primera vez al sistema.</p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 03 -->
+                    <div class="relative flex flex-col items-center text-center group">
+                        <div
+                            class="text-6xl md:text-8xl font-black text-[#eccb13]/20 dark:text-[#eccb13]/10 mb-[-2rem] md:mb-[-3rem] select-none group-hover:text-[#eccb13]/40 transition-colors duration-500">
+                            03</div>
+                        <div
+                            class="relative z-10 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/50 dark:border-slate-800/50 w-full h-full flex flex-col items-center">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Cambia tu contraseña</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Por seguridad,
+                                actualiza la contraseña inicial que te fue asignada.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <a href="#"
+                        class="inline-flex bg-[#eccb13] text-[#221f10] h-16 px-12 rounded-xl font-bold text-lg items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-95 transition-all duration-300 w-full sm:w-auto">
+                        IR AL PORTAL MC <span class="material-symbols-outlined">login</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Herramientas (Una vez dentro) -->
+        <section class="py-24 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Header tools -->
+                <div class="text-center mb-16">
+                    <div
+                        class="inline-flex items-center gap-2 bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 px-4 py-1.5 rounded-full text-sm font-semibold border border-slate-200 dark:border-slate-800 mb-6 font-display shadow-sm">
+                        <span>⚖️ Una vez dentro del portal</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-[#221f10] dark:text-white mb-4">¿Qué podrás
+                        hacer?</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Todas las herramientas que
+                        necesitas para dar seguimiento a tus casos legales e interactuar con nuestro equipo.</p>
+                </div>
+
+                <!-- Tools Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
+
+                    <!-- Tool 1 -->
+                    <div
+                        class="group bg-white dark:bg-slate-900 border-t-2 border-t-transparent hover:border-t-accent-pink border-x border-b border-slate-100 dark:border-slate-800 rounded-2xl p-8 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500">
+                        <div class="flex items-start gap-6">
+                            <div
+                                class="size-14 rounded-xl bg-orange-50 dark:bg-orange-900/20 text-orange-500 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-primary group-hover:text-background-dark transition-all duration-300">
+                                <span class="material-symbols-outlined text-3xl">query_stats</span>
+                            </div>
+                            <div>
+                                <h3
+                                    class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
+                                    Gestión de casos</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Visualiza el estado preciso de tus procesos de Hábeas Data y en qué etapa de recuperación de libertad crediticia te encuentras.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool 2 -->
+                    <div
+                        class="group bg-white dark:bg-slate-900 border-t-2 border-t-transparent hover:border-t-accent-pink border-x border-b border-slate-100 dark:border-slate-800 rounded-2xl p-8 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500">
+                        <div class="flex items-start gap-6">
+                            <div
+                                class="size-14 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-500 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-primary group-hover:text-background-dark transition-all duration-300">
+                                <span class="material-symbols-outlined text-3xl">description</span>
+                            </div>
+                            <div>
+                                <h3
+                                    class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
+                                    Documentos legales</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Accede a todas las peticiones, quejas y respuestas generadas en ejercicio de tu derecho al Hábeas Data.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool 3 -->
+                    <div
+                        class="group bg-white dark:bg-slate-900 border-t-2 border-t-transparent hover:border-t-accent-pink border-x border-b border-slate-100 dark:border-slate-800 rounded-2xl p-8 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500">
+                        <div class="flex items-start gap-6">
+                            <div
+                                class="size-14 rounded-xl bg-green-50 dark:bg-green-900/20 text-green-500 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-primary group-hover:text-background-dark transition-all duration-300">
+                                <span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+                            </div>
+                            <div>
+                                <h3
+                                    class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
+                                    Estado de pagos</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Consulta tu
+                                    historial de pagos y el estado financiero de tu cuenta con nosotros.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool 4 -->
+                    <div
+                        class="group bg-white dark:bg-slate-900 border-t-2 border-t-transparent hover:border-t-accent-pink border-x border-b border-slate-100 dark:border-slate-800 rounded-2xl p-8 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500">
+                        <div class="flex items-start gap-6">
+                            <div
+                                class="size-14 rounded-xl bg-purple-50 dark:bg-purple-900/20 text-purple-500 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-primary group-hover:text-background-dark transition-all duration-300">
+                                <span class="material-symbols-outlined text-3xl">support_agent</span>
+                            </div>
+                            <div>
+                                <h3
+                                    class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
+                                    Solicitudes y aclaraciones</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Levanta tickets de
+                                    dudas, realiza peticiones y recibe respuesta directa de nuestros abogados.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Franja de Confianza (Trust Badges) -->
+        <section class="bg-[#221f10] py-6 relative z-10 border-t-4 border-primary">
+            <div class="max-w-7xl mx-auto px-6">
+                <div
+                    class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-slate-800 text-white">
+
+                    <div class="flex-1 flex items-center justify-center gap-3 pt-4 md:pt-0 w-full">
+                        <span class="material-symbols-outlined text-primary text-2xl">group</span>
+                        <span class="font-bold tracking-wide">+500 clientes activos</span>
+                    </div>
+
+                    <div class="flex-1 flex items-center justify-center gap-3 pt-4 md:pt-0 w-full">
+                        <span class="material-symbols-outlined text-primary text-2xl">security</span>
+                        <span class="font-bold tracking-wide">Acceso seguro 24/7</span>
+                    </div>
+
+                    <div class="flex-1 flex items-center justify-center gap-3 pt-4 md:pt-0 pb-4 md:pb-0 w-full">
+                        <span class="material-symbols-outlined text-primary text-2xl">bolt</span>
+                        <span class="font-bold tracking-wide">Respuesta inmediata</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-16" id="contacto">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 border-b border-slate-900 pb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center mb-6">
+                        <a href="code.html">
+                            <img alt="MC Innovación Financiera Logo" class="h-10 w-auto object-contain"
+                                src="favicon.jpg" />
+                        </a>
+                    </div>
+                    <p class="text-sm leading-relaxed">Expertos en asesoría financiera y soluciones de deuda en todo el
+                        territorio colombiano.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Empresa</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="nosotros.html">Sobre Nosotros</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="nosotros.html#equipo">Nuestro
+                                Equipo</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="code.html#testimonios">Casos de
+                                Éxito</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Blog Financiero</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Contacto</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-center gap-3"><span
+                                class="material-symbols-outlined text-primary text-lg">mail</span> info@mcinnovacion.co
+                        </li>
+                        <li class="flex items-center gap-3"><span
+                                class="material-symbols-outlined text-primary text-lg">phone</span> +57 (310) 555-0123
+                        </li>
+                        <li class="flex items-center gap-3"><span
+                                class="material-symbols-outlined text-primary text-lg">location_on</span> Bogotá,
+                            Colombia</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Síguenos</h4>
+                    <div class="flex gap-4">
+                        <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined">share</span>
+                        </a>
+                        <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined">linked_camera</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-medium uppercase tracking-widest">
+                <p>© 2024 MC Innovación Financiera. Todos los derechos reservados.</p>
+                <div class="mt-4 md:mt-0 text-[10px] md:text-xs text-slate-500 normal-case">
+                    *Toda nuestra gestión se realiza bajo el estricto marco legal de la Ley 1266 de 2008 (Ley de Habeas Data) y la Ley 1581 de 2012.
+                </div>
+                <div class="flex gap-8">
+                    <a class="hover:text-white" href="#">Aviso Legal</a>
+                    <a class="hover:text-white" href="#">Políticas de Privacidad</a>
+                    <a class="hover:text-white" href="#">Términos de Servicio</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

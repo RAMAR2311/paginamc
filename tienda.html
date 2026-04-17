@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tienda | MC Innovación Financiera</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#eccb13",
+                        "accent-pink": "#f472b6",
+                        "background-light": "#f8f8f6",
+                        "background-dark": "#221f10",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden">
+
+    <!-- Top Navigation -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-white/40 dark:border-white/10 bg-white/40 dark:bg-background-dark/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a class="flex items-center" href="code.html">
+                <img alt="Logo MC Innovación Financiera" class="h-12 w-auto object-contain" src="favicon.jpg" />
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider">
+                <a class="relative group hover:text-primary transition-all duration-300" href="code.html#">
+                    Inicio
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300" href="code.html#nosotros">
+                    Nosotros
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300" href="code.html#servicios">
+                    Servicios
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300" href="code.html#contacto">
+                    Contacto
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300" href="code.html#aplicativos">
+                    Aplicativos MC
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300 text-primary" href="tienda.html">
+                    Tienda
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-100 transition-opacity"></span>
+                </a>
+            </nav>
+            <div class="flex gap-4">
+                <button
+                    class="hidden sm:flex bg-primary text-background-dark px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-110 hover:-translate-y-0.5 hover:shadow-primary/40 active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20">
+                    Agenda Gratis
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tienda Hero Section -->
+    <section class="relative pt-24 pb-16 bg-slate-900 overflow-hidden border-b border-white/5">
+        <!-- Liquid glass effect background -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-[40%] blur-[120px] animate-pulse" style="animation-duration: 4s;"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-pink rounded-full blur-[120px] animate-pulse" style="animation-duration: 5s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-8 tracking-tight">Nuestros Servicios <span class="text-primary">Financieros</span></h1>
+            
+            <div class="max-w-3xl mx-auto relative group">
+                <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
+                    <span class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+                </div>
+                <!-- Glassmorphism styling on search input -->
+                <input type="text" id="search-input" class="block w-full pl-14 pr-40 py-5 bg-white/10 dark:bg-black/20 border border-white/20 rounded-2xl text-white placeholder-slate-400 backdrop-blur-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none shadow-2xl" placeholder="Buscar servicios, planes, diagnósticos...">
+                <button class="absolute inset-y-2 right-2 px-8 bg-primary text-background-dark font-bold text-lg rounded-xl hover:bg-white hover:text-background-dark hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg shadow-primary/30">
+                    Buscar
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Layout Principal -->
+    <section class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-4 gap-12">
+            
+            <!-- Sidebar / Filtros (1/4) -->
+            <aside class="lg:col-span-1 space-y-8">
+                <!-- Liquid Glass Filter Panel -->
+                <div class="bg-white/70 dark:bg-slate-800/40 backdrop-blur-xl rounded-[2rem] p-8 border border-white/40 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] sticky top-28 transition-all">
+                    <h3 class="text-2xl font-bold mb-8 flex items-center gap-3 text-slate-900 dark:text-white">
+                        <span class="material-symbols-outlined text-primary font-light">page_info</span> Filtros
+                    </h3>
+                    
+                    <!-- Categorías -->
+                    <div class="mb-10">
+                        <h4 class="font-bold text-xs uppercase tracking-[0.2em] text-slate-400 mb-5">Categorías</h4>
+                        <div class="space-y-4">
+                            <label class="flex items-center gap-4 cursor-pointer group">
+                                <input type="checkbox" value="todos" class="filter-checkbox size-5 rounded-md border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer transition-colors" checked>
+                                <span class="text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors font-medium">Todos los Servicios</span>
+                            </label>
+                            <label class="flex items-center gap-4 cursor-pointer group">
+                                <input type="checkbox" value="asesorias" class="filter-checkbox size-5 rounded-md border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer transition-colors">
+                                <span class="text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Asesorías</span>
+                            </label>
+                            <label class="flex items-center gap-4 cursor-pointer group">
+                                <input type="checkbox" value="tramites" class="filter-checkbox size-5 rounded-md border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer transition-colors">
+                                <span class="text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Trámites Legales</span>
+                            </label>
+                            <label class="flex items-center gap-4 cursor-pointer group">
+                                <input type="checkbox" value="planes" class="filter-checkbox size-5 rounded-md border-slate-300 dark:border-slate-600 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer transition-colors">
+                                <span class="text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">Planes Integrales</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Rango de Precio -->
+                    <div>
+                        <h4 class="font-bold text-xs uppercase tracking-[0.2em] text-slate-400 mb-6">Rango de Precio</h4>
+                        <div class="space-y-6">
+                            <input type="range" min="0" max="1000000" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-primary">
+                            <div class="flex items-center justify-between gap-4">
+                                <div class="w-full bg-white dark:bg-slate-900/50 rounded-xl px-4 py-2.5 text-sm text-center font-bold border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 shadow-inner">$0</div>
+                                <span class="text-slate-300 dark:text-slate-600 font-bold">-</span>
+                                <div class="w-full bg-white dark:bg-slate-900/50 rounded-xl px-4 py-2.5 text-sm text-center font-bold border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 shadow-inner">$1M+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Cuadrícula de Productos (3/4) -->
+            <div class="lg:col-span-3">
+                
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+                    <p class="text-slate-500 font-medium">Mostrando <span class="text-slate-900 dark:text-white font-bold">6</span> servicios financieros</p>
+                    <div class="relative w-full sm:w-auto">
+                        <select id="sort-select" class="w-full sm:w-auto bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 rounded-xl pl-5 pr-12 py-3 font-medium focus:ring-2 focus:ring-primary cursor-pointer outline-none appearance-none bg-none shadow-sm transition-all hover:border-primary/50" style="background-image: none;">
+                            <option value="relevantes">Más relevantes</option>
+                            <option value="menor-precio">Menor precio</option>
+                            <option value="mayor-precio">Mayor precio</option>
+                            <option value="recientes">Más recientes</option>
+                        </select>
+                        <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none z-10">expand_more</span>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Mensaje Sin Resultados -->
+                    <div id="no-results-msg" class="hidden col-span-1 md:col-span-2 lg:col-span-3 text-center py-12">
+                        <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 mb-4 block">search_off</span>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-2">No se encontraron servicios</h3>
+                        <p class="text-slate-500">No hay servicios que coincidan con tu búsqueda o filtros actuales.</p>
+                    </div>
+                    
+                    <!-- Tarjeta 1 -->
+                    <div class="producto-card group bg-white/60 dark:bg-slate-800/30 backdrop-blur-xl rounded-[2rem] border border-white/60 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.1)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col relative text-left" data-categoria="asesorias">
+                        <div class="absolute top-5 left-5 z-10">
+                            <span class="bg-primary text-background-dark text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg shadow-primary/30">Más vendido</span>
+                        </div>
+                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+                            <div class="absolute w-32 h-32 bg-white/40 dark:bg-black/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-500 relative z-10 drop-shadow-sm">account_balance</span>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="producto-titulo text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug">Diagnóstico Insolvencia Económica</h3>
+                            <p class="producto-desc text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">Evaluación técnica para personas naturales no comerciantes que buscan acogerse a la Ley de Insolvencia.</p>
+                            <div class="mt-auto">
+                                <p class="text-3xl font-extrabold mb-5 text-slate-900 dark:text-white tracking-tight">$250.000 <span class="text-sm font-semibold text-slate-400 tracking-normal">COP</span></p>
+                                <button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl border border-transparent hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
+                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> Añadir al Carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 2 -->
+                    <div class="producto-card group bg-white/60 dark:bg-slate-800/30 backdrop-blur-xl rounded-[2rem] border border-white/60 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.1)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col relative text-left" data-categoria="asesorias">
+                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+                            <div class="absolute w-32 h-32 bg-white/40 dark:bg-black/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-500 relative z-10 drop-shadow-sm">analytics</span>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="producto-titulo text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug">Diagnóstico Financiero</h3>
+                            <p class="producto-desc text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">Análisis detallado de tu situación financiera actual y capacidad de endeudamiento.</p>
+                            <div class="mt-auto">
+                                <p class="text-3xl font-extrabold mb-5 text-slate-900 dark:text-white tracking-tight">$135.000 <span class="text-sm font-semibold text-slate-400 tracking-normal">COP</span></p>
+                                <button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl border border-transparent hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
+                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> Añadir al Carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 3 -->
+                    <div class="producto-card group bg-white/60 dark:bg-slate-800/30 backdrop-blur-xl rounded-[2rem] border border-white/60 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.1)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col relative text-left" data-categoria="planes">
+                        <div class="absolute top-5 left-5 z-10">
+                            <span class="bg-accent-pink text-white text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg shadow-accent-pink/30">Recomendado</span>
+                        </div>
+                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+                            <div class="absolute w-32 h-32 bg-white/40 dark:bg-black/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-500 relative z-10 drop-shadow-sm">trending_up</span>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="producto-titulo text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug">Mejora de Score (No Reportados)</h3>
+                            <p class="producto-desc text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">Estrategia de optimización de perfil crediticio para usuarios sin reportes negativos que desean subir su puntaje.</p>
+                            <div class="mt-auto">
+                                <p class="text-3xl font-extrabold mb-5 text-slate-900 dark:text-white tracking-tight">$280.000 <span class="text-sm font-semibold text-slate-400 tracking-normal">COP</span></p>
+                                <button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl border border-transparent hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
+                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> Añadir al Carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 4 -->
+                    <div class="producto-card group bg-white/60 dark:bg-slate-800/30 backdrop-blur-xl rounded-[2rem] border border-white/60 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.1)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col relative text-left" data-categoria="asesorias">
+                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+                            <div class="absolute w-32 h-32 bg-white/40 dark:bg-black/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-500 relative z-10 drop-shadow-sm">contact_support</span>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="producto-titulo text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug">Diagnóstico Ayuda del Crédito</h3>
+                            <p class="producto-desc text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">Asesoría especializada para la gestión y saneamiento de obligaciones crediticias.</p>
+                            <div class="mt-auto">
+                                <p class="text-3xl font-extrabold mb-5 text-slate-900 dark:text-white tracking-tight">$140.000 <span class="text-sm font-semibold text-slate-400 tracking-normal">COP</span></p>
+                                <button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl border border-transparent hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
+                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> Añadir al Carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 5 -->
+                    <div class="producto-card group bg-white/60 dark:bg-slate-800/30 backdrop-blur-xl rounded-[2rem] border border-white/60 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.1)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col relative text-left" data-categoria="tramites">
+                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+                            <div class="absolute w-32 h-32 bg-white/40 dark:bg-black/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-500 relative z-10 drop-shadow-sm">gavel</span>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="producto-titulo text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug">Derecho de Petición (Eliminación de Reportes)</h3>
+                            <p class="producto-desc text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">Documento legal fundamentado en el Habeas Data (Ley 1266) para solicitar el retiro de reportes negativos injustos o caducados.</p>
+                            <div class="mt-auto">
+                                <p class="text-3xl font-extrabold mb-5 text-slate-900 dark:text-white tracking-tight">$80.000 <span class="text-sm font-semibold text-slate-400 tracking-normal">COP</span></p>
+                                <button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl border border-transparent hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
+                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> Añadir al Carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 6 -->
+                    <div class="producto-card group bg-white/60 dark:bg-slate-800/30 backdrop-blur-xl rounded-[2rem] border border-white/60 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.1)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col relative text-left" data-categoria="planes">
+                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
+                            <div class="absolute w-32 h-32 bg-white/40 dark:bg-black/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-500 relative z-10 drop-shadow-sm">school</span>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="producto-titulo text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug">Curso de Educación Financiera</h3>
+                            <p class="producto-desc text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">Programa de formación integral para el manejo de deudas y alcanzar la libertad crediticia y financiera.</p>
+                            <div class="mt-auto">
+                                <p class="text-3xl font-extrabold mb-5 text-slate-900 dark:text-white tracking-tight">$310.000 <span class="text-sm font-semibold text-slate-400 tracking-normal">COP</span></p>
+                                <button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl border border-transparent hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
+                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> Añadir al Carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 7 (Paga tu contrato) -->
+                    <div class="producto-card group col-span-1 md:col-span-2 lg:col-span-3 bg-gradient-to-r from-[#221f10] to-[#3a351b] dark:from-slate-900 dark:to-slate-800 rounded-[2rem] border-2 border-primary/40 shadow-[0_8px_30px_rgba(236,203,19,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.3)] transition-all duration-300 overflow-hidden flex flex-col md:flex-row relative text-left" data-categoria="tramites">
+                        <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+                            <span class="material-symbols-outlined text-9xl text-primary transform rotate-12">receipt_long</span>
+                        </div>
+                        <div class="p-8 md:p-12 flex-1 flex flex-col justify-center relative z-10">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="material-symbols-outlined text-primary text-3xl">payments</span>
+                                <h3 class="producto-titulo text-2xl md:text-3xl font-extrabold text-white">Paga tu contrato</h3>
+                            </div>
+                            <p class="producto-desc text-slate-300 text-sm md:text-base mb-2 max-w-2xl leading-relaxed">¿Ya tienes un proceso activo con nosotros? Realiza el pago de tus honorarios o abonos vigentes aquí.</p>
+                            <p class="text-slate-400 text-xs max-w-2xl leading-relaxed mb-6">*Ingresa el valor exacto acordado con tu Asesor.</p>
+                            
+                            <div class="flex flex-col sm:flex-row gap-4 max-w-xl">
+                                <div class="relative w-full">
+                                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">$</span>
+                                    <input type="number" id="pago-contrato-input" placeholder="Ej: 500000" class="w-full pl-8 pr-4 py-4 bg-[#2f2b16]/50 border border-white/20 rounded-xl text-white font-bold text-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder-slate-500">
+                                </div>
+                                <button id="btn-pago-contrato" class="w-full sm:w-auto px-8 bg-primary text-background-dark font-extrabold py-4 rounded-xl hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.4)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap">
+                                    <span class="material-symbols-outlined text-[20px]">shopping_cart_checkout</span> Pagar Valor
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-16" id="contacto">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 border-b border-slate-900 pb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center mb-6">
+                        <img alt="MC Innovación Financiera Logo" class="h-10 w-auto object-contain"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpjdxyDnjePfx-lPxIMFBwngvqokIP38THxIWfdLxJNURWKxNtSwZB0ebyiaRPUdw81qN1QLq7ynS0PqlC-Ri3W_IJfDXqGFH-DUEwJHQbMwD6A2nTEz6mcfsMcgWNjK8OFHt7s6xjEtun574o1HCsN0_0GHqjpsrfU-r03pbYmeCfs_F_ywNO7Hgm1PMY_WC7pdXLc0TwP0T_TmPST8TNvBxvPeacp2QQjJR50k-f6okydjfDtv9TbQUGaDfVCODbjVFau8Ga8OE" />
+                    </div>
+                    <p class="text-sm leading-relaxed">Expertos en asesoría financiera y soluciones de deuda en todo el
+                        territorio colombiano.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Empresa</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="#">Sobre Nosotros</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Nuestro Equipo</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Casos de Éxito</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Blog Financiero</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Contacto</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-center gap-3"><span
+                                class="material-symbols-outlined text-primary text-lg">mail</span> info@mcinnovacion.co
+                        </li>
+                        <li class="flex items-center gap-3"><span
+                                class="material-symbols-outlined text-primary text-lg">phone</span> +57 (310) 555-0123
+                        </li>
+                        <li class="flex items-center gap-3"><span
+                                class="material-symbols-outlined text-primary text-lg">location_on</span> Bogotá,
+                            Colombia</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Síguenos</h4>
+                    <div class="flex gap-4">
+                        <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined">share</span>
+                        </a>
+                        <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined">linked_camera</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-medium uppercase tracking-widest">
+                <p>© 2024 MC Innovación Financiera. Todos los derechos reservados.</p>
+                <div class="mt-4 md:mt-0 text-[10px] md:text-xs text-slate-500 normal-case">
+                    *Toda nuestra gestión se realiza bajo el estricto marco legal de la Ley 1266 de 2008 (Ley de Habeas Data) y la Ley 1581 de 2012.
+                </div>
+                <div class="flex gap-8">
+                    <a class="hover:text-white" href="#">Aviso Legal</a>
+                    <a class="hover:text-white" href="#">Políticas de Privacidad</a>
+                    <a class="hover:text-white" href="#">Términos de Servicio</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Overlay -->
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 z-[100] w-full md:w-[450px] bg-white dark:bg-slate-900 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col border-l border-slate-200 dark:border-slate-800">
+        <!-- Header -->
+        <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-900/80">
+            <h2 class="text-xl font-extrabold flex items-center gap-3 text-slate-800 dark:text-white">
+                <span class="material-symbols-outlined text-primary">shopping_cart</span> Tu Carrito
+            </h2>
+            <button id="close-cart-btn" class="p-2 text-slate-400 hover:text-slate-800 dark:hover:text-white bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full transition-colors flex items-center justify-center shadow-sm border border-slate-200 dark:border-slate-700">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+        
+        <!-- Cart Items -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50/50 dark:bg-slate-900/50">
+            <!-- Los items del carrito irán aquí -->
+        </div>
+
+        <!-- Footer / Checkout -->
+        <div class="p-6 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-slate-600 dark:text-slate-400 font-bold text-lg">Total a pagar</span>
+                <span class="text-3xl font-extrabold text-slate-900 dark:text-white" id="cart-total-display">$0 COP</span>
+            </div>
+            
+            <button id="btn-pagar-wompi" class="w-full bg-[#183984] hover:bg-[#122b64] text-white font-bold py-4 rounded-xl mb-4 transition-all duration-300 shadow-lg shadow-[#183984]/30 hover:shadow-[0_10px_25px_rgba(24,57,132,0.4)] hover:-translate-y-1 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none">
+                <span class="material-symbols-outlined text-[20px]">lock</span> Pagar de forma segura con Wompi
+            </button>
+            
+            <div class="flex justify-center items-center gap-6 text-slate-400 dark:text-slate-500 opacity-90 mt-2">
+                <div class="flex items-center gap-1.5 font-bold text-xs tracking-wider uppercase"><span class="material-symbols-outlined text-[18px]">account_balance</span> PSE</div>
+                <div class="flex items-center gap-1.5 font-bold text-xs tracking-wider uppercase"><span class="material-symbols-outlined text-[18px]">credit_card</span> Visa</div>
+                <div class="flex items-center gap-1.5 font-bold text-xs tracking-wider uppercase"><span class="material-symbols-outlined text-[18px]">credit_card</span> Mastercard</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Overlay -->
+    <div id="cart-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[90] opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- Wompi Widget Script Oficial -->
+    <script src="https://checkout.wompi.co/widget.js"></script>
+
+    <!-- Lógica de Carrito y Checkout de Wompi -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Estado del Carrito
+            let cart = [];
+            const cartDrawer = document.getElementById('cart-drawer');
+            const cartOverlay = document.getElementById('cart-overlay');
+            const closeCartBtn = document.getElementById('close-cart-btn');
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const cartTotalDisplay = document.getElementById('cart-total-display');
+            const btnPagarWompi = document.getElementById('btn-pagar-wompi');
+            
+            // Lógica para añadir elementos mediante los botones "Añadir al Carrito"
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                if(btn.innerText.includes('Añadir al Carrito')) {
+                    btn.addEventListener('click', (e) => {
+                        const card = e.target.closest('.group');
+                        const title = card.querySelector('h3').innerText;
+                        // Extaer el precio numérico (ej. $150.000 -> 150000)
+                        const priceText = card.querySelector('.text-3xl').innerText.replace(/[^0-9]/g, '');
+                        const price = parseInt(priceText, 10);
+                        
+                        addToCart({ title, price });
+                        openCart();
+                    });
+                }
+            });
+
+            // Lógica para el pago manual de contrato
+            const btnPagoContrato = document.getElementById('btn-pago-contrato');
+            const inputPagoContrato = document.getElementById('pago-contrato-input');
+            if(btnPagoContrato && inputPagoContrato) {
+                btnPagoContrato.addEventListener('click', () => {
+                   const valstr = inputPagoContrato.value;
+                   const val = parseInt(valstr.replace(/[^0-9]/g, ''), 10);
+                   if(!isNaN(val) && val >= 1000) {
+                       addToCart({ title: 'Abono / Pago de Contrato', price: val });
+                       openCart();
+                       inputPagoContrato.value = '';
+                   } else {
+                       alert('Por favor, ingresa un valor válido mayor a $1.000 COP.');
+                   }
+                });
+            }
+
+            // Funciones del Carrito
+            function addToCart(item) {
+                cart.push(item);
+                updateCartUI();
+            }
+
+            function removeFromCart(index) {
+                cart.splice(index, 1);
+                updateCartUI();
+            }
+            window.removeFromCart = removeFromCart; // Hacerlo accesible globalmente para el onclick
+
+            // Función para sumar el valor total de los servicios
+            function getCartTotal() {
+                return cart.reduce((total, item) => total + item.price, 0);
+            }
+
+            // Actualizar la interfaz del carrito
+            function updateCartUI() {
+                cartItemsContainer.innerHTML = '';
+                
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="flex flex-col items-center justify-center h-full text-slate-400 opacity-70 pb-20">
+                            <span class="material-symbols-outlined text-6xl mb-4">shopping_cart</span>
+                            <p class="text-lg font-medium">Tu carrito está vacío</p>
+                        </div>
+                    `;
+                    btnPagarWompi.disabled = true;
+                } else {
+                    btnPagarWompi.disabled = false;
+                    
+                    cart.forEach((item, index) => {
+                        const itemEl = document.createElement('div');
+                        itemEl.className = 'flex justify-between items-center bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 animate-fade-in group';
+                        itemEl.innerHTML = `
+                            <div>
+                                <h5 class="font-bold text-sm text-slate-800 dark:text-slate-200 max-w-[200px] leading-tight mb-1">${item.title}</h5>
+                                <p class="text-primary font-extrabold text-lg">$${item.price.toLocaleString('es-CO')} <span class="text-xs text-slate-500 font-semibold uppercase">COP</span></p>
+                            </div>
+                            <button onclick="removeFromCart(${index})" class="w-10 h-10 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 transition-all cursor-pointer z-10" style="position: relative;">
+                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                            </button>
+                        `;
+                        cartItemsContainer.appendChild(itemEl);
+                    });
+                }
+                
+                // Formatear total
+                cartTotalDisplay.innerText = `$${getCartTotal().toLocaleString('es-CO')} COP`;
+            }
+
+            // Funciones de navegación del modal
+            function openCart() {
+                cartDrawer.classList.remove('translate-x-full');
+                cartOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            }
+
+            function closeCart() {
+                cartDrawer.classList.add('translate-x-full');
+                cartOverlay.classList.add('opacity-0', 'pointer-events-none');
+            }
+
+            closeCartBtn.addEventListener('click', closeCart);
+            cartOverlay.addEventListener('click', closeCart);
+            
+            // Inicializar la interfaz vacía
+            updateCartUI();
+
+            // ========================================================
+            // Lógica de Integración (Checkout JS Wompi)
+            // ========================================================
+            btnPagarWompi.addEventListener('click', () => {
+                const total = getCartTotal();
+                if (total <= 0) return;
+
+                // Crear la instancia del checkout
+                const checkout = new WidgetCheckout({
+                    currency: 'COP',
+                    amountInCents: total * 100, // Wompi requiere el valor en centavos
+                    reference: 'MC-' + Date.now(), // Generación de un string único aleatorio
+                    publicKey: 'pub_test_AQUI_TU_LLAVE_PUBLICA', // Llave pública de prueba
+                    // redirectUrl: window.location.origin + '/gracias.html' // (Opcional)
+                });
+
+                // Abrir el widget en pantalla
+                checkout.open(function (result) {
+                    const transaction = result.transaction;
+                    console.log('Resultado de la Transacción:', transaction);
+
+                    // =========================================================================
+                    // M A N E J O   D E   R E S P U E S T A
+                    // =========================================================================
+                    // EL widget detectará la transacción y devolverá el 'status'.
+                    // transaction.status puede arrojar: "APPROVED", "DECLINED", "ERROR", o "VOIDED".
+                    // 
+                    // DEPENDIENDO DEL ESTATUS, AQUÍ PUEDES REDIRIGIR AL USUARIO A UNA NUEVA VISTA
+                    // O MOSTRAR UN MENSAJE DE ÉXITO O ERROR:
+                    // window.location.href = "pagina-agradecimiento.html?id=" + transaction.id;
+                    // =========================================================================
+                    
+                    if (transaction.status === 'APPROVED') {
+                        alert('¡Pago aprobado exitosamente! Redirigiendo a tu resumen de compra. ID: ' + transaction.id);
+                        // window.location.href = '/agradecimiento.html?ref=' + transaction.reference;
+                        
+                        // Vaciar carrito
+                        cart = []; 
+                        updateCartUI();
+                        closeCart();
+                    } else if (transaction.status === 'DECLINED') {
+                        alert('El pago ha sido rechazado. Por favor, intenta con otra tarjeta o método de pago.');
+                    } else {
+                        alert('La transacción se encuentra en estado: ' + transaction.status);
+                    }
+                });
+            });
+        });
+    </script>
+    <!-- Lógica de Búsqueda y Filtros de Productos -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('search-input');
+            const checkboxes = document.querySelectorAll('.filter-checkbox');
+            const productCards = document.querySelectorAll('.producto-card');
+            const noResultsMsg = document.getElementById('no-results-msg');
+
+            // Función principal de filtrado
+            function filtrarServicios() {
+                const searchText = searchInput.value.toLowerCase().trim();
+                
+                // Obtener valores de checkboxes activos
+                const activeFilters = Array.from(checkboxes)
+                    .filter(cb => cb.checked)
+                    .map(cb => cb.value);
+
+                let cardsVisibles = 0;
+
+                productCards.forEach(card => {
+                    const titulo = card.querySelector('.producto-titulo').innerText.toLowerCase();
+                    const desc = card.querySelector('.producto-desc').innerText.toLowerCase();
+                    const categoria = card.getAttribute('data-categoria');
+
+                    // 1. Coincidencia de texto
+                    const matchTexto = searchText === '' || titulo.includes(searchText) || desc.includes(searchText);
+
+                    // 2. Coincidencia de categoría
+                    // Pasan si 'todos' está activo, si no hay filtros, o si incluye su categoría
+                    const matchCategoria = activeFilters.length === 0 || activeFilters.includes('todos') || activeFilters.includes(categoria);
+
+                    // Si cumple ambos, se muestra y sumamos al contador
+                    if (matchTexto && matchCategoria) {
+                        card.style.display = 'flex';
+                        cardsVisibles++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Control del estado visual "Sin resultados"
+                if (cardsVisibles === 0) {
+                    noResultsMsg.classList.remove('hidden');
+                } else {
+                    noResultsMsg.classList.add('hidden');
+                }
+            }
+
+            // Asignar listeners a la barra de búsqueda (mientras el user escribe)
+            searchInput.addEventListener('input', filtrarServicios);
+
+            // Asignar listeners a los checkboxes
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    // UX Extra: Si pulsan 'Todos', desmarcar los demás
+                    if (e.target.value === 'todos' && e.target.checked) {
+                        checkboxes.forEach(box => {
+                            if (box.value !== 'todos') box.checked = false;
+                        });
+                    } 
+                    // Si pulsan una categoría específica, desmarcar 'Todos'
+                    else if (e.target.value !== 'todos' && e.target.checked) {
+                        const cbTodos = Array.from(checkboxes).find(b => b.value === 'todos');
+                        if (cbTodos) cbTodos.checked = false;
+                    }
+                    
+                    // Si el usuario los desmarca todos manualmente, re-marcar "todos"
+                    const checkedCount = Array.from(checkboxes).filter(b => b.checked).length;
+                    if(checkedCount === 0) {
+                        const cbTodos = Array.from(checkboxes).find(b => b.value === 'todos');
+                        if (cbTodos) cbTodos.checked = true;
+                    }
+
+            // Ejecutar filtro tras interactuar
+                    filtrarServicios();
+                });
+            });
+
+            // Trigger inicial por si hay caché en el browser
+            filtrarServicios();
+
+            // ==========================================
+            // Lógica de Ordenamiento (Sort)
+            // ==========================================
+            const sortSelect = document.getElementById('sort-select');
+            const productsGrid = document.getElementById('products-grid');
+            
+            // Guardar el orden original ("Más relevantes")
+            const originalOrder = Array.from(productCards);
+
+            sortSelect.addEventListener('change', (e) => {
+                const sortType = e.target.value;
+                const cardsArray = Array.from(document.querySelectorAll('.producto-card'));
+                
+                if (sortType === 'relevantes' || sortType === 'recientes') {
+                    // Para este ejemplo, relevantes y recientes usan el orden original
+                    originalOrder.forEach(card => productsGrid.appendChild(card));
+                } 
+                else if (sortType === 'menor-precio') {
+                    cardsArray.sort((a, b) => {
+                        const priceA = parseInt(a.querySelector('.text-3xl').innerText.replace(/[^0-9]/g, ''));
+                        const priceB = parseInt(b.querySelector('.text-3xl').innerText.replace(/[^0-9]/g, ''));
+                        return priceA - priceB;
+                    });
+                    // Reordenar en el DOM
+                    cardsArray.forEach(card => productsGrid.appendChild(card));
+                } 
+                else if (sortType === 'mayor-precio') {
+                    cardsArray.sort((a, b) => {
+                        const priceA = parseInt(a.querySelector('.text-3xl').innerText.replace(/[^0-9]/g, ''));
+                        const priceB = parseInt(b.querySelector('.text-3xl').innerText.replace(/[^0-9]/g, ''));
+                        return priceB - priceA; // Inverso
+                    });
+                    // Reordenar en el DOM
+                    cardsArray.forEach(card => productsGrid.appendChild(card));
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

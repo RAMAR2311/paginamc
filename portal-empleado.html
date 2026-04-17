@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Portal Empleado - MC Innovación Financiera</title>
+    <meta name="description"
+        content="Sistema de Gestión Laboral Integral para los empleados de MC Innovación Financiera.">
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#eccb13",
+                        "accent-pink": "#f472b6",
+                        "background-light": "#f8f8f6",
+                        "background-dark": "#221f10",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Top Navigation -->
+    <header
+        class="sticky top-0 z-50 w-full border-b border-white/40 dark:border-white/10 bg-white/40 dark:bg-background-dark/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a class="flex items-center" href="/">
+                <img alt="Logo MC Innovación Financiera" class="h-12 w-auto object-contain" src="favicon.jpg" />
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider">
+                <a class="relative group hover:text-primary transition-all duration-300"
+                    href="code.html">Inicio
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300"
+                    href="nosotros.html">Nosotros
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300"
+                    href="code.html#servicios">Servicios
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300"
+                    href="#contacto">Contacto
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+                <a class="relative group hover:text-primary transition-all duration-300 text-primary"
+                    href="code.html#aplicativos">Aplicativos MC
+                    <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </a>
+            </nav>
+            <div class="flex gap-4">
+                <a href="#contacto"
+                    class="hidden sm:flex bg-primary text-background-dark px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-110 hover:-translate-y-0.5 hover:shadow-primary/40 active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20 items-center justify-center">
+                    Agenda Gratis
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+
+        <!-- Hero Section -->
+        <section class="bg-background-dark py-20 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 pointer-events-none">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
+                <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+            </div>
+            <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+                <div
+                    class="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border border-primary/30 mb-8">
+                    <span class="material-symbols-outlined text-sm">badge</span> Portal Corporativo
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6 tracking-tight">
+                    Sistema de Gestión Laboral Integral
+                </h1>
+                <p
+                    class="text-lg md:text-xl text-slate-300 dark:text-slate-400 font-medium max-w-3xl mx-auto leading-relaxed">
+                    Accede a todas las herramientas que necesitas para tu trabajo diario en un solo lugar.
+                </p>
+            </div>
+        </section>
+
+        <!-- Herramientas Grid Section -->
+        <section class="py-24 bg-[#f8f8f6] dark:bg-black/20">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Grid of 6 Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Card 1 -->
+                    <article
+                        class="bg-white dark:bg-slate-900 border-t-2 border-t-transparent hover:border-t-accent-pink border-x border-b border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group">
+                        <div
+                            class="size-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined text-3xl text-primary">folder_shared</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Información Laboral</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+                            Desprendibles de pago, certificados laborales y gestión de documentos personales.
+                        </p>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article
+                        class="bg-white dark:bg-slate-900 border-t-2 border-t-transparent hover:border-t-accent-pink border-x border-b border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group">
+                        <div
+                            class="size-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined text-3xl text-primary">fingerprint</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Control de Asistencia</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+                            Registro de entrada y salida, historial de asistencia y gestión de horarios.
+                        </p>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article
+                        class="bg-white dark:bg-slate-900 border-t-2 border-t-transparent hover:border-t-accent-pink border-x border-b border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group">
+                        <div
+                            class="size-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined text-3xl text-primary">forum</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Chat Corporativo</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+                            Comunicación instantánea con todos los empleados y grupos de trabajo especializados.
+                        </p>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article
+                        class="bg-white dark:bg-slate-900 border-t-2 border-t-transparent hover:border-t-accent-pink border-x border-b border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group">
+                        <div
+                            class="size-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined text-3xl text-primary">groups</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Grupos de Ventas</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+                            Colaboración con tu equipo, seguimiento de metas y comunicación directa.
+                        </p>
+                    </article>
+
+                    <!-- Card 5 -->
+                    <article
+                        class="bg-white dark:bg-slate-900 border-t-2 border-t-transparent hover:border-t-accent-pink border-x border-b border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group">
+                        <div
+                            class="size-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined text-3xl text-primary">calendar_month</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Calendario Personalizado</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+                            Organiza tus tareas, reuniones y eventos importantes del mes.
+                        </p>
+                    </article>
+
+                    <!-- Card 6 -->
+                    <article
+                        class="bg-white dark:bg-slate-900 border-t-2 border-t-transparent hover:border-t-accent-pink border-x border-b border-slate-200 dark:border-slate-800 rounded-xl p-8 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group">
+                        <div
+                            class="size-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined text-3xl text-primary">school</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Capacitaciones</h3>
+                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm">
+                            Accede a cursos, materiales de formación y certifica tus conocimientos.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Acceso / Login Gateway Section -->
+        <section
+            class="py-24 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 relative z-10">
+            <div class="max-w-4xl mx-auto px-6">
+                <div
+                    class="bg-slate-50 dark:bg-slate-900 rounded-[2rem] p-10 md:p-16 border border-slate-200 dark:border-slate-800 text-center shadow-xl shadow-slate-200/50 dark:shadow-none relative overflow-hidden">
+
+                    <!-- Decorative shapes -->
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 rounded-full blur-[40px]"></div>
+                    <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-primary/10 rounded-full blur-[40px]"></div>
+
+                    <div class="relative z-10">
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6">
+                            ¿Eres parte de nuestro equipo?
+                        </h2>
+                        <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                            Ingresa con tus credenciales corporativas y accede a tu panel personalizado con todas las
+                            funcionalidades del sistema.
+                        </p>
+
+                        <a href="#"
+                            class="inline-flex bg-primary text-[#221f10] h-16 px-10 rounded-xl font-bold text-xl items-center justify-center gap-3 hover:-translate-y-1 hover:bg-yellow-400 hover:shadow-xl hover:shadow-primary/30 active:scale-95 transition-all duration-300 w-full sm:w-auto">
+                            Acceder al Sistema <span class="material-symbols-outlined font-bold">arrow_forward</span>
+                        </a>
+
+                        <div class="mt-6 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
+                            <span
+                                class="material-symbols-outlined text-base text-green-600 dark:text-green-500">lock</span>
+                            <span>Conexión segura y encriptada</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-16" id="contacto">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 border-b border-slate-900 pb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center mb-6">
+                        <a href="code.html">
+                            <img alt="MC Innovación Financiera Logo" class="h-10 w-auto object-contain"
+                                src="favicon.jpg" />
+                        </a>
+                    </div>
+                    <p class="text-sm leading-relaxed">Expertos en asesoría financiera y soluciones de deuda en todo el
+                        territorio colombiano.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Empresa</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="nosotros.html">Sobre Nosotros</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="nosotros.html#equipo">Nuestro
+                                Equipo</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="code.html#testimonios">Casos de
+                                Éxito</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Blog Financiero</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Contacto</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-center gap-3"><span
+                                class="material-symbols-outlined text-primary text-lg">mail</span> info@mcinnovacion.co
+                        </li>
+                        <li class="flex items-center gap-3"><span
+                                class="material-symbols-outlined text-primary text-lg">phone</span> +57 (310) 555-0123
+                        </li>
+                        <li class="flex items-center gap-3"><span
+                                class="material-symbols-outlined text-primary text-lg">location_on</span> Bogotá,
+                            Colombia</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Síguenos</h4>
+                    <div class="flex gap-4">
+                        <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined">share</span>
+                        </a>
+                        <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
+                            href="#">
+                            <span class="material-symbols-outlined">linked_camera</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-medium uppercase tracking-widest">
+                <p>© 2024 MC Innovación Financiera. Todos los derechos reservados.</p>
+                <div class="flex gap-8">
+                    <a class="hover:text-white" href="#">Aviso Legal</a>
+                    <a class="hover:text-white" href="#">Políticas de Privacidad</a>
+                    <a class="hover:text-white" href="#">Términos de Servicio</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
