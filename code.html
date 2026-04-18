@@ -42,7 +42,7 @@
 
     <!-- Video Preloader -->
     <div id="video-preloader" class="fixed inset-0 z-[100] bg-[#221f10] flex items-center justify-center transition-opacity duration-700">
-        <video id="video-intro" class="w-full h-full object-cover" autoplay muted playsinline src="video-intro.mp4.mp4"></video>
+        <video id="video-intro" class="w-full h-full object-contain sm:object-cover" autoplay muted playsinline src="video-intro.mp4.mp4"></video>
         <button id="skip-video-btn" class="absolute bottom-8 right-8 z-[110] text-[#eccb13] bg-black/40 px-6 py-2 rounded-full hover:bg-black/60 font-display transition-all duration-300">
             Saltar Intro
         </button>
@@ -52,7 +52,7 @@
     <!-- Floating Social Media Bar -->
     <aside
         class="fixed z-50 
-        bottom-0 left-0 w-full flex flex-row justify-center gap-6 p-4 rounded-t-xl
+        bottom-0 left-0 w-full flex flex-row justify-center gap-4 p-3 rounded-t-xl
         md:top-1/2 md:right-0 md:left-auto md:bottom-auto md:w-auto md:flex-col md:-translate-y-1/2 md:gap-4 md:rounded-l-xl md:rounded-t-none
         bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.1)] border border-slate-200 dark:border-slate-800 transition-all duration-300">
 
@@ -126,16 +126,41 @@
                     <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-accent-pink rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
                 </a>
             </nav>
-            <div class="flex gap-4">
+            <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center size-10 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    aria-label="Menú">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+                <div class="flex gap-4">
                 <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
-                    class="hidden sm:flex bg-primary text-background-dark px-6 py-2.5 rounded-full font-bold text-sm hover:brightness-110 hover:-translate-y-0.5 hover:shadow-primary/40 active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20">
+                    class="hidden sm:flex bg-primary text-background-dark px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm hover:brightness-110 hover:-translate-y-0.5 hover:shadow-primary/40 active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20">
                     Agenda Gratis
                 </a>
             </div>
         </div>
     </header>
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
+        <div id="mobile-menu-panel" class="absolute right-0 top-0 h-full w-72 bg-white dark:bg-slate-900 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+            <div class="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-800">
+                <img alt="Logo" class="h-8 w-auto object-contain" src="favicon.jpg" />
+                <button id="mobile-menu-close" class="size-10 rounded-lg flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <nav class="flex-1 overflow-y-auto p-6">
+                <ul class="space-y-1" id="mobile-nav-links"></ul>
+            </nav>
+            <div class="p-6 border-t border-slate-200 dark:border-slate-800">
+                <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
+                    class="w-full bg-primary text-background-dark py-3 rounded-xl font-bold text-center flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+                    <span class="material-symbols-outlined text-lg">chat</span> WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-32 bg-white dark:bg-background-dark">
+    <section class="relative overflow-hidden pt-24 pb-16 sm:pb-24 md:pt-24 md:pb-32 bg-white dark:bg-background-dark">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="flex flex-col gap-8">
                 <div
@@ -143,7 +168,7 @@
                     <span class="material-symbols-outlined text-sm">verified</span> Expertos en Deuda en Colombia
                 </div>
                 <h1
-                    class="text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight text-slate-900 dark:text-white">
+                    class="text-3xl sm:text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight text-slate-900 dark:text-white">
                     Recupera tu estabilidad financiera con <span class="text-primary">asesoría profesional</span>
                 </h1>
                 <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">En MC
@@ -163,7 +188,7 @@
             <div class="relative">
                 <div class="absolute -inset-4 bg-primary/20 rounded-[2rem] blur-2xl"></div>
                 <div
-                    class="relative rounded-[2rem] overflow-hidden aspect-[4/3] shadow-2xl bg-slate-100 dark:bg-slate-800 border-4 border-white dark:border-slate-900">
+                    class="relative rounded-2xl sm:rounded-[2rem] overflow-hidden aspect-video sm:aspect-[4/3] shadow-2xl bg-slate-100 dark:bg-slate-800 border-2 sm:border-4 border-white dark:border-slate-900">
                     <video autoplay loop muted playsinline class="w-full h-full object-cover">
                         <source src="video_oficina.mp4" type="video/mp4">
                         Tu navegador no soporta el elemento de video.
@@ -274,15 +299,15 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center text-background-dark">
                 <div class="flex flex-col gap-2">
-                    <p class="text-6xl font-black tracking-tight"><span class="contador-animado" data-target="2500">0</span>+</p>
+                    <p class="text-4xl sm:text-6xl font-black tracking-tight"><span class="contador-animado" data-target="2500">0</span>+</p>
                     <p class="text-lg font-bold opacity-80 uppercase tracking-widest">Clientes asesorados</p>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <p class="text-6xl font-black tracking-tight">$<span class="contador-animado" data-target="45">0</span>M+</p>
+                    <p class="text-4xl sm:text-6xl font-black tracking-tight">$<span class="contador-animado" data-target="45">0</span>M+</p>
                     <p class="text-lg font-bold opacity-80 uppercase tracking-widest">Deudas negociadas</p>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <p class="text-6xl font-black tracking-tight"><span class="contador-animado" data-target="12">0</span>+</p>
+                    <p class="text-4xl sm:text-6xl font-black tracking-tight"><span class="contador-animado" data-target="12">0</span>+</p>
                     <p class="text-lg font-bold opacity-80 uppercase tracking-widest">Años de experiencia</p>
                 </div>
             </div>
@@ -499,18 +524,18 @@
     <!-- Final CTA Section -->
     <section class="py-24">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="bg-slate-900 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+            <div class="bg-slate-900 rounded-2xl sm:rounded-[3rem] p-8 sm:p-12 md:p-20 text-center relative overflow-hidden">
                 <div class="absolute inset-0 opacity-10 pointer-events-none">
                     <div class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
                     <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary/50 rounded-full blur-[120px]"></div>
                 </div>
                 <div class="relative z-10 flex flex-col items-center gap-8">
-                    <h2 class="text-4xl md:text-6xl font-extrabold text-white leading-tight max-w-4xl">¿Listo para
+                    <h2 class="text-2xl sm:text-4xl md:text-6xl font-extrabold text-white leading-tight max-w-4xl">¿Listo para
                         volver a dormir tranquilo?</h2>
                     <p class="text-slate-400 text-lg md:text-xl max-w-2xl">Únete a los miles de colombianos que ya
                         recuperaron su libertad financiera con nuestra ayuda.</p>
                     <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
-                        class="bg-primary text-background-dark h-16 px-12 rounded-2xl font-bold text-xl hover:scale-105 transition-transform shadow-2xl shadow-primary/40 mt-4">
+                        class="bg-primary text-background-dark h-14 sm:h-16 px-8 sm:px-12 rounded-2xl font-bold text-base sm:text-xl hover:scale-105 transition-transform shadow-2xl shadow-primary/40 mt-4 flex items-center justify-center">
                         Agenda tu asesoría hoy
                     </a>
                 </div>
@@ -574,12 +599,12 @@
                 </div>
             </div>
             <div
-                class="flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-medium uppercase tracking-widest">
+                class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium uppercase tracking-widest text-center">
                 <p>© 2024 MC Innovación Financiera. Todos los derechos reservados.</p>
                 <div class="mt-4 md:mt-0 text-[10px] md:text-xs text-slate-500 normal-case">
                     *Toda nuestra gestión se realiza bajo el estricto marco legal de la Ley 1266 de 2008 (Ley de Habeas Data) y la Ley 1581 de 2012.
                 </div>
-                <div class="flex gap-8">
+                <div class="flex flex-wrap justify-center gap-4 sm:gap-8">
                     <a class="hover:text-white" href="#">Aviso Legal</a>
                     <a class="hover:text-white" href="#">Políticas de Privacidad</a>
                     <a class="hover:text-white" href="#">Términos de Servicio</a>
@@ -672,7 +697,58 @@
             observer.observe(seccionImpacto);
         });
     </script>
-    </script>
     
+
+    <script>
+    // Mobile Menu Logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const overlay = document.getElementById('mobile-menu-overlay');
+        const panel = document.getElementById('mobile-menu-panel');
+        const closeBtn = document.getElementById('mobile-menu-close');
+        const body = document.body;
+
+        // Clone desktop nav links into mobile menu
+        const desktopNav = document.querySelector('header nav');
+        const mobileNavList = document.getElementById('mobile-nav-links');
+        if (desktopNav && mobileNavList) {
+            const links = desktopNav.querySelectorAll('a');
+            links.forEach(link => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = link.href;
+                a.textContent = link.textContent.trim();
+                a.className = 'block py-3 px-4 rounded-xl text-slate-700 dark:text-slate-200 font-semibold hover:bg-primary/10 hover:text-primary transition-all';
+                a.addEventListener('click', () => closeMenu());
+                li.appendChild(a);
+                mobileNavList.appendChild(li);
+            });
+        }
+
+        function openMenu() {
+            if (!overlay || !panel) return;
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            overlay.classList.add('opacity-100');
+            panel.classList.remove('translate-x-full');
+            panel.classList.add('translate-x-0');
+            body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            if (!overlay || !panel) return;
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            overlay.classList.remove('opacity-100');
+            panel.classList.add('translate-x-full');
+            panel.classList.remove('translate-x-0');
+            body.style.overflow = '';
+        }
+
+        if (menuBtn) menuBtn.addEventListener('click', openMenu);
+        if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+        if (overlay) overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) closeMenu();
+        });
+    });
+    </script>
 </body>
 </html>
