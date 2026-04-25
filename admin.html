@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin MC</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#eccb13',
+                        'background-dark': '#221f10',
+                    },
+                    fontFamily: { display: ['Manrope'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Manrope', sans-serif; }
+        .tab-active { background: #eccb13; color: #221f10; }
+        .tab-inactive { background: transparent; color: #94a3b8; }
+        input[type="file"] { display: none; }
+        .upload-label {
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            border: 2px dashed #334155; border-radius: 1rem;
+            padding: 1rem; transition: all .2s;
+        }
+        .upload-label:hover { border-color: #eccb13; }
+        .member-photo { width: 80px; height: 100px; object-fit: cover; border-radius: .75rem; }
+        .gallery-thumb { width: 120px; height: 80px; object-fit: cover; border-radius: .75rem; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen" class="min-h-screen flex items-center justify-center px-4">
+    <div class="w-full max-w-sm bg-slate-900 rounded-3xl p-10 shadow-2xl border border-slate-800">
+        <div class="flex justify-center mb-8">
+            <img src="favicon.jpg" alt="Logo" class="h-14 w-auto object-contain rounded-xl" />
+        </div>
+        <h1 class="text-2xl font-extrabold text-center mb-2">Panel Admin</h1>
+        <p class="text-slate-400 text-center text-sm mb-8">MC Innovación Financiera</p>
+        <div class="space-y-4">
+            <div>
+                <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2 block">Contraseña</label>
+                <input id="password-input" type="password" placeholder="••••••••"
+                    class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
+                    onkeydown="if(event.key==='Enter') doLogin()" />
+            </div>
+            <button onclick="doLogin()"
+                class="w-full bg-primary text-background-dark py-3 rounded-xl font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
+                Ingresar
+            </button>
+            <p id="login-error" class="text-red-400 text-xs text-center hidden">Contraseña incorrecta</p>
+        </div>
+    </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel" class="hidden min-h-screen">
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <img src="favicon.jpg" alt="Logo" class="h-9 w-auto object-contain rounded-lg" />
+            <div>
+                <p class="font-bold text-sm">Panel de Administración</p>
+                <p class="text-xs text-slate-400">MC Innovación Financiera</p>
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <a href="nosotros.html" target="_blank"
+                class="flex items-center gap-2 text-xs font-bold bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-sm">open_in_new</span> Ver Página
+            </a>
+            <button onclick="doLogout()"
+                class="flex items-center gap-2 text-xs font-bold bg-slate-800 hover:bg-red-900/60 px-4 py-2 rounded-lg transition-colors text-red-400">
+                <span class="material-symbols-outlined text-sm">logout</span> Salir
+            </button>
+        </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto px-6 py-10">
+        <!-- Tabs -->
+        <div class="flex gap-2 mb-10 bg-slate-900 p-1.5 rounded-2xl w-fit">
+            <button id="tab-team" onclick="switchTab('team')" class="tab-active px-6 py-2.5 rounded-xl font-bold text-sm transition-all">
+                <span class="material-symbols-outlined text-sm align-middle mr-1">group</span> Equipo
+            </button>
+            <button id="tab-gallery" onclick="switchTab('gallery')" class="tab-inactive px-6 py-2.5 rounded-xl font-bold text-sm transition-all">
+                <span class="material-symbols-outlined text-sm align-middle mr-1">photo_library</span> Galería
+            </button>
+        </div>
+
+        <!-- TEAM TAB -->
+        <div id="panel-team">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-extrabold">Miembros del Equipo</h2>
+                <button onclick="addMember()"
+                    class="flex items-center gap-2 bg-primary text-background-dark px-5 py-2.5 rounded-xl font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm">add</span> Agregar Miembro
+                </button>
+            </div>
+            <div id="team-list" class="space-y-4"></div>
+            <div class="mt-8 flex justify-end">
+                <button onclick="saveTeam()"
+                    class="flex items-center gap-2 bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined">save</span> Guardar Cambios
+                </button>
+            </div>
+        </div>
+
+        <!-- GALLERY TAB -->
+        <div id="panel-gallery" class="hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-extrabold">Galería — Nuestros Momentos</h2>
+                <button onclick="addGalleryItem()"
+                    class="flex items-center gap-2 bg-primary text-background-dark px-5 py-2.5 rounded-xl font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-sm">add_photo_alternate</span> Agregar Foto
+                </button>
+            </div>
+            <div id="gallery-list" class="space-y-4"></div>
+            <div class="mt-8 flex justify-end">
+                <button onclick="saveGallery()"
+                    class="flex items-center gap-2 bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined">save</span> Guardar Cambios
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SUCCESS TOAST -->
+<div id="toast" class="fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-2xl font-bold text-sm shadow-2xl hidden flex items-center gap-2 z-[999]">
+    <span class="material-symbols-outlined text-sm">check_circle</span>
+    <span id="toast-msg">Guardado con éxito</span>
+</div>
+
+<script>
+// ─── CONFIG ───────────────────────────────────────────────
+const ADMIN_PASSWORD = 'MCAdmin2024'; // Cambia esta contraseña
+
+// ─── DEFAULT DATA ─────────────────────────────────────────
+const DEFAULT_TEAM = [
+    { name: 'Alejandro Torres', role: 'Asesor Comercial Senior', bio: 'Especialista en acuerdos comerciales de gran volumen.', photo: 'advisor_portrait_man.png', whatsapp: '' },
+    { name: 'Camila Gómez',    role: 'Asesora Comercial',       bio: 'Manejo de créditos hipotecarios y defensa legal.',   photo: 'advisor_portrait_woman.png', whatsapp: '' },
+    { name: 'Santiago Mejía',  role: 'Asesor Comercial',        bio: '',                                                    photo: 'advisor_portrait_man.png', whatsapp: '' },
+    { name: 'Diana Ríos',      role: 'Asesora Comercial',       bio: '',                                                    photo: 'advisor_portrait_woman.png', whatsapp: '' },
+    { name: 'Marlon López',    role: 'Asesor Comercial',        bio: '',                                                    photo: 'advisor_portrait_man.png', whatsapp: '' },
+    { name: 'Valeria Pineda',  role: 'Asesora Comercial',       bio: '',                                                    photo: 'advisor_portrait_woman.png', whatsapp: '' },
+    { name: 'Juan Carlos Ruiz',role: 'Asesor Comercial',        bio: '',                                                    photo: 'advisor_portrait_man.png', whatsapp: '' },
+];
+
+const DEFAULT_GALLERY = [
+    { title: 'Capacitación Semanal', subtitle: 'Cultura MC', photo: 'https://images.unsplash.com/photo-1522071823991-b9671e3030e3?auto=format&fit=crop&q=80&w=800' },
+    { title: 'Trabajo en Equipo',    subtitle: 'Colaboración', photo: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800' },
+    { title: 'Oficinas Centrales',   subtitle: 'Instalaciones', photo: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800' },
+    { title: 'Atención al Cliente',  subtitle: 'Compromiso', photo: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800' },
+];
+
+// ─── STATE ────────────────────────────────────────────────
+let teamData    = JSON.parse(localStorage.getItem('mc_team'))    || DEFAULT_TEAM;
+let galleryData = JSON.parse(localStorage.getItem('mc_gallery')) || DEFAULT_GALLERY;
+
+// ─── AUTH ─────────────────────────────────────────────────
+function doLogin() {
+    const pw = document.getElementById('password-input').value;
+    if (pw === ADMIN_PASSWORD) {
+        document.getElementById('login-screen').classList.add('hidden');
+        document.getElementById('admin-panel').classList.remove('hidden');
+        renderTeam();
+        renderGallery();
+    } else {
+        document.getElementById('login-error').classList.remove('hidden');
+        document.getElementById('password-input').value = '';
+    }
+}
+
+function doLogout() {
+    document.getElementById('admin-panel').classList.add('hidden');
+    document.getElementById('login-screen').classList.remove('hidden');
+    document.getElementById('password-input').value = '';
+}
+
+// ─── TABS ─────────────────────────────────────────────────
+function switchTab(tab) {
+    document.getElementById('panel-team').classList.add('hidden');
+    document.getElementById('panel-gallery').classList.add('hidden');
+    document.getElementById('tab-team').className = 'tab-inactive px-6 py-2.5 rounded-xl font-bold text-sm transition-all';
+    document.getElementById('tab-gallery').className = 'tab-inactive px-6 py-2.5 rounded-xl font-bold text-sm transition-all';
+    document.getElementById('panel-' + tab).classList.remove('hidden');
+    document.getElementById('tab-' + tab).className = 'tab-active px-6 py-2.5 rounded-xl font-bold text-sm transition-all';
+}
+
+// ─── TOAST ────────────────────────────────────────────────
+function showToast(msg = 'Guardado con éxito') {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.remove('hidden');
+    t.classList.add('flex');
+    setTimeout(() => { t.classList.add('hidden'); t.classList.remove('flex'); }, 3000);
+}
+
+// ─── IMAGE HELPER ─────────────────────────────────────────
+function readImageFile(file, callback) {
+    const reader = new FileReader();
+    reader.onload = e => callback(e.target.result);
+    reader.readAsDataURL(file);
+}
+
+// ─── TEAM RENDERING ───────────────────────────────────────
+function renderTeam() {
+    const list = document.getElementById('team-list');
+    list.innerHTML = '';
+    teamData.forEach((m, i) => {
+        const card = document.createElement('div');
+        card.className = 'bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start';
+        card.innerHTML = `
+            <div class="flex flex-col items-center gap-3 shrink-0">
+                <img id="team-photo-preview-${i}" src="${m.photo}" alt="Foto" class="member-photo" onerror="this.src='advisor_portrait_man.png'"/>
+                <label for="team-photo-file-${i}" class="upload-label text-xs text-slate-400 gap-2 px-3 py-2 w-full text-center">
+                    <span class="material-symbols-outlined text-sm">upload</span> Cambiar foto
+                </label>
+                <input type="file" id="team-photo-file-${i}" accept="image/*" onchange="handleTeamPhoto(${i}, this)" />
+            </div>
+            <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 block">Nombre completo</label>
+                    <input type="text" id="team-name-${i}" value="${m.name}"
+                        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors" />
+                </div>
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 block">Cargo / Rol</label>
+                    <input type="text" id="team-role-${i}" value="${m.role}"
+                        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors" />
+                </div>
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 block">Especialidad (hover)</label>
+                    <input type="text" id="team-bio-${i}" value="${m.bio}"
+                        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors" />
+                </div>
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 block">WhatsApp (solo números)</label>
+                    <input type="text" id="team-wa-${i}" value="${m.whatsapp || ''}" placeholder="573205575195"
+                        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors" />
+                </div>
+            </div>
+            <button onclick="removeMember(${i})" class="text-red-400 hover:text-red-300 hover:bg-red-900/30 p-2 rounded-lg transition-colors shrink-0" title="Eliminar">
+                <span class="material-symbols-outlined">delete</span>
+            </button>
+        `;
+        list.appendChild(card);
+    });
+}
+
+function handleTeamPhoto(i, input) {
+    if (!input.files[0]) return;
+    readImageFile(input.files[0], data => {
+        teamData[i].photo = data;
+        document.getElementById(`team-photo-preview-${i}`).src = data;
+    });
+}
+
+function addMember() {
+    teamData.push({ name: 'Nuevo Asesor', role: 'Asesor Comercial', bio: '', photo: 'advisor_portrait_man.png', whatsapp: '' });
+    renderTeam();
+}
+
+function removeMember(i) {
+    if (!confirm('¿Eliminar este miembro?')) return;
+    teamData.splice(i, 1);
+    renderTeam();
+}
+
+function collectTeam() {
+    teamData.forEach((m, i) => {
+        m.name     = document.getElementById(`team-name-${i}`)?.value || m.name;
+        m.role     = document.getElementById(`team-role-${i}`)?.value || m.role;
+        m.bio      = document.getElementById(`team-bio-${i}`)?.value  || '';
+        m.whatsapp = document.getElementById(`team-wa-${i}`)?.value   || '';
+    });
+}
+
+function saveTeam() {
+    collectTeam();
+    localStorage.setItem('mc_team', JSON.stringify(teamData));
+    showToast('Equipo guardado con éxito ✓');
+}
+
+// ─── GALLERY RENDERING ────────────────────────────────────
+function renderGallery() {
+    const list = document.getElementById('gallery-list');
+    list.innerHTML = '';
+    galleryData.forEach((g, i) => {
+        const card = document.createElement('div');
+        card.className = 'bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start';
+        card.innerHTML = `
+            <div class="flex flex-col items-center gap-3 shrink-0">
+                <img id="gallery-photo-preview-${i}" src="${g.photo}" alt="Foto" class="gallery-thumb" onerror="this.style.display='none'" />
+                <label for="gallery-photo-file-${i}" class="upload-label text-xs text-slate-400 gap-2 px-3 py-2 w-full text-center">
+                    <span class="material-symbols-outlined text-sm">upload</span> Subir foto
+                </label>
+                <input type="file" id="gallery-photo-file-${i}" accept="image/*" onchange="handleGalleryPhoto(${i}, this)" />
+            </div>
+            <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 block">Título</label>
+                    <input type="text" id="gallery-title-${i}" value="${g.title}"
+                        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors" />
+                </div>
+                <div>
+                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 block">Subtítulo</label>
+                    <input type="text" id="gallery-subtitle-${i}" value="${g.subtitle}"
+                        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors" />
+                </div>
+            </div>
+            <button onclick="removeGalleryItem(${i})" class="text-red-400 hover:text-red-300 hover:bg-red-900/30 p-2 rounded-lg transition-colors shrink-0" title="Eliminar">
+                <span class="material-symbols-outlined">delete</span>
+            </button>
+        `;
+        list.appendChild(card);
+    });
+}
+
+function handleGalleryPhoto(i, input) {
+    if (!input.files[0]) return;
+    readImageFile(input.files[0], data => {
+        galleryData[i].photo = data;
+        const preview = document.getElementById(`gallery-photo-preview-${i}`);
+        preview.src = data;
+        preview.style.display = 'block';
+    });
+}
+
+function addGalleryItem() {
+    galleryData.push({ title: 'Nuevo Momento', subtitle: 'MC Equipo', photo: '' });
+    renderGallery();
+}
+
+function removeGalleryItem(i) {
+    if (!confirm('¿Eliminar esta foto?')) return;
+    galleryData.splice(i, 1);
+    renderGallery();
+}
+
+function collectGallery() {
+    galleryData.forEach((g, i) => {
+        g.title    = document.getElementById(`gallery-title-${i}`)?.value    || g.title;
+        g.subtitle = document.getElementById(`gallery-subtitle-${i}`)?.value || g.subtitle;
+    });
+}
+
+function saveGallery() {
+    collectGallery();
+    localStorage.setItem('mc_gallery', JSON.stringify(galleryData));
+    showToast('Galería guardada con éxito ✓');
+}
+</script>
+</body>
+</html>
