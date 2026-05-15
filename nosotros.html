@@ -435,8 +435,7 @@
     ];
 
     // ─── RENDERIZADO DINÁMICO DEL EQUIPO ──────────────────
-    (function renderTeam() {
-        const data = JSON.parse(localStorage.getItem('mc_team')) || DEFAULT_TEAM;
+    function renderTeam(data) {
         const grid = document.getElementById('team-grid');
         if (!grid) return;
         grid.innerHTML = data.map(m => {
@@ -458,11 +457,10 @@
                 </a>
             </article>`;
         }).join('');
-    })();
+    }
 
     // ─── RENDERIZADO DINÁMICO DE LA GALERÍA ───────────────
-    (function renderGallery() {
-        const data = JSON.parse(localStorage.getItem('mc_gallery')) || DEFAULT_GALLERY;
+    function renderGallery(data) {
         const container = document.getElementById('gallery-container');
         if (!container) return;
         container.innerHTML = data.map(g => `
@@ -475,7 +473,22 @@
                     </div>
                 </div>
             </div>`).join('');
-    })();
+    }
+
+    // ─── CARGAR DATOS DESDE EL BACKEND ────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('/api/data')
+            .then(res => res.json())
+            .then(data => {
+                renderTeam(data.team || DEFAULT_TEAM);
+                renderGallery(data.gallery || DEFAULT_GALLERY);
+            })
+            .catch(err => {
+                console.error("Error al cargar datos, usando los por defecto", err);
+                renderTeam(DEFAULT_TEAM);
+                renderGallery(DEFAULT_GALLERY);
+            });
+    });
     </script>
 </body>
 

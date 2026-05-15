@@ -144,7 +144,7 @@
 
 <script>
 // ─── CONFIG ───────────────────────────────────────────────
-const ADMIN_PASSWORD = 'MCAdmin2024'; // Cambia esta contraseña
+const ADMIN_PASSWORD = 'MC2026*'; // Cambia esta contraseña
 
 // ─── DEFAULT DATA ─────────────────────────────────────────
 const DEFAULT_TEAM = [
@@ -165,8 +165,22 @@ const DEFAULT_GALLERY = [
 ];
 
 // ─── STATE ────────────────────────────────────────────────
-let teamData    = JSON.parse(localStorage.getItem('mc_team'))    || DEFAULT_TEAM;
-let galleryData = JSON.parse(localStorage.getItem('mc_gallery')) || DEFAULT_GALLERY;
+let teamData = DEFAULT_TEAM;
+let galleryData = DEFAULT_GALLERY;
+
+// Cargar datos desde el backend
+fetch('/api/data')
+    .then(res => res.json())
+    .then(data => {
+        teamData = data.team || DEFAULT_TEAM;
+        galleryData = data.gallery || DEFAULT_GALLERY;
+        // Si el panel de admin está visible, renderizamos de nuevo
+        if (!document.getElementById('admin-panel').classList.contains('hidden')) {
+            renderTeam();
+            renderGallery();
+        }
+    })
+    .catch(err => console.error('Error cargando datos del backend:', err));
 
 // ─── AUTH ─────────────────────────────────────────────────
 function doLogin() {
@@ -289,8 +303,27 @@ function collectTeam() {
 
 function saveTeam() {
     collectTeam();
-    localStorage.setItem('mc_team', JSON.stringify(teamData));
-    showToast('Equipo guardado con éxito ✓');
+    
+    // Cambiando el texto del botón temporalmente
+    showToast('Guardando, por favor espera...');
+    
+    fetch('/api/data/team', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(teamData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            showToast('Equipo guardado con éxito ✓');
+        } else {
+            showToast('Error al guardar ✗');
+        }
+    })
+    .catch(err => {
+        console.error('Error:', err);
+        showToast('Error de conexión ✗');
+    });
 }
 
 // ─── GALLERY RENDERING ────────────────────────────────────
@@ -358,8 +391,26 @@ function collectGallery() {
 
 function saveGallery() {
     collectGallery();
-    localStorage.setItem('mc_gallery', JSON.stringify(galleryData));
-    showToast('Galería guardada con éxito ✓');
+    
+    showToast('Guardando, por favor espera...');
+    
+    fetch('/api/data/gallery', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(galleryData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            showToast('Galería guardada con éxito ✓');
+        } else {
+            showToast('Error al guardar ✗');
+        }
+    })
+    .catch(err => {
+        console.error('Error:', err);
+        showToast('Error de conexión ✗');
+    });
 }
 </script>
 </body>
