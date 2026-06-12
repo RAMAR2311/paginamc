@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const benefitsList = document.getElementById('curso-benefits-list');
                 if (benefitsList && cursoConfig.benefits && Array.isArray(cursoConfig.benefits)) {
                     benefitsList.innerHTML = cursoConfig.benefits.map(b => `
-                        <li class="flex items-start gap-3 text-slate-300">
+                        <li class="flex items-start gap-3 text-slate-700 dark:text-slate-300">
                             <span class="material-symbols-outlined text-primary text-xl mt-0.5 shrink-0">check_circle</span>
                             <span>${b}</span>
                         </li>
