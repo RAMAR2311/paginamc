@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+
+<head>
+    <link rel="icon" type="image/jpeg" href="favicon.jpg" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Pago del Curso | MC Innovación Financiera</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "var(--color-primary, #eccb13)",
+                        "accent-pink": "var(--color-accent-pink, #f472b6)",
+                        "background-light": "var(--color-bg-light, #f8f8f6)",
+                        "background-dark": "var(--color-bg-dark, #221f10)",
+                    },
+                    fontFamily: { "display": ["Manrope"] },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <!-- Wompi Widget Script Oficial -->
+    <script src="https://checkout.wompi.co/widget.js"></script>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse-border {
+            0%, 100% { border-color: rgba(236, 203, 19, 0.2); }
+            50% { border-color: rgba(236, 203, 19, 0.5); }
+        }
+        .animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+        .animate-delay-100 { animation-delay: 0.1s; opacity: 0; }
+        .animate-delay-200 { animation-delay: 0.2s; opacity: 0; }
+        .pulse-border { animation: pulse-border 2s ease-in-out infinite; }
+    </style>
+</head>
+
+<body class="bg-background-dark font-display text-slate-100 min-h-screen flex items-center justify-center relative overflow-hidden">
+
+    <!-- Ambient Background -->
+    <div class="fixed inset-0 pointer-events-none">
+        <div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary/8 rounded-full blur-[150px]"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-accent-pink/5 rounded-full blur-[150px]"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 w-full max-w-lg mx-4 my-8">
+        <!-- Logo -->
+        <div class="text-center mb-8 animate-fadeInUp">
+            <a href="code.html" class="inline-flex items-center gap-3 group">
+                <img src="favicon.jpg" alt="MC Innovación Financiera" class="h-12 w-auto object-contain" />
+                <span class="text-lg font-bold text-white/90">MC Innovación</span>
+            </a>
+        </div>
+
+        <!-- User Greeting -->
+        <div id="user-greeting" class="text-center mb-6 animate-fadeInUp animate-delay-100">
+            <p class="text-sm text-slate-400">Bienvenido, <span id="user-name" class="text-primary font-bold"></span></p>
+        </div>
+
+        <!-- Checkout Card -->
+        <div class="pulse-border bg-white/[0.04] backdrop-blur-2xl border border-primary/20 rounded-[2rem] p-8 sm:p-10 animate-fadeInUp animate-delay-100">
+            
+            <!-- Course Info -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center size-16 rounded-2xl bg-primary/10 mb-4">
+                    <span class="material-symbols-outlined text-3xl text-primary">school</span>
+                </div>
+                <h1 id="curso-title" class="text-2xl sm:text-3xl font-extrabold text-white mb-2">Eliminación de Reportes Negativos</h1>
+                <p id="curso-subtitle" class="text-sm text-slate-400 max-w-sm mx-auto">Aprende paso a paso cómo eliminar legalmente los reportes negativos de las centrales de riesgo.</p>
+            </div>
+
+            <!-- Benefits Summary -->
+            <div class="bg-white/5 rounded-2xl p-5 mb-8 border border-white/5">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Incluye:</h3>
+                <ul id="curso-benefits" class="space-y-2">
+                    <!-- Populated dynamically -->
+                </ul>
+            </div>
+
+            <!-- Price -->
+            <div class="text-center mb-8">
+                <div class="flex items-baseline justify-center gap-2">
+                    <span class="text-4xl sm:text-5xl font-extrabold text-white">$<span id="curso-price">150.000</span></span>
+                    <span class="text-sm font-semibold text-slate-500">COP</span>
+                </div>
+                <p class="text-xs text-slate-500 mt-1">Pago único · Acceso de por vida</p>
+            </div>
+
+            <!-- Pay Button -->
+            <button id="btn-pagar" 
+                class="w-full bg-[#183984] hover:bg-[#122b64] text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg shadow-[#183984]/30 hover:shadow-[0_10px_25px_rgba(24,57,132,0.4)] hover:-translate-y-1 flex items-center justify-center gap-3">
+                <span class="material-symbols-outlined text-[20px]">lock</span>
+                Pagar de forma segura con Wompi
+            </button>
+
+            <!-- Security badges -->
+            <div class="flex items-center justify-center gap-6 mt-6 text-slate-500">
+                <div class="flex items-center gap-1.5 text-[10px] uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm text-emerald-500">verified_user</span>
+                    Pago seguro
+                </div>
+                <div class="flex items-center gap-1.5 text-[10px] uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm text-emerald-500">https</span>
+                    SSL 256-bit
+                </div>
+            </div>
+        </div>
+
+        <!-- Logout / Back -->
+        <div class="flex items-center justify-between mt-6 animate-fadeInUp animate-delay-200">
+            <a href="code.html" class="text-xs text-slate-500 hover:text-primary transition-colors uppercase tracking-widest font-semibold inline-flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">arrow_back</span>
+                Volver al inicio
+            </a>
+            <button id="btn-logout" class="text-xs text-slate-500 hover:text-red-400 transition-colors uppercase tracking-widest font-semibold inline-flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">logout</span>
+                Cerrar sesión
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ========================================================
+        // VERIFY SESSION & LOAD COURSE DATA
+        // ========================================================
+        let cursoConfig = null;
+
+        async function init() {
+            // 1. Verify session
+            try {
+                const sessionRes = await fetch('/api/session');
+                const sessionData = await sessionRes.json();
+
+                if (!sessionData.logged_in) {
+                    window.location.href = '/comprar-curso';
+                    return;
+                }
+
+                document.getElementById('user-name').textContent = sessionData.user.nombre;
+            } catch (e) {
+                window.location.href = '/registro.html';
+                return;
+            }
+
+            // 2. Load course config
+            try {
+                const dataRes = await fetch('/api/data');
+                const data = await dataRes.json();
+                cursoConfig = data.config?.texts?.curso;
+
+                if (cursoConfig) {
+                    document.getElementById('curso-title').textContent = cursoConfig.title || 'Eliminación de Reportes Negativos';
+                    document.getElementById('curso-subtitle').textContent = cursoConfig.subtitle || '';
+                    document.getElementById('curso-price').textContent = parseInt(cursoConfig.price || 150000).toLocaleString('es-CO');
+
+                    // Benefits
+                    const benefitsList = document.getElementById('curso-benefits');
+                    const benefits = cursoConfig.benefits || [];
+                    benefitsList.innerHTML = benefits.map(b => `
+                        <li class="flex items-start gap-2.5 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5 shrink-0">check_circle</span>
+                            ${b}
+                        </li>
+                    `).join('');
+                }
+            } catch (e) {
+                console.error('Error loading course config:', e);
+            }
+        }
+
+        // ========================================================
+        // WOMPI PAYMENT
+        // ========================================================
+        document.getElementById('btn-pagar').addEventListener('click', () => {
+            const price = cursoConfig?.price || 150000;
+            const publicKey = cursoConfig?.wompi_public_key || 'pub_prod_Yuk1dgVAVGEnEyNBiYpHDpJ0BBjTwCB5';
+
+            const checkout = new WidgetCheckout({
+                currency: 'COP',
+                amountInCents: price * 100,
+                reference: 'CURSO-' + Date.now(),
+                publicKey: publicKey,
+            });
+
+            checkout.open(function (result) {
+                const transaction = result.transaction;
+                console.log('Resultado de la Transacción:', transaction);
+
+                if (transaction.status === 'APPROVED') {
+                    alert('¡Pago aprobado exitosamente! Tu acceso al curso será activado. ID: ' + transaction.id);
+                    // Optionally redirect to a thank-you page
+                } else if (transaction.status === 'DECLINED') {
+                    alert('El pago ha sido rechazado. Por favor, intenta con otro método de pago.');
+                } else {
+                    alert('Estado de la transacción: ' + transaction.status);
+                }
+            });
+        });
+
+        // ========================================================
+        // LOGOUT
+        // ========================================================
+        document.getElementById('btn-logout').addEventListener('click', async () => {
+            await fetch('/api/logout', { method: 'POST' });
+            window.location.href = '/';
+        });
+
+        // Initialize
+        init();
+    </script>
+</body>
+</html>

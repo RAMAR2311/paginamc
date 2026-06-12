@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+
+<head>
+    <link rel="icon" type="image/jpeg" href="favicon.jpg" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Registro | MC Innovación Financiera</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "var(--color-primary, #eccb13)",
+                        "accent-pink": "var(--color-accent-pink, #f472b6)",
+                        "background-light": "var(--color-bg-light, #f8f8f6)",
+                        "background-dark": "var(--color-bg-dark, #221f10)",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(236, 203, 19, 0.1); }
+            50% { box-shadow: 0 0 40px rgba(236, 203, 19, 0.25); }
+        }
+        .animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+        .animate-delay-100 { animation-delay: 0.1s; opacity: 0; }
+        .animate-delay-200 { animation-delay: 0.2s; opacity: 0; }
+        .animate-delay-300 { animation-delay: 0.3s; opacity: 0; }
+        .auth-card { animation: pulse-glow 3s ease-in-out infinite; }
+
+        /* Input focus glow */
+        .input-glow:focus {
+            box-shadow: 0 0 0 3px rgba(236, 203, 19, 0.15), 0 0 20px rgba(236, 203, 19, 0.08);
+        }
+
+        /* Toggle switch */
+        .toggle-slider {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Toast notification */
+        .toast {
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        /* Password strength bar */
+        .strength-bar {
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        /* Loading spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .spinner {
+            animation: spin 0.8s linear infinite;
+            border: 3px solid rgba(34, 31, 16, 0.2);
+            border-top-color: #221f10;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark font-display text-slate-100 min-h-screen flex items-center justify-center relative overflow-hidden">
+
+    <!-- Ambient Background -->
+    <div class="fixed inset-0 pointer-events-none">
+        <div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary/8 rounded-full blur-[150px]"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-accent-pink/5 rounded-full blur-[150px]"></div>
+        <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/3 rounded-full blur-[200px]"></div>
+    </div>
+
+    <!-- Grid pattern overlay -->
+    <div class="fixed inset-0 pointer-events-none opacity-[0.02]"
+         style="background-image: linear-gradient(rgba(236,203,19,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(236,203,19,0.3) 1px, transparent 1px); background-size: 60px 60px;">
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 w-full max-w-md mx-4 my-8">
+        <!-- Logo -->
+        <div class="text-center mb-8 animate-fadeInUp">
+            <a href="code.html" class="inline-flex items-center gap-3 group">
+                <img src="favicon.jpg" alt="MC Innovación Financiera" class="h-12 w-auto object-contain group-hover:scale-105 transition-transform" />
+                <span class="text-lg font-bold text-white/90 group-hover:text-primary transition-colors">MC Innovación</span>
+            </a>
+        </div>
+
+        <!-- Auth Card -->
+        <div class="auth-card bg-white/[0.04] backdrop-blur-2xl border border-white/10 rounded-[2rem] p-8 sm:p-10 animate-fadeInUp animate-delay-100">
+            
+            <!-- Toggle Register / Login -->
+            <div class="flex items-center justify-center gap-4 mb-8">
+                <button id="toggle-registro" class="text-sm font-bold uppercase tracking-widest text-primary transition-colors">
+                    Crear Cuenta
+                </button>
+                <div id="toggle-switch" class="relative w-14 h-7 bg-white/10 rounded-full cursor-pointer border border-white/10 hover:border-primary/30 transition-colors">
+                    <div class="toggle-slider absolute top-0.5 left-0.5 w-6 h-6 bg-primary rounded-full shadow-lg"></div>
+                </div>
+                <button id="toggle-login" class="text-sm font-bold uppercase tracking-widest text-white/40 transition-colors">
+                    Iniciar Sesión
+                </button>
+            </div>
+
+            <!-- Form Title -->
+            <div class="text-center mb-8">
+                <h1 id="form-title" class="text-2xl sm:text-3xl font-extrabold text-white">Crea tu cuenta</h1>
+                <p id="form-subtitle" class="text-sm text-slate-400 mt-2">Regístrate para acceder a nuestros cursos y servicios exclusivos.</p>
+            </div>
+
+            <!-- Registration Form -->
+            <form id="form-registro" class="space-y-5">
+                <!-- Nombre -->
+                <div id="field-nombre">
+                    <label for="input-nombre" class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
+                        Nombre Completo
+                    </label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg">person</span>
+                        <input type="text" id="input-nombre" name="nombre" required
+                            class="input-glow w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-12 pr-4 text-white placeholder:text-slate-600 focus:border-primary/50 focus:outline-none transition-all duration-300"
+                            placeholder="Ej: Juan Pérez" />
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="input-email" class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
+                        Correo Electrónico
+                    </label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg">mail</span>
+                        <input type="email" id="input-email" name="email" required
+                            class="input-glow w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-12 pr-4 text-white placeholder:text-slate-600 focus:border-primary/50 focus:outline-none transition-all duration-300"
+                            placeholder="tu@email.com" />
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label for="input-password" class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
+                        Contraseña
+                    </label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg">lock</span>
+                        <input type="password" id="input-password" name="password" required minlength="8"
+                            class="input-glow w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-12 pr-12 text-white placeholder:text-slate-600 focus:border-primary/50 focus:outline-none transition-all duration-300"
+                            placeholder="Mínimo 8 caracteres" />
+                        <button type="button" id="toggle-password" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-primary transition-colors">
+                            <span class="material-symbols-outlined text-lg">visibility_off</span>
+                        </button>
+                    </div>
+                    <!-- Password Strength -->
+                    <div id="password-strength" class="mt-2 hidden">
+                        <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                            <div id="strength-bar" class="strength-bar h-full rounded-full" style="width: 0%"></div>
+                        </div>
+                        <p id="strength-text" class="text-[10px] mt-1 text-slate-500 uppercase tracking-wider"></p>
+                    </div>
+                </div>
+
+                <!-- Confirm Password (solo registro) -->
+                <div id="field-confirm">
+                    <label for="input-confirm" class="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
+                        Confirmar Contraseña
+                    </label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-lg">lock_reset</span>
+                        <input type="password" id="input-confirm" name="confirm"
+                            class="input-glow w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-12 pr-4 text-white placeholder:text-slate-600 focus:border-primary/50 focus:outline-none transition-all duration-300"
+                            placeholder="Repite tu contraseña" />
+                    </div>
+                    <p id="confirm-error" class="text-xs text-red-400 mt-1 hidden">Las contraseñas no coinciden.</p>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="btn-submit"
+                    class="w-full bg-primary text-background-dark font-extrabold py-4 rounded-xl text-sm uppercase tracking-widest hover:brightness-110 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(236,203,19,0.3)] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 mt-8">
+                    <span id="btn-text">Crear mi cuenta</span>
+                    <div id="btn-spinner" class="spinner hidden"></div>
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="flex items-center gap-4 my-6">
+                <div class="flex-1 h-px bg-white/10"></div>
+                <span class="text-xs text-slate-500 uppercase tracking-widest">o</span>
+                <div class="flex-1 h-px bg-white/10"></div>
+            </div>
+
+            <!-- WhatsApp CTA -->
+            <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
+                class="w-full flex items-center justify-center gap-3 py-3.5 rounded-xl border border-white/10 text-sm font-semibold text-slate-300 hover:bg-white/5 hover:border-primary/30 hover:text-primary transition-all duration-300">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.128.552 4.197 1.6 6.012L.15 24l6.095-1.597a11.973 11.973 0 005.786 1.492h.004c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 20.013c-1.801 0-3.565-.484-5.111-1.4l-.367-.218-3.793 1.002.997-3.794-.239-.38a9.976 9.976 0 01-1.552-5.383c0-5.503 4.478-9.981 9.981-9.981s9.981 4.478 9.981 9.981-4.478 9.981-9.981 9.981z" />
+                </svg>
+                ¿Necesitas ayuda? Escríbenos
+            </a>
+        </div>
+
+        <!-- Back to home -->
+        <div class="text-center mt-6 animate-fadeInUp animate-delay-300">
+            <a href="code.html" class="text-xs text-slate-500 hover:text-primary transition-colors uppercase tracking-widest font-semibold inline-flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">arrow_back</span>
+                Volver al inicio
+            </a>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast fixed top-6 right-6 z-50 max-w-sm">
+        <div id="toast-inner" class="flex items-start gap-3 p-4 rounded-2xl border backdrop-blur-xl shadow-2xl">
+            <span id="toast-icon" class="material-symbols-outlined text-xl mt-0.5"></span>
+            <div>
+                <p id="toast-title" class="font-bold text-sm"></p>
+                <p id="toast-msg" class="text-xs text-slate-400 mt-0.5"></p>
+            </div>
+            <button onclick="hideToast()" class="text-slate-500 hover:text-white transition-colors ml-2">
+                <span class="material-symbols-outlined text-lg">close</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ========================================================
+        // STATE & ELEMENTS
+        // ========================================================
+        let isLoginMode = false;
+
+        const toggleSwitch = document.getElementById('toggle-switch');
+        const toggleSlider = toggleSwitch.querySelector('.toggle-slider');
+        const toggleRegistro = document.getElementById('toggle-registro');
+        const toggleLogin = document.getElementById('toggle-login');
+        const formTitle = document.getElementById('form-title');
+        const formSubtitle = document.getElementById('form-subtitle');
+        const fieldNombre = document.getElementById('field-nombre');
+        const fieldConfirm = document.getElementById('field-confirm');
+        const btnText = document.getElementById('btn-text');
+        const btnSpinner = document.getElementById('btn-spinner');
+        const btnSubmit = document.getElementById('btn-submit');
+        const form = document.getElementById('form-registro');
+        const inputPassword = document.getElementById('input-password');
+        const inputConfirm = document.getElementById('input-confirm');
+        const confirmError = document.getElementById('confirm-error');
+        const strengthContainer = document.getElementById('password-strength');
+        const strengthBar = document.getElementById('strength-bar');
+        const strengthText = document.getElementById('strength-text');
+
+        // ========================================================
+        // TOGGLE REGISTER / LOGIN
+        // ========================================================
+        function setMode(login) {
+            isLoginMode = login;
+
+            if (login) {
+                toggleSlider.style.transform = 'translateX(28px)';
+                toggleRegistro.classList.remove('text-primary');
+                toggleRegistro.classList.add('text-white/40');
+                toggleLogin.classList.remove('text-white/40');
+                toggleLogin.classList.add('text-primary');
+                formTitle.textContent = 'Bienvenido de vuelta';
+                formSubtitle.textContent = 'Ingresa con tu correo y contraseña para continuar.';
+                fieldNombre.style.display = 'none';
+                fieldConfirm.style.display = 'none';
+                btnText.textContent = 'Iniciar sesión';
+                document.getElementById('input-nombre').removeAttribute('required');
+                inputConfirm.removeAttribute('required');
+            } else {
+                toggleSlider.style.transform = 'translateX(0)';
+                toggleLogin.classList.remove('text-primary');
+                toggleLogin.classList.add('text-white/40');
+                toggleRegistro.classList.remove('text-white/40');
+                toggleRegistro.classList.add('text-primary');
+                formTitle.textContent = 'Crea tu cuenta';
+                formSubtitle.textContent = 'Regístrate para acceder a nuestros cursos y servicios exclusivos.';
+                fieldNombre.style.display = '';
+                fieldConfirm.style.display = '';
+                btnText.textContent = 'Crear mi cuenta';
+                document.getElementById('input-nombre').setAttribute('required', '');
+            }
+        }
+
+        toggleSwitch.addEventListener('click', () => setMode(!isLoginMode));
+        toggleRegistro.addEventListener('click', () => setMode(false));
+        toggleLogin.addEventListener('click', () => setMode(true));
+
+        // ========================================================
+        // PASSWORD VISIBILITY TOGGLE
+        // ========================================================
+        document.getElementById('toggle-password').addEventListener('click', function () {
+            const icon = this.querySelector('.material-symbols-outlined');
+            if (inputPassword.type === 'password') {
+                inputPassword.type = 'text';
+                icon.textContent = 'visibility';
+            } else {
+                inputPassword.type = 'password';
+                icon.textContent = 'visibility_off';
+            }
+        });
+
+        // ========================================================
+        // PASSWORD STRENGTH INDICATOR
+        // ========================================================
+        inputPassword.addEventListener('input', function () {
+            const val = this.value;
+            if (!val) {
+                strengthContainer.classList.add('hidden');
+                return;
+            }
+            strengthContainer.classList.remove('hidden');
+
+            let score = 0;
+            if (val.length >= 8) score++;
+            if (val.length >= 12) score++;
+            if (/[A-Z]/.test(val)) score++;
+            if (/[0-9]/.test(val)) score++;
+            if (/[^A-Za-z0-9]/.test(val)) score++;
+
+            const levels = [
+                { w: '20%', c: '#ef4444', t: 'Muy débil' },
+                { w: '40%', c: '#f97316', t: 'Débil' },
+                { w: '60%', c: '#eab308', t: 'Aceptable' },
+                { w: '80%', c: '#22c55e', t: 'Fuerte' },
+                { w: '100%', c: '#10b981', t: 'Muy fuerte' },
+            ];
+            const level = levels[Math.min(score, 4)];
+            strengthBar.style.width = level.w;
+            strengthBar.style.backgroundColor = level.c;
+            strengthText.textContent = level.t;
+            strengthText.style.color = level.c;
+        });
+
+        // ========================================================
+        // CONFIRM PASSWORD VALIDATION
+        // ========================================================
+        inputConfirm.addEventListener('input', function () {
+            if (this.value && this.value !== inputPassword.value) {
+                confirmError.classList.remove('hidden');
+                this.classList.add('border-red-400/50');
+            } else {
+                confirmError.classList.add('hidden');
+                this.classList.remove('border-red-400/50');
+            }
+        });
+
+        // ========================================================
+        // TOAST SYSTEM
+        // ========================================================
+        function showToast(type, title, msg) {
+            const toast = document.getElementById('toast');
+            const inner = document.getElementById('toast-inner');
+            const icon = document.getElementById('toast-icon');
+            const titleEl = document.getElementById('toast-title');
+            const msgEl = document.getElementById('toast-msg');
+
+            titleEl.textContent = title;
+            msgEl.textContent = msg;
+
+            if (type === 'success') {
+                inner.className = 'flex items-start gap-3 p-4 rounded-2xl border backdrop-blur-xl shadow-2xl bg-emerald-950/80 border-emerald-500/30';
+                icon.textContent = 'check_circle';
+                icon.className = 'material-symbols-outlined text-xl mt-0.5 text-emerald-400';
+                titleEl.className = 'font-bold text-sm text-emerald-200';
+            } else {
+                inner.className = 'flex items-start gap-3 p-4 rounded-2xl border backdrop-blur-xl shadow-2xl bg-red-950/80 border-red-500/30';
+                icon.textContent = 'error';
+                icon.className = 'material-symbols-outlined text-xl mt-0.5 text-red-400';
+                titleEl.className = 'font-bold text-sm text-red-200';
+            }
+
+            toast.classList.add('show');
+            setTimeout(() => hideToast(), 5000);
+        }
+
+        function hideToast() {
+            document.getElementById('toast').classList.remove('show');
+        }
+
+        // ========================================================
+        // FORM SUBMISSION
+        // ========================================================
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('input-email').value.trim();
+            const password = inputPassword.value;
+
+            // Validaciones frontend
+            if (!isLoginMode) {
+                const nombre = document.getElementById('input-nombre').value.trim();
+                const confirm = inputConfirm.value;
+
+                if (!nombre) {
+                    showToast('error', 'Campo requerido', 'El nombre es obligatorio.');
+                    return;
+                }
+                if (password !== confirm) {
+                    showToast('error', 'Error', 'Las contraseñas no coinciden.');
+                    return;
+                }
+                if (password.length < 8) {
+                    showToast('error', 'Error', 'La contraseña debe tener al menos 8 caracteres.');
+                    return;
+                }
+            }
+
+            // Show loading
+            btnText.classList.add('hidden');
+            btnSpinner.classList.remove('hidden');
+            btnSubmit.disabled = true;
+
+            try {
+                const endpoint = isLoginMode ? '/api/login' : '/api/registro';
+                const body = isLoginMode
+                    ? { email, password }
+                    : { nombre: document.getElementById('input-nombre').value.trim(), email, password };
+
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    showToast('success',
+                        isLoginMode ? '¡Bienvenido!' : '¡Cuenta creada!',
+                        data.message
+                    );
+
+                    // Redirect after a brief pause
+                    setTimeout(() => {
+                        window.location.href = data.redirect_url || '/';
+                    }, 1200);
+                } else {
+                    showToast('error', 'Error', data.error || 'Ha ocurrido un error.');
+                }
+            } catch (err) {
+                showToast('error', 'Error de conexión', 'No se pudo conectar con el servidor.');
+            } finally {
+                btnText.classList.remove('hidden');
+                btnSpinner.classList.add('hidden');
+                btnSubmit.disabled = false;
+            }
+        });
+
+        // ========================================================
+        // CHECK IF ALREADY LOGGED IN
+        // ========================================================
+        (async () => {
+            try {
+                const res = await fetch('/api/session');
+                const data = await res.json();
+                if (data.logged_in) {
+                    // If there's a pending purchase redirect, go there
+                    const params = new URLSearchParams(window.location.search);
+                    if (params.get('next')) {
+                        window.location.href = params.get('next');
+                    }
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <script src="dynamic.js"></script>
+</body>
+</html>

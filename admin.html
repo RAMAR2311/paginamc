@@ -99,6 +99,12 @@
             <button onclick="switchTab('tienda')" id="nav-tienda" class="nav-inactive w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors">
                 <span class="material-symbols-outlined">storefront</span> Tienda
             </button>
+            <button onclick="switchTab('curso')" id="nav-curso" class="nav-inactive w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors">
+                <span class="material-symbols-outlined">school</span> Curso
+            </button>
+            <button onclick="switchTab('usuarios')" id="nav-usuarios" class="nav-inactive w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors">
+                <span class="material-symbols-outlined">group</span> Usuarios
+            </button>
         </nav>
         <div class="p-4 border-t border-slate-800 flex flex-col gap-2 shrink-0">
             <a href="code.html" target="_blank" class="w-full flex items-center justify-center gap-2 text-xs font-bold bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-lg transition-colors">
@@ -555,6 +561,83 @@
                 </div>
             </div>
 
+            <!-- ====== CURSO ====== -->
+            <div id="panel-curso" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-extrabold flex items-center gap-2"><span class="material-symbols-outlined text-primary">school</span> Curso</h2>
+                    <button onclick="saveAll()" class="flex items-center gap-2 bg-primary text-background-dark px-6 py-2.5 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined text-sm">save</span> Guardar Todo
+                    </button>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <h3 class="text-lg font-bold mb-4">Configuración del Curso</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-xs font-bold text-slate-400 mb-1 block">Pretítulo</label>
+                            <input type="text" id="config-curso-pretitle" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Formación Premium" />
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-400 mb-1 block">Título del Curso</label>
+                            <input type="text" id="config-curso-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Eliminación de Reportes Negativos" />
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-400 mb-1 block">Subtítulo / Descripción</label>
+                            <textarea id="config-curso-subtitle" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Aprende paso a paso..."></textarea>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Precio (COP)</label>
+                                <input type="number" id="config-curso-price" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="150000" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Llave Pública Wompi</label>
+                                <input type="text" id="config-curso-wompi-key" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="pub_prod_..." />
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-400 mb-1 block">Texto del Botón CTA</label>
+                            <input type="text" id="config-curso-cta" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Compra tu curso ya" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mt-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold">Beneficios del Curso</h3>
+                        <button onclick="addCourseBenefit()" class="flex items-center gap-2 bg-slate-800 text-slate-200 px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-700 transition-all">
+                            <span class="material-symbols-outlined text-sm">add</span> Agregar Beneficio
+                        </button>
+                    </div>
+                    <div id="curso-benefits-admin" class="space-y-3"></div>
+                </div>
+            </div>
+
+            <!-- ====== USUARIOS ====== -->
+            <div id="panel-usuarios" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-extrabold flex items-center gap-2"><span class="material-symbols-outlined text-primary">group</span> Usuarios Registrados</h2>
+                    <button onclick="loadUsers()" class="flex items-center gap-2 bg-slate-800 text-slate-200 px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-700 transition-all">
+                        <span class="material-symbols-outlined text-sm">refresh</span> Actualizar
+                    </button>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="text-left text-xs uppercase tracking-widest text-slate-400 border-b border-slate-800">
+                                <th class="pb-3 pr-4">Nombre</th>
+                                <th class="pb-3 pr-4">Email</th>
+                                <th class="pb-3">Fecha de Registro</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body" class="divide-y divide-slate-800">
+                            <tr><td colspan="3" class="py-8 text-center text-slate-500">Cargando usuarios...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
     </main>
 </div>
@@ -625,7 +708,7 @@ function doLogout() {
 }
 
 // ─── TABS ─────────────────────────────────────────────────
-const tabs = ['inicio', 'nosotros', 'servicios', 'contacto', 'aplicativos', 'tienda'];
+const tabs = ['inicio', 'nosotros', 'servicios', 'contacto', 'aplicativos', 'tienda', 'curso', 'usuarios'];
 function switchTab(tab) {
     tabs.forEach(t => {
         document.getElementById('panel-' + t).classList.add('hidden');
@@ -680,6 +763,7 @@ function renderAll() {
     renderGallery();
     renderTestimonials();
     renderProducts();
+    loadUsers();
 }
 
 function renderConfig() {
@@ -738,6 +822,17 @@ function renderConfig() {
     if (configData.texts.tienda) {
         document.getElementById('config-tienda-title').value = configData.texts.tienda.title || '';
         document.getElementById('config-tienda-desc').value = configData.texts.tienda.desc || '';
+    }
+    // Curso
+    if (configData.texts.curso) {
+        const curso = configData.texts.curso;
+        document.getElementById('config-curso-pretitle').value = curso.pretitle || '';
+        document.getElementById('config-curso-title').value = curso.title || '';
+        document.getElementById('config-curso-subtitle').value = curso.subtitle || '';
+        document.getElementById('config-curso-price').value = curso.price || 150000;
+        document.getElementById('config-curso-wompi-key').value = curso.wompi_public_key || '';
+        document.getElementById('config-curso-cta').value = curso.cta_text || '';
+        renderCourseBenefits(curso.benefits || []);
     }
     
     document.getElementById('config-logo-preview').src = configData.images.logo;
@@ -1075,6 +1170,16 @@ function saveAll() {
     configData.texts.tienda.title = document.getElementById('config-tienda-title').value;
     configData.texts.tienda.desc = document.getElementById('config-tienda-desc').value;
 
+    // Curso
+    if (!configData.texts.curso) configData.texts.curso = {};
+    configData.texts.curso.pretitle = document.getElementById('config-curso-pretitle').value;
+    configData.texts.curso.title = document.getElementById('config-curso-title').value;
+    configData.texts.curso.subtitle = document.getElementById('config-curso-subtitle').value;
+    configData.texts.curso.price = parseInt(document.getElementById('config-curso-price').value) || 150000;
+    configData.texts.curso.wompi_public_key = document.getElementById('config-curso-wompi-key').value;
+    configData.texts.curso.cta_text = document.getElementById('config-curso-cta').value;
+    configData.texts.curso.benefits = collectCourseBenefits();
+
     // Collect team and gallery
     collectTeam();
     collectGallery();
@@ -1102,6 +1207,69 @@ function saveAll() {
         console.error('Error:', err);
         showToast('Error de conexión ✗');
     });
+}
+
+// ─── CURSO BENEFITS ────────────────────────────────────────
+function renderCourseBenefits(benefits) {
+    const container = document.getElementById('curso-benefits-admin');
+    container.innerHTML = '';
+    benefits.forEach((b, i) => {
+        const row = document.createElement('div');
+        row.className = 'flex items-center gap-3';
+        row.innerHTML = `
+            <span class="material-symbols-outlined text-primary text-lg shrink-0">check_circle</span>
+            <input type="text" class="curso-benefit-input flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" value="${b}" />
+            <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 transition-colors shrink-0">
+                <span class="material-symbols-outlined text-lg">delete</span>
+            </button>
+        `;
+        container.appendChild(row);
+    });
+}
+
+function addCourseBenefit() {
+    const container = document.getElementById('curso-benefits-admin');
+    const row = document.createElement('div');
+    row.className = 'flex items-center gap-3';
+    row.innerHTML = `
+        <span class="material-symbols-outlined text-primary text-lg shrink-0">check_circle</span>
+        <input type="text" class="curso-benefit-input flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" value="" placeholder="Nuevo beneficio..." />
+        <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 transition-colors shrink-0">
+            <span class="material-symbols-outlined text-lg">delete</span>
+        </button>
+    `;
+    container.appendChild(row);
+    row.querySelector('input').focus();
+}
+
+function collectCourseBenefits() {
+    const inputs = document.querySelectorAll('.curso-benefit-input');
+    return Array.from(inputs).map(i => i.value).filter(v => v.trim() !== '');
+}
+
+// ─── USERS TABLE ────────────────────────────────────────────
+function loadUsers() {
+    fetch('/api/users?_t=' + Date.now())
+        .then(res => res.json())
+        .then(users => {
+            const tbody = document.getElementById('users-table-body');
+            if (users.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3" class="py-8 text-center text-slate-500">No hay usuarios registrados aún.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = users.map(u => `
+                <tr>
+                    <td class="py-3 pr-4 font-semibold text-white">${u.nombre}</td>
+                    <td class="py-3 pr-4 text-slate-400">${u.email}</td>
+                    <td class="py-3 text-slate-500 text-xs">${u.fecha_registro ? new Date(u.fecha_registro).toLocaleString('es-CO') : '—'}</td>
+                </tr>
+            `).join('');
+        })
+        .catch(err => {
+            console.error('Error loading users:', err);
+            const tbody = document.getElementById('users-table-body');
+            tbody.innerHTML = '<tr><td colspan="3" class="py-8 text-center text-red-400">Error al cargar usuarios.</td></tr>';
+        });
 }
 </script>
 </body>

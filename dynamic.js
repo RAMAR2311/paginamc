@@ -74,6 +74,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.dispatchEvent(new CustomEvent('productsRendered'));
             }
 
+            // 6. Render Course Section if it exists
+            const cursoConfig = config.texts?.curso;
+            if (cursoConfig) {
+                // Render benefits list
+                const benefitsList = document.getElementById('curso-benefits-list');
+                if (benefitsList && cursoConfig.benefits && Array.isArray(cursoConfig.benefits)) {
+                    benefitsList.innerHTML = cursoConfig.benefits.map(b => `
+                        <li class="flex items-start gap-3 text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-xl mt-0.5 shrink-0">check_circle</span>
+                            <span>${b}</span>
+                        </li>
+                    `).join('');
+                }
+
+                // Render price
+                const priceDisplay = document.getElementById('curso-price-display');
+                if (priceDisplay && cursoConfig.price) {
+                    priceDisplay.textContent = '$' + parseInt(cursoConfig.price).toLocaleString('es-CO');
+                }
+            }
+
             // Dispatch global event for other scripts to access the config
             document.dispatchEvent(new CustomEvent('configLoaded', { detail: config }));
         })

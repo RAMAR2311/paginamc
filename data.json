@@ -96,6 +96,22 @@
             "tienda": {
                 "title": "Tienda MC",
                 "desc": "Adquiere nuestros servicios financieros de forma rápida y segura."
+            },
+            "curso": {
+                "pretitle": "Formación Premium",
+                "title": "Eliminación de Reportes Negativos",
+                "subtitle": "Aprende paso a paso cómo eliminar legalmente los reportes negativos de las centrales de riesgo usando la Ley 1266 de 2008.",
+                "price": 150000,
+                "wompi_public_key": "pub_prod_Yuk1dgVAVGEnEyNBiYpHDpJ0BBjTwCB5",
+                "benefits": [
+                    "Fundamentos legales de la Ley 1266 (Habeas Data)",
+                    "Redacción profesional de derechos de petición",
+                    "Identificación de reportes eliminables",
+                    "Plantillas listas para usar",
+                    "Acceso de por vida al contenido",
+                    "Certificado de finalización"
+                ],
+                "cta_text": "Compra tu curso ya"
             }
         },
         "images": {

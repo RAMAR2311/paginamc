@@ -2,14 +2,18 @@ import os
 import json
 import uuid
 import base64
-from flask import Flask, request, jsonify, send_from_directory
+from datetime import datetime
+from flask import Flask, request, jsonify, send_from_directory, session, redirect, url_for
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Inicializa la aplicación Flask
 # static_folder='.' indica que sirva los archivos estáticos desde el directorio actual
 app = Flask(__name__, static_folder='.', static_url_path='')
+app.secret_key = 'mc-innovacion-financiera-secret-key-2026'
 
 DATA_FILE = 'data.json'
 UPLOAD_FOLDER = 'uploads'
+USERS_FILE = 'users.json'
 
 # Crea la carpeta de subidas si no existe
 if not os.path.exists(UPLOAD_FOLDER):
@@ -114,6 +118,22 @@ DEFAULT_DATA = {
             'tienda': {
                 'title': 'Tienda MC',
                 'desc': 'Adquiere nuestros servicios financieros de forma rápida y segura.'
+            },
+            'curso': {
+                'pretitle': 'Formación Premium',
+                'title': 'Eliminación de Reportes Negativos',
+                'subtitle': 'Aprende paso a paso cómo eliminar legalmente los reportes negativos de las centrales de riesgo usando la Ley 1266 de 2008.',
+                'price': 150000,
+                'wompi_public_key': 'pub_prod_Yuk1dgVAVGEnEyNBiYpHDpJ0BBjTwCB5',
+                'benefits': [
+                    'Fundamentos legales de la Ley 1266 (Habeas Data)',
+                    'Redacción profesional de derechos de petición',
+                    'Identificación de reportes eliminables',
+                    'Plantillas listas para usar',
+                    'Acceso de por vida al contenido',
+                    'Certificado de finalización'
+                ],
+                'cta_text': 'Compra tu curso ya'
             }
         },
         'images': {
@@ -328,6 +348,162 @@ def update_config():
     data['config'] = config_data
     save_data(data)
     return jsonify({"success": True, "message": "Configuración guardada correctamente"})
+
+# ========================================================
+# SISTEMA DE USUARIOS Y AUTENTICACIÓN
+# ========================================================
+
+def load_users():
+    if os.path.exists(USERS_FILE):
+        with open(USERS_FILE, 'r', encoding='utf-8') as f:
+            try:
+                return json.load(f)
+            except:
+                return []
+    return []
+
+def save_users(users):
+    with open(USERS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(users, f, ensure_ascii=False, indent=4)
+
+
+@app.route('/api/registro', methods=['POST'])
+def api_registro():
+    """Crea una nueva cuenta de usuario"""
+    data = request.json
+    nombre = data.get('nombre', '').strip()
+    email = data.get('email', '').strip().lower()
+    password = data.get('password', '')
+
+    if not nombre or not email or not password:
+        return jsonify({'success': False, 'error': 'Todos los campos son obligatorios.'}), 400
+
+    if len(password) < 8:
+        return jsonify({'success': False, 'error': 'La contraseña debe tener al menos 8 caracteres.'}), 400
+
+    users = load_users()
+
+    # Verificar email duplicado
+    if any(u['email'] == email for u in users):
+        return jsonify({'success': False, 'error': 'Este correo electrónico ya está registrado.'}), 409
+
+    new_user = {
+        'id': uuid.uuid4().hex,
+        'nombre': nombre,
+        'email': email,
+        'password_hash': generate_password_hash(password),
+        'fecha_registro': datetime.now().isoformat()
+    }
+    users.append(new_user)
+    save_users(users)
+
+    # Iniciar sesión automáticamente
+    session['user_id'] = new_user['id']
+    session['user_nombre'] = new_user['nombre']
+    session['user_email'] = new_user['email']
+
+    # Determinar redirección
+    redirect_url = session.pop('next_url', '/')
+
+    return jsonify({
+        'success': True,
+        'message': 'Cuenta creada exitosamente.',
+        'redirect_url': redirect_url,
+        'user': {'nombre': new_user['nombre'], 'email': new_user['email']}
+    })
+
+
+@app.route('/api/login', methods=['POST'])
+def api_login():
+    """Inicia sesión con credenciales existentes"""
+    data = request.json
+    email = data.get('email', '').strip().lower()
+    password = data.get('password', '')
+
+    if not email or not password:
+        return jsonify({'success': False, 'error': 'Email y contraseña son obligatorios.'}), 400
+
+    users = load_users()
+    user = next((u for u in users if u['email'] == email), None)
+
+    if not user or not check_password_hash(user['password_hash'], password):
+        return jsonify({'success': False, 'error': 'Credenciales incorrectas.'}), 401
+
+    # Iniciar sesión
+    session['user_id'] = user['id']
+    session['user_nombre'] = user['nombre']
+    session['user_email'] = user['email']
+
+    # Determinar redirección
+    redirect_url = session.pop('next_url', '/')
+
+    return jsonify({
+        'success': True,
+        'message': 'Sesión iniciada correctamente.',
+        'redirect_url': redirect_url,
+        'user': {'nombre': user['nombre'], 'email': user['email']}
+    })
+
+
+@app.route('/api/logout', methods=['POST'])
+def api_logout():
+    """Cierra la sesión del usuario"""
+    session.clear()
+    return jsonify({'success': True, 'message': 'Sesión cerrada.'})
+
+
+@app.route('/api/session', methods=['GET'])
+def api_session():
+    """Devuelve el estado de sesión actual"""
+    if 'user_id' in session:
+        return jsonify({
+            'logged_in': True,
+            'user': {
+                'nombre': session.get('user_nombre'),
+                'email': session.get('user_email')
+            }
+        })
+    return jsonify({'logged_in': False})
+
+
+@app.route('/comprar-curso')
+def comprar_curso():
+    """Intercepta la intención de compra del curso.
+    Si el usuario tiene sesión → redirige a /pago-curso.
+    Si no → guarda la intención y redirige a registro."""
+    if 'user_id' in session:
+        return redirect('/pago-curso')
+    
+    # Guardar intención de compra
+    session['next_url'] = '/pago-curso'
+    return redirect('/registro.html')
+
+
+@app.route('/pago-curso')
+def pago_curso():
+    """Ruta protegida: redirige al widget de Wompi.
+    Solo accesible con sesión activa."""
+    if 'user_id' not in session:
+        session['next_url'] = '/pago-curso'
+        return redirect('/registro.html')
+    
+    # Redirige a la página de pago del curso
+    return redirect('/pago-curso-checkout.html')
+
+
+@app.route('/api/users', methods=['GET'])
+def api_get_users():
+    """Devuelve la lista de usuarios registrados (para admin)"""
+    users = load_users()
+    # No exponer password_hash
+    safe_users = [{
+        'id': u['id'],
+        'nombre': u['nombre'],
+        'email': u['email'],
+        'fecha_registro': u.get('fecha_registro', '')
+    } for u in users]
+    return jsonify(safe_users)
+
 
 if __name__ == '__main__':
     # Ejecuta el servidor de Flask en el puerto 5000
