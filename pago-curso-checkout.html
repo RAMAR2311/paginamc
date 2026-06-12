@@ -47,7 +47,7 @@
     </style>
 </head>
 
-<body class="bg-background-dark font-display text-slate-100 min-h-screen flex items-center justify-center relative overflow-hidden">
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center relative overflow-hidden">
 
     <!-- Ambient Background -->
     <div class="fixed inset-0 pointer-events-none">
@@ -61,30 +61,30 @@
         <div class="text-center mb-8 animate-fadeInUp">
             <a href="code.html" class="inline-flex items-center gap-3 group">
                 <img src="favicon.jpg" alt="MC Innovación Financiera" class="h-12 w-auto object-contain" />
-                <span class="text-lg font-bold text-white/90">MC Innovación</span>
+                <span class="text-lg font-bold text-slate-900 dark:text-white/90">MC Innovación</span>
             </a>
         </div>
 
         <!-- User Greeting -->
         <div id="user-greeting" class="text-center mb-6 animate-fadeInUp animate-delay-100">
-            <p class="text-sm text-slate-400">Bienvenido, <span id="user-name" class="text-primary font-bold"></span></p>
+            <p class="text-sm text-slate-650 dark:text-slate-400">Bienvenido, <span id="user-name" class="text-primary font-bold"></span></p>
         </div>
 
         <!-- Checkout Card -->
-        <div class="pulse-border bg-white/[0.04] backdrop-blur-2xl border border-primary/20 rounded-[2rem] p-8 sm:p-10 animate-fadeInUp animate-delay-100">
+        <div class="pulse-border bg-white dark:bg-slate-900/50 backdrop-blur-2xl border border-slate-200 dark:border-slate-800 rounded-[2rem] p-8 sm:p-10 shadow-2xl animate-fadeInUp animate-delay-100">
             
             <!-- Course Info -->
             <div class="text-center mb-8">
                 <div class="inline-flex items-center justify-center size-16 rounded-2xl bg-primary/10 mb-4">
                     <span class="material-symbols-outlined text-3xl text-primary">school</span>
                 </div>
-                <h1 id="curso-title" class="text-2xl sm:text-3xl font-extrabold text-white mb-2">Eliminación de Reportes Negativos</h1>
-                <p id="curso-subtitle" class="text-sm text-slate-400 max-w-sm mx-auto">Aprende paso a paso cómo eliminar legalmente los reportes negativos de las centrales de riesgo.</p>
+                <h1 id="curso-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-2">Eliminación de Reportes Negativos</h1>
+                <p id="curso-subtitle" class="text-sm text-slate-600 dark:text-slate-400 max-w-sm mx-auto">Aprende paso a paso cómo eliminar legalmente los reportes negativos de las centrales de riesgo.</p>
             </div>
 
             <!-- Benefits Summary -->
-            <div class="bg-white/5 rounded-2xl p-5 mb-8 border border-white/5">
-                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Incluye:</h3>
+            <div class="bg-slate-50 dark:bg-white/5 rounded-2xl p-5 mb-8 border border-slate-200 dark:border-white/5">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3">Incluye:</h3>
                 <ul id="curso-benefits" class="space-y-2">
                     <!-- Populated dynamically -->
                 </ul>
@@ -93,7 +93,7 @@
             <!-- Price -->
             <div class="text-center mb-8">
                 <div class="flex items-baseline justify-center gap-2">
-                    <span class="text-4xl sm:text-5xl font-extrabold text-white">$<span id="curso-price">150.000</span></span>
+                    <span class="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white">$<span id="curso-price">150.000</span></span>
                     <span class="text-sm font-semibold text-slate-500">COP</span>
                 </div>
                 <p class="text-xs text-slate-500 mt-1">Pago único · Acceso de por vida</p>
@@ -170,7 +170,7 @@
                     const benefitsList = document.getElementById('curso-benefits');
                     const benefits = cursoConfig.benefits || [];
                     benefitsList.innerHTML = benefits.map(b => `
-                        <li class="flex items-start gap-2.5 text-sm text-slate-300">
+                        <li class="flex items-start gap-2.5 text-sm text-slate-700 dark:text-slate-300">
                             <span class="material-symbols-outlined text-primary text-base mt-0.5 shrink-0">check_circle</span>
                             ${b}
                         </li>
