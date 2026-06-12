@@ -22,10 +22,10 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#eccb13",
-                        "accent-pink": "#f472b6",
-                        "background-light": "#f8f8f6",
-                        "background-dark": "#221f10",
+                        "primary": "var(--color-primary, #eccb13)",
+                        "accent-pink": "var(--color-accent-pink, #f472b6)",
+                        "background-light": "var(--color-bg-light, #f8f8f6)",
+                        "background-dark": "var(--color-bg-dark, #221f10)",
                     },
                     fontFamily: {
                         "display": ["Manrope"]
@@ -41,9 +41,9 @@
 
 
     <!-- Video Preloader -->
-    <div id="video-preloader" class="fixed inset-0 z-[100] bg-[#221f10] flex items-center justify-center transition-opacity duration-700">
+    <div id="video-preloader" class="fixed inset-0 z-[100] bg-background-dark flex items-center justify-center transition-opacity duration-700">
         <video id="video-intro" class="w-full h-full object-contain sm:object-cover" autoplay muted playsinline src="video-intro.mp4.mp4"></video>
-        <button id="skip-video-btn" class="absolute bottom-8 right-8 z-[110] text-[#eccb13] bg-black/40 px-6 py-2 rounded-full hover:bg-black/60 font-display transition-all duration-300">
+        <button id="skip-video-btn" class="absolute bottom-8 right-8 z-[110] text-primary bg-black/40 px-6 py-2 rounded-full hover:bg-black/60 font-display transition-all duration-300">
             Saltar Intro
         </button>
     </div>
@@ -57,7 +57,7 @@
         bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm shadow-[0_0_15px_rgba(0,0,0,0.1)] border border-slate-200 dark:border-slate-800 transition-all duration-300">
 
         <!-- WhatsApp -->
-        <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
+        <a href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank"
             class="text-slate-400 dark:text-slate-500 hover:text-[#25D366] dark:hover:text-[#25D366] transition-all duration-300 hover:scale-110">
             <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
                 <path
@@ -67,7 +67,7 @@
 
         <!-- Instagram -->
         <a href="https://www.instagram.com/mcinnovacionfinanciera?igsh=dXVubmQ4bGR0aHlu&utm_source=qr" target="_blank"
-            class="text-slate-400 dark:text-slate-500 hover:text-[#eccb13] dark:hover:text-[#eccb13] transition-all duration-300 hover:scale-110">
+            class="text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-all duration-300 hover:scale-110">
             <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
                 <path
                     d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
@@ -76,7 +76,7 @@
 
         <!-- TikTok -->
         <a href="https://www.tiktok.com/@mcinnovacionfinanciera?_r=1&_t=ZS-95PGQr4PYXg" target="_blank"
-            class="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-[#eccb13] transition-all duration-300 hover:scale-110">
+            class="text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-primary transition-all duration-300 hover:scale-110">
             <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
                 <path
                     d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 15.68l.01.2a6.29 6.29 0 0012.44-1.07V9.75a8.21 8.21 0 004.55 1.34V7.63a5.55 5.55 0 01-2.41-.94z" />
@@ -98,7 +98,7 @@
         class="sticky top-0 z-50 w-full border-b border-white/40 dark:border-white/10 bg-white/40 dark:bg-background-dark/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-500">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a class="flex items-center" href="/">
-                <img alt="Logo MC Innovación Financiera" class="h-12 w-auto object-contain" src="favicon.jpg" />
+                <img alt="Logo MC Innovación Financiera" class="h-12 w-auto object-contain" src="favicon.jpg" / data-edit="images.logo">
             </a>
             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider">
                 <a class="relative group hover:text-primary transition-all duration-300" href="#">
@@ -131,7 +131,7 @@
                     <span class="material-symbols-outlined text-2xl">menu</span>
                 </button>
                 <div class="flex gap-4">
-                <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
+                <a href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank"
                     class="hidden sm:flex bg-primary text-background-dark px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm hover:brightness-110 hover:-translate-y-0.5 hover:shadow-primary/40 active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20">
                     Agenda Gratis
                 </a>
@@ -142,7 +142,7 @@
     <div id="mobile-menu-overlay" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
         <div id="mobile-menu-panel" class="absolute right-0 top-0 h-full w-72 bg-white dark:bg-slate-900 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
             <div class="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-800">
-                <img alt="Logo" class="h-8 w-auto object-contain" src="favicon.jpg" />
+                <img alt="Logo" class="h-8 w-auto object-contain" src="favicon.jpg" / data-edit="images.logo">
                 <button id="mobile-menu-close" class="size-10 rounded-lg flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                     <span class="material-symbols-outlined">close</span>
                 </button>
@@ -151,7 +151,7 @@
                 <ul class="space-y-1" id="mobile-nav-links"></ul>
             </nav>
             <div class="p-6 border-t border-slate-200 dark:border-slate-800">
-                <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
+                <a href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank"
                     class="w-full bg-primary text-background-dark py-3 rounded-xl font-bold text-center flex items-center justify-center gap-2 hover:brightness-110 transition-all">
                     <span class="material-symbols-outlined text-lg">chat</span> WhatsApp
                 </a>
@@ -169,17 +169,17 @@
                 </div>
                 <h1
                     class="text-3xl sm:text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight text-slate-900 dark:text-white">
-                    Recupera tu estabilidad financiera con <span class="text-primary">asesoría profesional</span>
+                    <span data-edit="texts.hero_title">Recupera tu estabilidad financiera con <span class="text-primary" style="color: var(--color-primary);">asesoría profesional</span></span>
                 </h1>
-                <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">En MC
+                <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl" data-edit="texts.hero_subtitle">En MC
                     Innovación Financiera no solo te guiamos, te proporcionamos las estrategias necesarias para que
                     reactives tu vida y vuelvas a experimentar la tranquilidad financiera.</p>
                 <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                    <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
+                    <a href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank"
                         class="bg-primary text-background-dark h-14 px-8 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/40 active:translate-y-0 active:scale-95 transition-all duration-300 shadow-xl shadow-primary/30">
                         Agenda tu asesoría gratuita
                     </a>
-                    <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
+                    <a href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank"
                         class="border-2 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white h-14 px-8 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-lg hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 active:translate-y-0 active:scale-95 transition-all duration-300">
                         <span class="material-symbols-outlined">chat</span> WhatsApp
                     </a>
@@ -190,7 +190,7 @@
                 <div
                     class="relative rounded-2xl sm:rounded-[2rem] overflow-hidden aspect-video sm:aspect-[4/3] shadow-2xl bg-slate-100 dark:bg-slate-800 border-2 sm:border-4 border-white dark:border-slate-900">
                     <video autoplay loop muted playsinline class="w-full h-full object-cover">
-                        <source src="video_oficina.mp4" type="video/mp4">
+                        <source src="video_oficina.mp4" type="video/mp4" data-edit="images.hero_video">
                         Tu navegador no soporta el elemento de video.
                     </video>
                 </div>
@@ -201,9 +201,9 @@
     <section class="py-24 bg-background-light dark:bg-background-dark/50" id="servicios">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-primary font-bold uppercase tracking-widest text-sm mb-4">Nuestros Servicios Premium
+                <h2 class="text-primary font-bold uppercase tracking-widest text-sm mb-4" data-edit="texts.home.services_pretitle">Nuestros Servicios Premium
                 </h2>
-                <h3 class="text-4xl font-bold text-slate-900 dark:text-white">Soluciones integrales a tu medida</h3>
+                <h3 class="text-4xl font-bold text-slate-900 dark:text-white" data-edit="texts.home.services_title">Soluciones integrales a tu medida</h3>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div
@@ -212,8 +212,8 @@
                         class="size-14 bg-primary rounded-2xl flex items-center justify-center text-background-dark mb-6 group-hover:rotate-6 transition-transform">
                         <span class="material-symbols-outlined text-3xl">handshake</span>
                     </div>
-                    <h4 class="text-xl font-bold mb-3">Negociación de deudas</h4>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Reducimos tus saldos
+                    <h4 class="text-xl font-bold mb-3" data-edit="texts.home.service1_title">Negociación de deudas</h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-edit="texts.home.service1_desc">Reducimos tus saldos
                         pendientes mediante negociaciones directas con entidades bancarias.</p>
                 </div>
                 <div
@@ -222,8 +222,8 @@
                         class="size-14 bg-primary rounded-2xl flex items-center justify-center text-background-dark mb-6 group-hover:rotate-6 transition-transform">
                         <span class="material-symbols-outlined text-3xl">credit_score</span>
                     </div>
-                    <h4 class="text-xl font-bold mb-3">Reparación de historial</h4>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Mejoramos tu score en
+                    <h4 class="text-xl font-bold mb-3" data-edit="texts.home.service2_title">Reparación de historial</h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-edit="texts.home.service2_desc">Mejoramos tu score en
                         centrales de riesgo para que vuelvas a ser sujeto de crédito.</p>
                 </div>
                 <div
@@ -232,8 +232,8 @@
                         class="size-14 bg-primary rounded-2xl flex items-center justify-center text-background-dark mb-6 group-hover:rotate-6 transition-transform">
                         <span class="material-symbols-outlined text-3xl">psychology_alt</span>
                     </div>
-                    <h4 class="text-xl font-bold mb-3">Asesoría personalizada</h4>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Creamos un plan estratégico
+                    <h4 class="text-xl font-bold mb-3" data-edit="texts.home.service3_title">Asesoría personalizada</h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-edit="texts.home.service3_desc">Creamos un plan estratégico
                         adaptado a tu realidad financiera y capacidad de pago.</p>
                 </div>
                 <div
@@ -242,8 +242,8 @@
                         class="size-14 bg-primary rounded-2xl flex items-center justify-center text-background-dark mb-6 group-hover:rotate-6 transition-transform">
                         <span class="material-symbols-outlined text-3xl">school</span>
                     </div>
-                    <h4 class="text-xl font-bold mb-3">Educación financiera</h4>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Te brindamos las herramientas
+                    <h4 class="text-xl font-bold mb-3" data-edit="texts.home.service4_title">Educación financiera</h4>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-edit="texts.home.service4_desc">Te brindamos las herramientas
                         para que nunca vuelvas a caer en situaciones de sobreendeudamiento.</p>
                 </div>
             </div>
@@ -254,8 +254,8 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                 <div class="max-w-2xl">
-                    <h2 class="text-primary font-bold uppercase tracking-widest text-sm mb-4">Metodología</h2>
-                    <h3 class="text-4xl font-bold text-slate-900 dark:text-white leading-tight">Tu camino hacia la
+                    <h2 class="text-primary font-bold uppercase tracking-widest text-sm mb-4" data-edit="texts.home.process_pretitle">Metodología</h2>
+                    <h3 class="text-4xl font-bold text-slate-900 dark:text-white leading-tight" data-edit="texts.home.process_title">Tu camino hacia la
                         libertad financiera en 4 pasos</h3>
                 </div>
                 <div class="hidden md:block">
@@ -266,29 +266,29 @@
                 <!-- Step 1 -->
                 <div class="relative z-10">
                     <div class="text-primary text-6xl font-black opacity-30 mb-4">01</div>
-                    <h5 class="text-xl font-bold mb-4">Diagnóstico</h5>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">Evaluamos tu situación actual, nivel de deuda
+                    <h5 class="text-xl font-bold mb-4" data-edit="texts.home.process1_title">Diagnóstico</h5>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm" data-edit="texts.home.process1_desc">Evaluamos tu situación actual, nivel de deuda
                         y comportamiento crediticio en centrales.</p>
                 </div>
                 <!-- Step 2 -->
                 <div class="relative z-10">
                     <div class="text-primary text-6xl font-black opacity-30 mb-4">02</div>
-                    <h5 class="text-xl font-bold mb-4">Análisis</h5>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">Identificamos oportunidades de ahorro y los
+                    <h5 class="text-xl font-bold mb-4" data-edit="texts.home.process2_title">Análisis</h5>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm" data-edit="texts.home.process2_desc">Identificamos oportunidades de ahorro y los
                         puntos críticos a negociar con tus acreedores.</p>
                 </div>
                 <!-- Step 3 -->
                 <div class="relative z-10">
                     <div class="text-primary text-6xl font-black opacity-30 mb-4">03</div>
-                    <h5 class="text-xl font-bold mb-4">Estrategia</h5>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">Ejecutamos el plan de acción, logrando los
+                    <h5 class="text-xl font-bold mb-4" data-edit="texts.home.process3_title">Estrategia</h5>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm" data-edit="texts.home.process3_desc">Ejecutamos el plan de acción, logrando los
                         mejores descuentos y acuerdos de pago.</p>
                 </div>
                 <!-- Step 4 -->
                 <div class="relative z-10">
                     <div class="text-primary text-6xl font-black opacity-30 mb-4">04</div>
-                    <h5 class="text-xl font-bold mb-4">Recuperación</h5>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">Saneamos tu historial y te entregamos un plan
+                    <h5 class="text-xl font-bold mb-4" data-edit="texts.home.process4_title">Recuperación</h5>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm" data-edit="texts.home.process4_desc">Saneamos tu historial y te entregamos un plan
                         de manejo para tu nueva vida financiera.</p>
                 </div>
             </div>
@@ -320,48 +320,48 @@
                 <div
                     class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 mt-8">
                     <span class="material-symbols-outlined text-primary text-4xl mb-4">visibility</span>
-                    <h6 class="font-bold text-lg mb-2">Transparencia</h6>
-                    <p class="text-sm text-slate-500">Sin letras pequeñas ni cobros ocultos.</p>
+                    <h6 class="font-bold text-lg mb-2" data-edit="texts.home.diff1_title">Transparencia</h6>
+                    <p class="text-sm text-slate-500" data-edit="texts.home.diff1_desc">Sin letras pequeñas ni cobros ocultos.</p>
                 </div>
                 <div
                     class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800">
                     <span class="material-symbols-outlined text-primary text-4xl mb-4">lock</span>
-                    <h6 class="font-bold text-lg mb-2">Confidencialidad</h6>
-                    <p class="text-sm text-slate-500">Tus datos están protegidos legalmente.</p>
+                    <h6 class="font-bold text-lg mb-2" data-edit="texts.home.diff2_title">Confidencialidad</h6>
+                    <p class="text-sm text-slate-500" data-edit="texts.home.diff2_desc">Tus datos están protegidos legalmente.</p>
                 </div>
                 <div
                     class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 mt-8">
                     <span class="material-symbols-outlined text-primary text-4xl mb-4">workspace_premium</span>
-                    <h6 class="font-bold text-lg mb-2">Profesionalismo</h6>
-                    <p class="text-sm text-slate-500">Consultores certificados por ley.</p>
+                    <h6 class="font-bold text-lg mb-2" data-edit="texts.home.diff3_title">Profesionalismo</h6>
+                    <p class="text-sm text-slate-500" data-edit="texts.home.diff3_desc">Consultores certificados por ley.</p>
                 </div>
                 <div
                     class="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800">
                     <span class="material-symbols-outlined text-primary text-4xl mb-4">person_celebrate</span>
-                    <h6 class="font-bold text-lg mb-2">Personalización</h6>
-                    <p class="text-sm text-slate-500">Nadie tiene el mismo plan que tú.</p>
+                    <h6 class="font-bold text-lg mb-2" data-edit="texts.home.diff4_title">Personalización</h6>
+                    <p class="text-sm text-slate-500" data-edit="texts.home.diff4_desc">Nadie tiene el mismo plan que tú.</p>
                 </div>
             </div>
             <div>
-                <h2 class="text-primary font-bold uppercase tracking-widest text-sm mb-4">Diferenciales</h2>
-                <h3 class="text-4xl font-bold mb-6 text-slate-900 dark:text-white leading-tight">¿Por qué confiar en MC
+                <h2 class="text-primary font-bold uppercase tracking-widest text-sm mb-4" data-edit="texts.home.diff_pretitle">Diferenciales</h2>
+                <h3 class="text-4xl font-bold mb-6 text-slate-900 dark:text-white leading-tight" data-edit="texts.home.diff_title">¿Por qué confiar en MC
                     Innovación?</h3>
-                <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed" data-edit="texts.home.diff_desc">
                     Entendemos que detrás de cada deuda hay una persona y una familia buscando paz. No somos una agencia
                     de cobro, somos tu defensa frente al sistema financiero.
                 </p>
                 <ul class="space-y-4">
                     <li class="flex items-center gap-3 font-semibold text-slate-800 dark:text-slate-200">
                         <span class="material-symbols-outlined text-primary">check_circle</span>
-                        Acompañamiento legal constante
+                        <span data-edit="texts.home.diff_item1">Acompañamiento legal constante</span>
                     </li>
                     <li class="flex items-center gap-3 font-semibold text-slate-800 dark:text-slate-200">
                         <span class="material-symbols-outlined text-primary">check_circle</span>
-                        Resultados garantizados por contrato
+                        <span data-edit="texts.home.diff_item2">Resultados garantizados por contrato</span>
                     </li>
                     <li class="flex items-center gap-3 font-semibold text-slate-800 dark:text-slate-200">
                         <span class="material-symbols-outlined text-primary">check_circle</span>
-                        Planes de pago flexibles
+                        <span data-edit="texts.home.diff_item3">Planes de pago flexibles</span>
                     </li>
                 </ul>
                 <a href="nosotros.html"
@@ -372,7 +372,7 @@
         </div>
     </section>
     <!-- Aplicativos MC Section -->
-    <section class="py-16 bg-[#f8f8f6] dark:bg-background-dark/50" id="aplicativos">
+    <section class="py-16 bg-background-light dark:bg-background-dark/50" id="aplicativos">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h3 class="text-4xl font-bold text-slate-900 dark:text-white">Aplicativos MC</h3>
@@ -444,79 +444,23 @@
     <!-- Testimonials -->
     <section class="py-24 bg-white dark:bg-background-dark" id="testimonios">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-primary font-bold uppercase tracking-widest text-sm mb-4">Testimonios</h2>
-                <h3 class="text-4xl font-bold text-slate-900 dark:text-white">Lo que dicen nuestros clientes</h3>
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="text-left">
+                    <h2 class="text-primary font-bold uppercase tracking-widest text-sm mb-4" data-edit="texts.home.testimonials_pretitle">Testimonios</h2>
+                    <h3 class="text-4xl font-bold text-slate-900 dark:text-white" data-edit="texts.home.testimonials_title">Lo que dicen nuestros clientes</h3>
+                </div>
+                <div class="flex gap-4">
+                    <button id="prev-testimonials" class="size-12 rounded-full border-2 border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-background-dark transition-all text-slate-600 dark:text-slate-400 hover:text-background-dark group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">arrow_back_ios_new</span>
+                    </button>
+                    <button id="next-testimonials" class="size-12 rounded-full border-2 border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-background-dark transition-all text-slate-600 dark:text-slate-400 hover:text-background-dark group">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">arrow_forward_ios</span>
+                    </button>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div
-                    class="p-8 rounded-3xl bg-background-light dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
-                    <div class="flex gap-1 text-primary mb-4">
-                        <span class="material-symbols-outlined fill-1">star</span>
-                        <span class="material-symbols-outlined fill-1">star</span>
-                        <span class="material-symbols-outlined fill-1">star</span>
-                        <span class="material-symbols-outlined fill-1">star</span>
-                        <span class="material-symbols-outlined fill-1">star</span>
-                    </div>
-                    <p class="text-slate-600 dark:text-slate-400 italic mb-6 leading-relaxed">"Logré negociar una deuda
-                        de 30 millones con solo 8 millones de pesos. Mi vida cambió totalmente gracias a MC Innovación."
-                    </p>
-                    <div class="flex items-center gap-4">
-                        <div class="size-12 rounded-full bg-slate-200 overflow-hidden">
-                            <img class="w-full h-full object-cover" data-alt="Portrait of a satisfied male client"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA81_t80eYHTFpGWzhGYq7T1ORukxaUmMnlOwldiwqeZ3TZs6RicSvr6sBLJE7LNbsPXvqVOnYFdmRzVkbMRwK8_ELgNC6LI2AW2PElnuwazHAf0epYo67iR8L4qQYWFvrSvBFE2UwTWcpLGeBOYGxE4SvcN0Y_wIFFR2jZllvHLTnScuYEMMtpngLDGxJCJxiFoQXXYRY6w54odANNxya4JZDRh50FE2W3vj2lZXBg0lybyrg5BzmB3qdz913gu80DPUUasCtkRFU" />
-                        </div>
-                        <div>
-                            <p class="font-bold text-slate-900 dark:text-white">Carlos Rodriguez</p>
-                            <p class="text-xs text-slate-500">Bogotá, D.C.</p>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="p-8 rounded-3xl bg-background-light dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
-                    <div class="flex gap-1 text-primary mb-4">
-                        <span class="material-symbols-outlined fill-1">star</span>
-                        <span class="material-symbols-outlined fill-1">star</span>
-                        <span class="material-symbols-outlined fill-1">star</span>
-                        <span class="material-symbols-outlined fill-1">star</span>
-                        <span class="material-symbols-outlined fill-1">star</span>
-                    </div>
-                    <p class="text-slate-600 dark:text-slate-400 italic mb-6 leading-relaxed">"Excelente asesoría. Me
-                        explicaron todo de forma clara y sin presiones. Hoy ya tengo mi score de crédito recuperado."
-                    </p>
-                    <div class="flex items-center gap-4">
-                        <div class="size-12 rounded-full bg-slate-200 overflow-hidden">
-                            <img class="w-full h-full object-cover" data-alt="Portrait of a satisfied female client"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwsp1RjyZ602UOsIqat-ZsgKjJqqDI3Fws01kYywMW4drO4Hy9GtGwNcZx4MXN6CogGCrSsTqQJGxbow5kyjvxIQpTgLvYJ26klQXt4hFMWEWFiDNgnTNQvgaLhgCI5s-MiFyvovNCf-KEJHBHtIBEpfiE_dXBsDnp5VKkYGVH98fy80lvyOBFgHdwaj55t3RqmWfrE0EWKwG6nUSMS4Eqo-JCY6V0fqd7S4Vki2LN3bBvmZScQUYi360I8tAERTYgNfyBIm5AiCs" />
-                        </div>
-                        <div>
-                            <p class="font-bold text-slate-900 dark:text-white">Ana María Holguín</p>
-                            <p class="text-xs text-slate-500">Medellín</p>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="p-8 rounded-3xl bg-background-light dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
-                    <div class="flex gap-1 text-primary mb-4">
-                        <span class="material-symbols-outlined fill-1">star</span>
-                        <span class="material-symbols-outlined fill-1">star</span>
-                        <span class="material-symbols-outlined fill-1">star</span>
-                        <span class="material-symbols-outlined fill-1">star</span>
-                        <span class="material-symbols-outlined fill-1">star</span>
-                    </div>
-                    <p class="text-slate-600 dark:text-slate-400 italic mb-6 leading-relaxed">"Su profesionalismo y
-                        trato humano es lo que más destaco. Te hacen sentir apoyado en todo momento."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="size-12 rounded-full bg-slate-200 overflow-hidden">
-                            <img class="w-full h-full object-cover"
-                                data-alt="Portrait of a satisfied professional client"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHpXXJobIvptqls2iGvTAzctocBSb5DLMeQEQOMVcBvJJhH8V403kGqDWhbVulaiAybCN61QKzeIawRgo6ZsMww6ql-QjNbCmpXR2J2l_vaWbEdhIGgYTsdNNHJFZdJH20RDoWWODJ8xgIWsot2XYX6Wl9Uyq38Cbkj5ZLHZVDi1rYFYst8DeU4b_HEWXIGfSKfz4_zHMNU6p_O4ntO1L74rZKovvGZoxfxdiJJxZlrxdQvAIzIA5bVI3ut5tkD9f18LyGmE9q_fg" />
-                        </div>
-                        <div>
-                            <p class="font-bold text-slate-900 dark:text-white">Jorge Varela</p>
-                            <p class="text-xs text-slate-500">Cali</p>
-                        </div>
-                    </div>
+            <div class="relative group">
+                <div id="testimonials-container" class="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-8 no-scrollbar">
+                    <!-- Dinámico -->
                 </div>
             </div>
         </div>
@@ -530,11 +474,11 @@
                     <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary/50 rounded-full blur-[120px]"></div>
                 </div>
                 <div class="relative z-10 flex flex-col items-center gap-8">
-                    <h2 class="text-2xl sm:text-4xl md:text-6xl font-extrabold text-white leading-tight max-w-4xl">¿Listo para
+                    <h2 class="text-2xl sm:text-4xl md:text-6xl font-extrabold text-white leading-tight max-w-4xl" data-edit="texts.home.cta_title">¿Listo para
                         volver a dormir tranquilo?</h2>
-                    <p class="text-slate-400 text-lg md:text-xl max-w-2xl">Únete a los miles de colombianos que ya
+                    <p class="text-slate-400 text-lg md:text-xl max-w-2xl" data-edit="texts.home.cta_desc">Únete a los miles de colombianos que ya
                         recuperaron su libertad financiera con nuestra ayuda.</p>
-                    <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
+                    <a href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank"
                         class="bg-primary text-background-dark h-14 sm:h-16 px-8 sm:px-12 rounded-2xl font-bold text-base sm:text-xl hover:scale-105 transition-transform shadow-2xl shadow-primary/40 mt-4 flex items-center justify-center">
                         Agenda tu asesoría hoy
                     </a>
@@ -551,7 +495,7 @@
                         <img alt="MC Innovación Financiera Logo" class="h-10 w-auto object-contain"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpjdxyDnjePfx-lPxIMFBwngvqokIP38THxIWfdLxJNURWKxNtSwZB0ebyiaRPUdw81qN1QLq7ynS0PqlC-Ri3W_IJfDXqGFH-DUEwJHQbMwD6A2nTEz6mcfsMcgWNjK8OFHt7s6xjEtun574o1HCsN0_0GHqjpsrfU-r03pbYmeCfs_F_ywNO7Hgm1PMY_WC7pdXLc0TwP0T_TmPST8TNvBxvPeacp2QQjJR50k-f6okydjfDtv9TbQUGaDfVCODbjVFau8Ga8OE" />
                     </div>
-                    <p class="text-sm leading-relaxed">Expertos en asesoría financiera y soluciones de deuda en todo el
+                    <p class="text-sm leading-relaxed" data-edit="texts.footer.desc">Expertos en asesoría financiera y soluciones de deuda en todo el
                         territorio colombiano.</p>
                 </div>
                 <div>
@@ -567,13 +511,13 @@
                     <h4 class="text-white font-bold mb-6">Contacto</h4>
                     <ul class="space-y-4 text-sm">
                         <li class="flex items-center gap-3"><span
-                                class="material-symbols-outlined text-primary text-lg">mail</span> gerencia@mcinnovacionfinanciera.com
+                                class="material-symbols-outlined text-primary text-lg">mail</span> <span data-edit="texts.contact_email">gerencia@mcinnovacionfinanciera.com</span>
                         </li>
                         <li class="flex items-center gap-3"><span
-                                class="material-symbols-outlined text-primary text-lg">phone</span> +57 320 557 5195
+                                class="material-symbols-outlined text-primary text-lg">phone</span> <span data-edit="texts.whatsapp_phone">+57 320 557 5195</span>
                         </li>
                         <li class="flex items-center gap-3"><span
-                                class="material-symbols-outlined text-primary text-lg">location_on</span> Carrera 24 #51-21, Bogotá</li>
+                                class="material-symbols-outlined text-primary text-lg">location_on</span> <span data-edit="texts.contact_address">Carrera 24 #51-21, Bogotá</span></li>
                     </ul>
                 </div>
                 <div>
@@ -592,7 +536,7 @@
                             <span class="material-symbols-outlined">music_note</span>
                         </a>
                         <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
-                            href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank">
+                            href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank">
                             <span class="material-symbols-outlined">chat</span>
                         </a>
                     </div>
@@ -600,7 +544,7 @@
             </div>
             <div
                 class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium uppercase tracking-widest text-center">
-                <p>© 2024 MC Innovación Financiera. Todos los derechos reservados.</p>
+                <p data-edit="texts.footer.copyright">© 2024 MC Innovación Financiera. Todos los derechos reservados.</p>
                 <div class="mt-4 md:mt-0 text-[10px] md:text-xs text-slate-500 normal-case">
                     *Toda nuestra gestión se realiza bajo el estricto marco legal de la Ley 1266 de 2008 (Ley de Habeas Data) y la Ley 1581 de 2012.
                 </div>
@@ -760,5 +704,6 @@
         });
     });
     </script>
+    <script src="dynamic.js"></script>
 </body>
 </html>

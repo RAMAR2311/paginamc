@@ -24,8 +24,9 @@
     </script>
     <style>
         body { font-family: 'Manrope', sans-serif; }
-        .tab-active { background: #eccb13; color: #221f10; }
-        .tab-inactive { background: transparent; color: #94a3b8; }
+        .nav-active { background: #eccb13; color: #221f10; }
+        .nav-inactive { background: transparent; color: #94a3b8; }
+        .nav-inactive:hover { background: #1e293b; color: #f1f5f9; }
         input[type="file"] { display: none; }
         .upload-label {
             cursor: pointer;
@@ -36,12 +37,18 @@
         .upload-label:hover { border-color: #eccb13; }
         .member-photo { width: 80px; height: 100px; object-fit: cover; border-radius: .75rem; }
         .gallery-thumb { width: 120px; height: 80px; object-fit: cover; border-radius: .75rem; }
+        
+        /* Custom Scrollbar for sidebar and main content */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen">
+<body class="bg-slate-950 text-slate-100 h-screen overflow-hidden">
 
 <!-- LOGIN SCREEN -->
-<div id="login-screen" class="min-h-screen flex items-center justify-center px-4">
+<div id="login-screen" class="h-screen flex items-center justify-center px-4 bg-slate-950 absolute inset-0 z-50">
     <div class="w-full max-w-sm bg-slate-900 rounded-3xl p-10 shadow-2xl border border-slate-800">
         <div class="flex justify-center mb-8">
             <img src="favicon.jpg" alt="Logo" class="h-14 w-auto object-contain rounded-xl" />
@@ -65,75 +72,491 @@
 </div>
 
 <!-- ADMIN PANEL -->
-<div id="admin-panel" class="hidden min-h-screen">
-    <!-- Header -->
-    <header class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex items-center justify-between sticky top-0 z-50">
-        <div class="flex items-center gap-3">
-            <img src="favicon.jpg" alt="Logo" class="h-9 w-auto object-contain rounded-lg" />
-            <div>
-                <p class="font-bold text-sm">Panel de Administración</p>
-                <p class="text-xs text-slate-400">MC Innovación Financiera</p>
-            </div>
+<div id="admin-panel" class="hidden h-screen w-full flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-slate-900 border-r border-slate-800 flex flex-col shrink-0 h-full">
+        <div class="p-6 border-b border-slate-800">
+            <img src="favicon.jpg" alt="Logo" class="h-9 w-auto object-contain rounded-lg mb-3" />
+            <p class="font-bold text-sm">Panel de Administración</p>
+            <p class="text-xs text-slate-400">MC Innovación Financiera</p>
         </div>
-        <div class="flex gap-3">
-            <a href="nosotros.html" target="_blank"
-                class="flex items-center gap-2 text-xs font-bold bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg transition-colors">
+        <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
+            <button onclick="switchTab('inicio')" id="nav-inicio" class="nav-active w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors">
+                <span class="material-symbols-outlined">home</span> Inicio
+            </button>
+            <button onclick="switchTab('nosotros')" id="nav-nosotros" class="nav-inactive w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors">
+                <span class="material-symbols-outlined">group</span> Nosotros
+            </button>
+            <button onclick="switchTab('servicios')" id="nav-servicios" class="nav-inactive w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors">
+                <span class="material-symbols-outlined">handshake</span> Servicios
+            </button>
+            <button onclick="switchTab('contacto')" id="nav-contacto" class="nav-inactive w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors">
+                <span class="material-symbols-outlined">contact_support</span> Contacto
+            </button>
+            <button onclick="switchTab('aplicativos')" id="nav-aplicativos" class="nav-inactive w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors">
+                <span class="material-symbols-outlined">apps</span> Aplicativos MC
+            </button>
+            <button onclick="switchTab('tienda')" id="nav-tienda" class="nav-inactive w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors">
+                <span class="material-symbols-outlined">storefront</span> Tienda
+            </button>
+        </nav>
+        <div class="p-4 border-t border-slate-800 flex flex-col gap-2 shrink-0">
+            <a href="code.html" target="_blank" class="w-full flex items-center justify-center gap-2 text-xs font-bold bg-slate-800 hover:bg-slate-700 px-4 py-2.5 rounded-lg transition-colors">
                 <span class="material-symbols-outlined text-sm">open_in_new</span> Ver Página
             </a>
-            <button onclick="doLogout()"
-                class="flex items-center gap-2 text-xs font-bold bg-slate-800 hover:bg-red-900/60 px-4 py-2 rounded-lg transition-colors text-red-400">
+            <button onclick="doLogout()" class="w-full flex items-center justify-center gap-2 text-xs font-bold bg-slate-800 hover:bg-red-900/60 px-4 py-2.5 rounded-lg transition-colors text-red-400">
                 <span class="material-symbols-outlined text-sm">logout</span> Salir
             </button>
         </div>
-    </header>
+    </aside>
 
-    <div class="max-w-6xl mx-auto px-6 py-10">
-        <!-- Tabs -->
-        <div class="flex gap-2 mb-10 bg-slate-900 p-1.5 rounded-2xl w-fit">
-            <button id="tab-team" onclick="switchTab('team')" class="tab-active px-6 py-2.5 rounded-xl font-bold text-sm transition-all">
-                <span class="material-symbols-outlined text-sm align-middle mr-1">group</span> Equipo
-            </button>
-            <button id="tab-gallery" onclick="switchTab('gallery')" class="tab-inactive px-6 py-2.5 rounded-xl font-bold text-sm transition-all">
-                <span class="material-symbols-outlined text-sm align-middle mr-1">photo_library</span> Galería
-            </button>
-        </div>
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto p-8 relative bg-slate-950">
+        <div class="max-w-4xl mx-auto pb-20">
+            
+            <!-- ====== INICIO ====== -->
+            <div id="panel-inicio">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-extrabold flex items-center gap-2"><span class="material-symbols-outlined text-primary">home</span> Inicio</h2>
+                    <button onclick="saveAll()" class="flex items-center gap-2 bg-primary text-background-dark px-6 py-2.5 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined text-sm">save</span> Guardar Todo
+                    </button>
+                </div>
+                
+                <div class="space-y-8">
+                    <!-- Configuración Visual -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-4">Configuración Visual</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                            <div><label class="text-xs font-bold text-slate-400 mb-1 block">Primario</label><input type="color" id="config-color-primary" class="w-full h-10 rounded-lg cursor-pointer" /></div>
+                            <div><label class="text-xs font-bold text-slate-400 mb-1 block">Acento Rosa</label><input type="color" id="config-color-accent" class="w-full h-10 rounded-lg cursor-pointer" /></div>
+                            <div><label class="text-xs font-bold text-slate-400 mb-1 block">Fondo Claro</label><input type="color" id="config-color-bgLight" class="w-full h-10 rounded-lg cursor-pointer" /></div>
+                            <div><label class="text-xs font-bold text-slate-400 mb-1 block">Fondo Oscuro</label><input type="color" id="config-color-bgDark" class="w-full h-10 rounded-lg cursor-pointer" /></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-6 border-t border-slate-800">
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-400 mb-3">Logo</h4>
+                                <div class="flex items-center gap-4">
+                                    <img id="config-logo-preview" src="favicon.jpg" alt="Logo" class="w-16 h-16 object-contain bg-white rounded-lg p-1" />
+                                    <label for="config-logo-file" class="upload-label text-xs text-slate-400 gap-2 px-4 py-2"><span class="material-symbols-outlined text-sm">upload</span> Subir nuevo logo</label>
+                                    <input type="file" id="config-logo-file" accept="image/*" onchange="handleLogoPhoto(this)" />
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-400 mb-3">Video de Fondo (Hero)</h4>
+                                <div class="flex items-center gap-4">
+                                    <video id="config-video-preview" src="" class="w-24 h-16 object-cover rounded-lg border border-slate-700 bg-black" controls muted></video>
+                                    <label for="config-video-file" class="upload-label text-xs text-slate-400 gap-2 px-4 py-2"><span class="material-symbols-outlined text-sm">upload</span> Subir nuevo video</label>
+                                    <input type="file" id="config-video-file" accept="video/mp4,video/x-m4v,video/*" onchange="handleVideoFile(this)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- TEAM TAB -->
-        <div id="panel-team">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-extrabold">Miembros del Equipo</h2>
-                <button onclick="addMember()"
-                    class="flex items-center gap-2 bg-primary text-background-dark px-5 py-2.5 rounded-xl font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
-                    <span class="material-symbols-outlined text-sm">add</span> Agregar Miembro
-                </button>
-            </div>
-            <div id="team-list" class="space-y-4"></div>
-            <div class="mt-8 flex justify-end">
-                <button onclick="saveTeam()"
-                    class="flex items-center gap-2 bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
-                    <span class="material-symbols-outlined">save</span> Guardar Cambios
-                </button>
-            </div>
-        </div>
+                    <!-- Textos Hero -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-4">Textos Principales (Hero)</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Título Principal</label>
+                                <input type="text" id="config-text-hero-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Subtítulo</label>
+                                <textarea id="config-text-hero-subtitle" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proceso -->
+                    <details class="bg-slate-900 border border-slate-800 rounded-2xl group">
+                        <summary class="p-6 text-lg font-bold cursor-pointer hover:bg-slate-800/50 transition-colors flex justify-between items-center outline-none">
+                            Proceso / Metodología
+                            <span class="material-symbols-outlined transform group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="p-6 border-t border-slate-800 bg-slate-900/50 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Pre-título</label><input type="text" id="config-home-process_pretitle" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Título</label><input type="text" id="config-home-process_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Paso 1: Título</label><input type="text" id="config-home-process1_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-process1_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Paso 2: Título</label><input type="text" id="config-home-process2_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-process2_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Paso 3: Título</label><input type="text" id="config-home-process3_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-process3_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Paso 4: Título</label><input type="text" id="config-home-process4_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-process4_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                        </div>
+                    </details>
 
-        <!-- GALLERY TAB -->
-        <div id="panel-gallery" class="hidden">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-extrabold">Galería — Nuestros Momentos</h2>
-                <button onclick="addGalleryItem()"
-                    class="flex items-center gap-2 bg-primary text-background-dark px-5 py-2.5 rounded-xl font-bold text-sm hover:brightness-110 active:scale-95 transition-all">
-                    <span class="material-symbols-outlined text-sm">add_photo_alternate</span> Agregar Foto
-                </button>
+                    <!-- Diferenciales -->
+                    <details class="bg-slate-900 border border-slate-800 rounded-2xl group">
+                        <summary class="p-6 text-lg font-bold cursor-pointer hover:bg-slate-800/50 transition-colors flex justify-between items-center outline-none">
+                            Diferenciales
+                            <span class="material-symbols-outlined transform group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="p-6 border-t border-slate-800 bg-slate-900/50 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Pre-título</label><input type="text" id="config-home-diff_pretitle" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Título</label><input type="text" id="config-home-diff_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
+                            <div class="md:col-span-2"><label class="text-xs font-bold text-slate-400 mb-1 block">Descripción general</label><textarea id="config-home-diff_desc" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Diferencial 1</label><input type="text" id="config-home-diff1_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-diff1_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Diferencial 2</label><input type="text" id="config-home-diff2_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-diff2_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Diferencial 3</label><input type="text" id="config-home-diff3_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-diff3_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Diferencial 4</label><input type="text" id="config-home-diff4_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-diff4_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                            <div class="md:col-span-2 grid grid-cols-3 gap-2">
+                                <div><label class="text-xs font-bold text-slate-400 mb-1 block">Ítem 1</label><input type="text" id="config-home-diff_item1" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-2 py-2 text-xs" /></div>
+                                <div><label class="text-xs font-bold text-slate-400 mb-1 block">Ítem 2</label><input type="text" id="config-home-diff_item2" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-2 py-2 text-xs" /></div>
+                                <div><label class="text-xs font-bold text-slate-400 mb-1 block">Ítem 3</label><input type="text" id="config-home-diff_item3" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-2 py-2 text-xs" /></div>
+                            </div>
+                        </div>
+                    </details>
+                    
+                    <!-- Testimonios y CTA -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-4">Testimonios & CTA</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Testimonios Pre-título</label><input type="text" id="config-home-testimonials_pretitle" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Testimonios Título</label><input type="text" id="config-home-testimonials_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">CTA Final Título</label><input type="text" id="config-home-cta_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">CTA Final Desc</label><textarea id="config-home-cta_desc" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                        </div>
+                    </div>
+
+                    <!-- Lista de Testimonios Dinámicos -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mt-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-bold">Listado de Testimonios</h3>
+                            <button onclick="addTestimonial()" class="flex items-center gap-2 bg-slate-800 text-slate-200 px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-700 transition-all">
+                                <span class="material-symbols-outlined text-sm">add</span> Agregar Testimonio
+                            </button>
+                        </div>
+                        <div id="testimonials-list" class="space-y-4"></div>
+                    </div>
+
+                </div>
             </div>
-            <div id="gallery-list" class="space-y-4"></div>
-            <div class="mt-8 flex justify-end">
-                <button onclick="saveGallery()"
-                    class="flex items-center gap-2 bg-primary text-background-dark px-8 py-3 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
-                    <span class="material-symbols-outlined">save</span> Guardar Cambios
-                </button>
+
+            <!-- ====== NOSOTROS ====== -->
+            <div id="panel-nosotros" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-extrabold flex items-center gap-2"><span class="material-symbols-outlined text-primary">group</span> Nosotros</h2>
+                    <button onclick="saveAll()" class="flex items-center gap-2 bg-primary text-background-dark px-6 py-2.5 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined text-sm">save</span> Guardar Todo
+                    </button>
+                </div>
+                
+                <div class="space-y-8">
+                    <!-- Textos Misión y Visión -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-4">Misión y Visión</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Título</label>
+                                <input type="text" id="config-about-mission_vision_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Texto</label>
+                                <textarea id="config-about-mission_vision_desc" rows="4" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mapa de Ubicación -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-4">Mapa de Google Maps (Enlace de Embebido)</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">URL del Iframe (src)</label>
+                                <textarea id="config-about-map_iframe_url" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="https://www.google.com/maps/embed?..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Equipo Config -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-bold">Equipo de Trabajo</h3>
+                            <button onclick="addMember()" class="flex items-center gap-2 bg-slate-800 text-slate-200 px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-700 transition-all">
+                                <span class="material-symbols-outlined text-sm">person_add</span> Agregar Miembro
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 pb-6 border-b border-slate-800">
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Pre-título Equipo</label><input type="text" id="config-about-team_pretitle" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
+                            <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Título Equipo</label><input type="text" id="config-about-team_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
+                            <div class="md:col-span-2"><label class="text-xs font-bold text-slate-400 mb-1 block">Descripción Equipo</label><textarea id="config-about-team_desc" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                        </div>
+                        <div id="team-list" class="space-y-4"></div>
+                    </div>
+
+                    <!-- Galería -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-bold">Galería</h3>
+                            <button onclick="addGalleryItem()" class="flex items-center gap-2 bg-slate-800 text-slate-200 px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-700 transition-all">
+                                <span class="material-symbols-outlined text-sm">add</span> Agregar Foto
+                            </button>
+                        </div>
+                        <div id="gallery-list" class="space-y-4"></div>
+                    </div>
+                </div>
             </div>
+
+            <!-- ====== SERVICIOS ====== -->
+            <div id="panel-servicios" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-extrabold flex items-center gap-2"><span class="material-symbols-outlined text-primary">handshake</span> Servicios</h2>
+                    <button onclick="saveAll()" class="flex items-center gap-2 bg-primary text-background-dark px-6 py-2.5 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined text-sm">save</span> Guardar Todo
+                    </button>
+                </div>
+                
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <h3 class="text-lg font-bold mb-4">Nuestros Servicios Premium</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Pre-título</label><input type="text" id="config-home-services_pretitle" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
+                        <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Título Principal</label><input type="text" id="config-home-services_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
+                        <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Servicio 1: Título</label><input type="text" id="config-home-service1_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-service1_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                        <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Servicio 2: Título</label><input type="text" id="config-home-service2_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-service2_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                        <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Servicio 3: Título</label><input type="text" id="config-home-service3_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-service3_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                        <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Servicio 4: Título</label><input type="text" id="config-home-service4_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-service4_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== CONTACTO ====== -->
+            <div id="panel-contacto" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-extrabold flex items-center gap-2"><span class="material-symbols-outlined text-primary">contact_support</span> Contacto</h2>
+                    <button onclick="saveAll()" class="flex items-center gap-2 bg-primary text-background-dark px-6 py-2.5 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined text-sm">save</span> Guardar Todo
+                    </button>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-4">Información de Contacto</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><label class="text-xs font-bold text-slate-400 mb-1 block">WhatsApp (solo números)</label><input type="text" id="config-text-wa" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" /></div>
+                            <div><label class="text-xs font-bold text-slate-400 mb-1 block">Correo de Contacto</label><input type="text" id="config-text-email" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" /></div>
+                            <div class="md:col-span-2"><label class="text-xs font-bold text-slate-400 mb-1 block">Dirección</label><input type="text" id="config-text-address" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" /></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-4">Textos Pie de Página (Footer)</h3>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div><label class="text-xs font-bold text-slate-400 mb-1 block">Descripción Corta</label><textarea id="config-footer-desc" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm"></textarea></div>
+                            <div><label class="text-xs font-bold text-slate-400 mb-1 block">Copyright</label><input type="text" id="config-footer-copyright" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" /></div>
+                            <div><label class="text-xs font-bold text-slate-400 mb-1 block">Aviso Legal</label><textarea id="config-footer-legal" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm"></textarea></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== APLICATIVOS MC ====== -->
+            <div id="panel-aplicativos" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-extrabold flex items-center gap-2"><span class="material-symbols-outlined text-primary">apps</span> Aplicativos MC</h2>
+                    <button onclick="saveAll()" class="flex items-center gap-2 bg-primary text-background-dark px-6 py-2.5 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined text-sm">save</span> Guardar Todo
+                    </button>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-4">Textos de la sección Aplicativos (Página Principal)</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Título de la Sección</label>
+                                <input type="text" id="config-aplicativos-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Nuestros Aplicativos" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Descripción de la Sección</label>
+                                <textarea id="config-aplicativos-desc" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Gestiona tu información..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portal Empleado -->
+                    <details class="bg-slate-900 border border-slate-800 rounded-2xl group">
+                        <summary class="p-6 text-lg font-bold cursor-pointer hover:bg-slate-800/50 transition-colors flex justify-between items-center outline-none">
+                            Portal Empleado
+                            <span class="material-symbols-outlined transform group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="p-6 border-t border-slate-800 bg-slate-900/50 space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Enlace / URL de Acceso</label>
+                                <input type="text" id="config-aplicativos-empleado-link" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Título del Hero</label>
+                                <input type="text" id="config-aplicativos-empleado-hero-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Descripción del Hero</label>
+                                <textarea id="config-aplicativos-empleado-hero-desc" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea>
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Título del Cuadro de Acceso</label>
+                                <input type="text" id="config-aplicativos-empleado-gateway-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Descripción del Cuadro de Acceso</label>
+                                <textarea id="config-aplicativos-empleado-gateway-desc" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Portal Cliente -->
+                    <details class="bg-slate-900 border border-slate-800 rounded-2xl group">
+                        <summary class="p-6 text-lg font-bold cursor-pointer hover:bg-slate-800/50 transition-colors flex justify-between items-center outline-none">
+                            Portal Cliente
+                            <span class="material-symbols-outlined transform group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="p-6 border-t border-slate-800 bg-slate-900/50 space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Enlace / URL de Acceso</label>
+                                <input type="text" id="config-aplicativos-cliente-link" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Título del Hero</label>
+                                <input type="text" id="config-aplicativos-cliente-hero-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Descripción del Hero</label>
+                                <textarea id="config-aplicativos-cliente-hero-desc" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 border-t border-slate-800">
+                                <div>
+                                    <label class="text-xs font-bold text-slate-400 mb-1 block">Paso 1: Título</label>
+                                    <input type="text" id="config-aplicativos-cliente-step1-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                                    <textarea id="config-aplicativos-cliente-step1-desc" rows="3" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" placeholder="Descripción..."></textarea>
+                                </div>
+                                <div>
+                                    <label class="text-xs font-bold text-slate-400 mb-1 block">Paso 2: Título</label>
+                                    <input type="text" id="config-aplicativos-cliente-step2-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                                    <textarea id="config-aplicativos-cliente-step2-desc" rows="3" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" placeholder="Descripción..."></textarea>
+                                </div>
+                                <div>
+                                    <label class="text-xs font-bold text-slate-400 mb-1 block">Paso 3: Título</label>
+                                    <input type="text" id="config-aplicativos-cliente-step3-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                                    <textarea id="config-aplicativos-cliente-step3-desc" rows="3" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" placeholder="Descripción..."></textarea>
+                                </div>
+                            </div>
+                            <div class="pt-2 border-t border-slate-800">
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Título de Sección de Herramientas</label>
+                                <input type="text" id="config-aplicativos-cliente-tools-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Descripción de Sección de Herramientas</label>
+                                <textarea id="config-aplicativos-cliente-tools-desc" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Autorización de Datos Personales -->
+                    <details class="bg-slate-900 border border-slate-800 rounded-2xl group">
+                        <summary class="p-6 text-lg font-bold cursor-pointer hover:bg-slate-800/50 transition-colors flex justify-between items-center outline-none">
+                            Autorización de Datos Personales
+                            <span class="material-symbols-outlined transform group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="p-6 border-t border-slate-800 bg-slate-900/50 space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Título del Hero</label>
+                                <input type="text" id="config-aplicativos-autorizacion-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Subtítulo del Hero</label>
+                                <textarea id="config-aplicativos-autorizacion-subtitle" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea>
+                            </div>
+                            <div class="pt-4 border-t border-slate-800">
+                                <h4 class="text-sm font-bold text-slate-300 mb-3 flex items-center gap-1"><span class="material-symbols-outlined text-xs">mail</span> Integración de EmailJS para Envío</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="text-xs font-bold text-slate-400 mb-1 block">Template ID (Plantilla de Autorización)</label>
+                                        <input type="text" id="config-aplicativos-emailjs-template-autorizacion" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Buzón de PQRS -->
+                    <details class="bg-slate-900 border border-slate-800 rounded-2xl group">
+                        <summary class="p-6 text-lg font-bold cursor-pointer hover:bg-slate-800/50 transition-colors flex justify-between items-center outline-none">
+                            Buzón de PQRS
+                            <span class="material-symbols-outlined transform group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="p-6 border-t border-slate-800 bg-slate-900/50 space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Título del Hero</label>
+                                <input type="text" id="config-aplicativos-pqrs-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Descripción del Hero</label>
+                                <textarea id="config-aplicativos-pqrs-subtitle" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea>
+                            </div>
+                            <div class="pt-4 border-t border-slate-800">
+                                <h4 class="text-sm font-bold text-slate-300 mb-3 flex items-center gap-1"><span class="material-symbols-outlined text-xs">mail</span> Integración de EmailJS para Envío</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="text-xs font-bold text-slate-400 mb-1 block">Template ID (Plantilla de PQRS)</label>
+                                        <input type="text" id="config-aplicativos-emailjs-template-pqrs" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- Configuración Global de EmailJS -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-primary"><span class="material-symbols-outlined">settings</span> Configuración Global de EmailJS</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Public Key (Llave Pública de EmailJS)</label>
+                                <input type="text" id="config-aplicativos-emailjs-public-key" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Service ID (Servicio de Correo de EmailJS)</label>
+                                <input type="text" id="config-aplicativos-emailjs-service-id" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== TIENDA ====== -->
+            <div id="panel-tienda" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-extrabold flex items-center gap-2"><span class="material-symbols-outlined text-primary">storefront</span> Tienda</h2>
+                    <button onclick="saveAll()" class="flex items-center gap-2 bg-primary text-background-dark px-6 py-2.5 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                        <span class="material-symbols-outlined text-sm">save</span> Guardar Todo
+                    </button>
+                </div>
+                
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <h3 class="text-lg font-bold mb-4">Textos de la sección Tienda</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-xs font-bold text-slate-400 mb-1 block">Título</label>
+                            <input type="text" id="config-tienda-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Tienda MC" />
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-400 mb-1 block">Descripción</label>
+                            <textarea id="config-tienda-desc" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Adquiere nuestros servicios..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gestión de Productos / Servicios -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mt-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold">Servicios / Productos de la Tienda</h3>
+                        <button onclick="addProduct()" class="flex items-center gap-2 bg-slate-800 text-slate-200 px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-700 transition-all">
+                            <span class="material-symbols-outlined text-sm">add</span> Agregar Servicio
+                        </button>
+                    </div>
+                    <div id="products-list" class="space-y-4"></div>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </main>
 </div>
 
 <!-- SUCCESS TOAST -->
@@ -144,40 +567,40 @@
 
 <script>
 // ─── CONFIG ───────────────────────────────────────────────
-const ADMIN_PASSWORD = 'MC2026*'; // Cambia esta contraseña
+const ADMIN_PASSWORD = 'MC2026*'; 
 
 // ─── DEFAULT DATA ─────────────────────────────────────────
 const DEFAULT_TEAM = [
     { name: 'Alejandro Torres', role: 'Asesor Comercial Senior', bio: 'Especialista en acuerdos comerciales de gran volumen.', photo: 'advisor_portrait_man.png', whatsapp: '' },
     { name: 'Camila Gómez',    role: 'Asesora Comercial',       bio: 'Manejo de créditos hipotecarios y defensa legal.',   photo: 'advisor_portrait_woman.png', whatsapp: '' },
-    { name: 'Santiago Mejía',  role: 'Asesor Comercial',        bio: '',                                                    photo: 'advisor_portrait_man.png', whatsapp: '' },
-    { name: 'Diana Ríos',      role: 'Asesora Comercial',       bio: '',                                                    photo: 'advisor_portrait_woman.png', whatsapp: '' },
-    { name: 'Marlon López',    role: 'Asesor Comercial',        bio: '',                                                    photo: 'advisor_portrait_man.png', whatsapp: '' },
-    { name: 'Valeria Pineda',  role: 'Asesora Comercial',       bio: '',                                                    photo: 'advisor_portrait_woman.png', whatsapp: '' },
-    { name: 'Juan Carlos Ruiz',role: 'Asesor Comercial',        bio: '',                                                    photo: 'advisor_portrait_man.png', whatsapp: '' },
+    { name: 'Santiago Mejía',  role: 'Asesor Comercial',        bio: '',                                                    photo: 'advisor_portrait_man.png', whatsapp: '' }
 ];
-
-const DEFAULT_GALLERY = [
-    { title: 'Capacitación Semanal', subtitle: 'Cultura MC', photo: 'https://images.unsplash.com/photo-1522071823991-b9671e3030e3?auto=format&fit=crop&q=80&w=800' },
-    { title: 'Trabajo en Equipo',    subtitle: 'Colaboración', photo: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800' },
-    { title: 'Oficinas Centrales',   subtitle: 'Instalaciones', photo: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800' },
-    { title: 'Atención al Cliente',  subtitle: 'Compromiso', photo: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800' },
-];
+const DEFAULT_GALLERY = [];
 
 // ─── STATE ────────────────────────────────────────────────
+const DEFAULT_TESTIMONIALS = [
+    { stars: 5, text: "Logré negociar una deuda de 30 millones con solo 8 millones de pesos. Mi vida cambió totalmente gracias a MC Innovación.", name: "Carlos Rodriguez", location: "Bogotá, D.C.", photo: "https://lh3.googleusercontent.com/aida-public/AB6AXu81_t80eYHTFpGWzhGYq7T1ORukxaUmMnlOwldiwqeZ3TZs6RicSvr6sBLJE7LNbsPXvqVOnYFdmRzVkbMRwK8_ELgNC6LI2AW2PElnuwazHAf0epYo67iR8L4qQYWFvrSvBFE2UwTWcpLGeBOYGxE4SvcN0Y_wIFFR2jZllvHLTnScuYEMMtpngLDGxJCJxiFoQXXYRY6w54odANNxya4JZDRh50FE2W3vj2lZXBg0lybyrg5BzmB3qdz913gu80DPUUasCtkRFU" },
+    { stars: 5, text: "Excelente asesoría. Me explicaron todo de forma clara y sin presiones. Hoy ya tengo mi score de crédito recuperado.", name: "Ana María Holguín", location: "Medellín", photo: "https://lh3.googleusercontent.com/aida-public/AB6AXuBwsp1RjyZ602UOsIqat-ZsgKjJqqDI3Fws01kYywMW4drO4Hy9GtGwNcZx4MXN6CogGCrSsTqQJGxbow5kyjvxIQpTgLvYJ26klQXt4hFMWEWFiDNgnTNQvgaLhgCI5s-MiFyvovNCf-KEJHBHtIBEpfiE_dXBsDnp5VKkYGVH98fy80lvyOBFgHdwaj55t3RqmWfrE0EWKwG6nUSMS4Eqo-JCY6V0fqd7S4Vki2LN3bBvmZScQUYi360I8tAERTYgNfyBIm5AiCs" },
+    { stars: 5, text: "Su profesionalismo y trato humano es lo que más destaco. Te hacen sentir apoyado en todo momento.", name: "Jorge Varela", location: "Cali", photo: "https://lh3.googleusercontent.com/aida-public/AB6AXuDHpXXJobIvptqls2iGvTAzctocBSb5DLMeQEQOMVcBvJJhH8V403kGqDWhbVulaiAybCN61QKzeIawRgo6ZsMww6ql-QjNbCmpXR2J2l_vaWbEdhIGgYTsdNNHJFZdJH20RDoWWODJ8xgIWsot2XYX6Wl9Uyq38Cbkj5ZLHZVDi1rYFYst8DeU4b_HEWXIGfSKfz4_zHMNU6p_O4ntO1L74rZKovvGZoxfxdiJJxZlrxdQvAIzIA5bVI3ut5tkD9f18LyGmE9q_fg" }
+];
+
+let configData = null;
 let teamData = DEFAULT_TEAM;
 let galleryData = DEFAULT_GALLERY;
+let testimonialsData = DEFAULT_TESTIMONIALS;
+let productsData = [];
 
 // Cargar datos desde el backend
-fetch('/api/data')
+fetch('/api/data?_t=' + Date.now())
     .then(res => res.json())
     .then(data => {
+        configData = data.config || null;
         teamData = data.team || DEFAULT_TEAM;
         galleryData = data.gallery || DEFAULT_GALLERY;
-        // Si el panel de admin está visible, renderizamos de nuevo
+        testimonialsData = data.testimonials || DEFAULT_TESTIMONIALS;
+        productsData = data.products || [];
         if (!document.getElementById('admin-panel').classList.contains('hidden')) {
-            renderTeam();
-            renderGallery();
+            renderAll();
         }
     })
     .catch(err => console.error('Error cargando datos del backend:', err));
@@ -188,8 +611,7 @@ function doLogin() {
     if (pw === ADMIN_PASSWORD) {
         document.getElementById('login-screen').classList.add('hidden');
         document.getElementById('admin-panel').classList.remove('hidden');
-        renderTeam();
-        renderGallery();
+        if(configData) renderAll();
     } else {
         document.getElementById('login-error').classList.remove('hidden');
         document.getElementById('password-input').value = '';
@@ -203,13 +625,16 @@ function doLogout() {
 }
 
 // ─── TABS ─────────────────────────────────────────────────
+const tabs = ['inicio', 'nosotros', 'servicios', 'contacto', 'aplicativos', 'tienda'];
 function switchTab(tab) {
-    document.getElementById('panel-team').classList.add('hidden');
-    document.getElementById('panel-gallery').classList.add('hidden');
-    document.getElementById('tab-team').className = 'tab-inactive px-6 py-2.5 rounded-xl font-bold text-sm transition-all';
-    document.getElementById('tab-gallery').className = 'tab-inactive px-6 py-2.5 rounded-xl font-bold text-sm transition-all';
+    tabs.forEach(t => {
+        document.getElementById('panel-' + t).classList.add('hidden');
+        const nav = document.getElementById('nav-' + t);
+        nav.className = 'nav-inactive w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors';
+    });
+    
     document.getElementById('panel-' + tab).classList.remove('hidden');
-    document.getElementById('tab-' + tab).className = 'tab-active px-6 py-2.5 rounded-xl font-bold text-sm transition-all';
+    document.getElementById('nav-' + tab).className = 'nav-active w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors';
 }
 
 // ─── TOAST ────────────────────────────────────────────────
@@ -227,31 +652,19 @@ function readImageFile(file, callback) {
     reader.onload = function(e) {
         const img = new Image();
         img.onload = function() {
-            // Máximo ancho y alto permitido
             const MAX_WIDTH = 1200;
             const MAX_HEIGHT = 1200;
             let width = img.width;
             let height = img.height;
-
             if (width > height) {
-                if (width > MAX_WIDTH) {
-                    height *= MAX_WIDTH / width;
-                    width = MAX_WIDTH;
-                }
+                if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
             } else {
-                if (height > MAX_HEIGHT) {
-                    width *= MAX_HEIGHT / height;
-                    height = MAX_HEIGHT;
-                }
+                if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
             }
-
             const canvas = document.createElement('canvas');
-            canvas.width = width;
-            canvas.height = height;
+            canvas.width = width; canvas.height = height;
             const ctx = canvas.getContext('2d');
             ctx.drawImage(img, 0, 0, width, height);
-            
-            // Exportar como JPEG al 70% de calidad para reducir muchísimo el peso
             const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
             callback(dataUrl);
         };
@@ -260,51 +673,128 @@ function readImageFile(file, callback) {
     reader.readAsDataURL(file);
 }
 
+// ─── RENDERING ─────────────────────────────────────
+function renderAll() {
+    renderConfig();
+    renderTeam();
+    renderGallery();
+    renderTestimonials();
+    renderProducts();
+}
+
+function renderConfig() {
+    if(!configData) return;
+    document.getElementById('config-color-primary').value = configData.colors.primary;
+    document.getElementById('config-color-accent').value = configData.colors.accentPink;
+    document.getElementById('config-color-bgLight').value = configData.colors.bgLight;
+    document.getElementById('config-color-bgDark').value = configData.colors.bgDark;
+    
+    document.getElementById('config-text-hero-title').value = configData.texts.hero_title || '';
+    document.getElementById('config-text-hero-subtitle').value = configData.texts.hero_subtitle || '';
+    document.getElementById('config-text-wa').value = configData.texts.whatsapp_phone || '';
+    document.getElementById('config-text-email').value = configData.texts.contact_email || '';
+    document.getElementById('config-text-address').value = configData.texts.contact_address || '';
+
+    if (configData.texts.home) {
+        ['services_pretitle', 'services_title', 'service1_title', 'service1_desc', 'service2_title', 'service2_desc', 'service3_title', 'service3_desc', 'service4_title', 'service4_desc',
+         'process_pretitle', 'process_title', 'process1_title', 'process1_desc', 'process2_title', 'process2_desc', 'process3_title', 'process3_desc', 'process4_title', 'process4_desc',
+         'diff_pretitle', 'diff_title', 'diff_desc', 'diff1_title', 'diff1_desc', 'diff2_title', 'diff2_desc', 'diff3_title', 'diff3_desc', 'diff4_title', 'diff4_desc', 'diff_item1', 'diff_item2', 'diff_item3',
+         'testimonials_pretitle', 'testimonials_title', 'cta_title', 'cta_desc'].forEach(k => {
+            const el = document.getElementById('config-home-' + k);
+            if (el) el.value = configData.texts.home[k] || '';
+        });
+    }
+    if (configData.texts.about) {
+        ['mission_vision_title', 'mission_vision_desc', 'team_pretitle', 'team_title', 'team_desc', 'map_iframe_url'].forEach(k => {
+            const el = document.getElementById('config-about-' + k);
+            if (el) el.value = configData.texts.about[k] || '';
+        });
+    }
+    if (configData.texts.footer) {
+        ['desc', 'copyright', 'legal'].forEach(k => {
+            const el = document.getElementById('config-footer-' + k);
+            if (el) el.value = configData.texts.footer[k] || '';
+        });
+    }
+    if (configData.texts.aplicativos) {
+        document.getElementById('config-aplicativos-title').value = configData.texts.aplicativos.title || '';
+        document.getElementById('config-aplicativos-desc').value = configData.texts.aplicativos.desc || '';
+        
+        const apps = configData.texts.aplicativos;
+        const fields = [
+            'empleado_link', 'empleado_hero_title', 'empleado_hero_desc', 'empleado_gateway_title', 'empleado_gateway_desc',
+            'cliente_link', 'cliente_hero_title', 'cliente_hero_desc',
+            'cliente_step1_title', 'cliente_step1_desc', 'cliente_step2_title', 'cliente_step2_desc', 'cliente_step3_title', 'cliente_step3_desc',
+            'cliente_tools_title', 'cliente_tools_desc',
+            'autorizacion_title', 'autorizacion_subtitle',
+            'emailjs_public_key', 'emailjs_service_id', 'emailjs_template_autorizacion',
+            'pqrs_title', 'pqrs_subtitle', 'emailjs_template_pqrs'
+        ];
+        fields.forEach(f => {
+            const el = document.getElementById('config-aplicativos-' + f.replace(/_/g, '-'));
+            if (el) el.value = apps[f] || '';
+        });
+    }
+    if (configData.texts.tienda) {
+        document.getElementById('config-tienda-title').value = configData.texts.tienda.title || '';
+        document.getElementById('config-tienda-desc').value = configData.texts.tienda.desc || '';
+    }
+    
+    document.getElementById('config-logo-preview').src = configData.images.logo;
+    document.getElementById('config-video-preview').src = configData.images.hero_video || '';
+}
+
+function handleLogoPhoto(input) {
+    if (!input.files[0]) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        if(!configData) return;
+        configData.images.logo = e.target.result;
+        document.getElementById('config-logo-preview').src = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+}
+
+function handleVideoFile(input) {
+    if (!input.files[0]) return;
+    if (input.files[0].size > 20 * 1024 * 1024) {
+        alert("El video es muy pesado (más de 20MB). Podría tardar bastante en guardarse.");
+    }
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        if(!configData) return;
+        configData.images.hero_video = e.target.result;
+        document.getElementById('config-video-preview').src = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+}
+
 // ─── TEAM RENDERING ───────────────────────────────────────
 function renderTeam() {
     const list = document.getElementById('team-list');
     list.innerHTML = '';
     teamData.forEach((m, i) => {
         const card = document.createElement('div');
-        card.className = 'bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start';
+        card.className = 'bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col md:flex-row gap-4 items-start';
         card.innerHTML = `
-            <div class="flex flex-col items-center gap-3 shrink-0">
+            <div class="flex flex-col items-center gap-2 shrink-0">
                 <img id="team-photo-preview-${i}" src="${m.photo}" alt="Foto" class="member-photo" onerror="this.src='advisor_portrait_man.png'"/>
-                <label for="team-photo-file-${i}" class="upload-label text-xs text-slate-400 gap-2 px-3 py-2 w-full text-center">
-                    <span class="material-symbols-outlined text-sm">upload</span> Cambiar foto
+                <label for="team-photo-file-${i}" class="upload-label text-[10px] text-slate-400 gap-1 px-2 py-1 w-full text-center">
+                    <span class="material-symbols-outlined text-xs">upload</span> Foto
                 </label>
                 <input type="file" id="team-photo-file-${i}" accept="image/*" onchange="handleTeamPhoto(${i}, this)" />
             </div>
-            <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 block">Nombre completo</label>
-                    <input type="text" id="team-name-${i}" value="${m.name}"
-                        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors" />
-                </div>
-                <div>
-                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 block">Cargo / Rol</label>
-                    <input type="text" id="team-role-${i}" value="${m.role}"
-                        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors" />
-                </div>
-                <div>
-                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 block">Especialidad (hover)</label>
-                    <input type="text" id="team-bio-${i}" value="${m.bio}"
-                        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors" />
-                </div>
-                <div>
-                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 block">WhatsApp (solo números)</label>
-                    <input type="text" id="team-wa-${i}" value="${m.whatsapp || ''}" placeholder="573205575195"
-                        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors" />
-                </div>
+            <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
+                <div><label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Nombre</label><input type="text" id="team-name-${i}" value="${m.name}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs" /></div>
+                <div><label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Cargo</label><input type="text" id="team-role-${i}" value="${m.role}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs" /></div>
+                <div><label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Bio</label><input type="text" id="team-bio-${i}" value="${m.bio}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs" /></div>
+                <div><label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">WhatsApp</label><input type="text" id="team-wa-${i}" value="${m.whatsapp || ''}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs" /></div>
             </div>
-            <button onclick="removeMember(${i})" class="text-red-400 hover:text-red-300 hover:bg-red-900/30 p-2 rounded-lg transition-colors shrink-0" title="Eliminar">
-                <span class="material-symbols-outlined">delete</span>
-            </button>
+            <button onclick="removeMember(${i})" class="text-red-400 hover:bg-red-900/30 p-2 rounded-lg shrink-0"><span class="material-symbols-outlined">delete</span></button>
         `;
         list.appendChild(card);
     });
 }
-
 function handleTeamPhoto(i, input) {
     if (!input.files[0]) return;
     readImageFile(input.files[0], data => {
@@ -312,49 +802,14 @@ function handleTeamPhoto(i, input) {
         document.getElementById(`team-photo-preview-${i}`).src = data;
     });
 }
-
-function addMember() {
-    teamData.push({ name: 'Nuevo Asesor', role: 'Asesor Comercial', bio: '', photo: 'advisor_portrait_man.png', whatsapp: '' });
-    renderTeam();
-}
-
-function removeMember(i) {
-    if (!confirm('¿Eliminar este miembro?')) return;
-    teamData.splice(i, 1);
-    renderTeam();
-}
-
+function addMember() { teamData.push({ name: 'Nuevo', role: 'Rol', bio: '', photo: 'advisor_portrait_man.png', whatsapp: '' }); renderTeam(); }
+function removeMember(i) { if(confirm('¿Eliminar?')){ teamData.splice(i, 1); renderTeam(); } }
 function collectTeam() {
     teamData.forEach((m, i) => {
-        m.name     = document.getElementById(`team-name-${i}`)?.value || m.name;
-        m.role     = document.getElementById(`team-role-${i}`)?.value || m.role;
-        m.bio      = document.getElementById(`team-bio-${i}`)?.value  || '';
-        m.whatsapp = document.getElementById(`team-wa-${i}`)?.value   || '';
-    });
-}
-
-function saveTeam() {
-    collectTeam();
-    
-    // Cambiando el texto del botón temporalmente
-    showToast('Guardando, por favor espera...');
-    
-    fetch('/api/data/team', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(teamData)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            showToast('Equipo guardado con éxito ✓');
-        } else {
-            showToast('Error al guardar ✗');
-        }
-    })
-    .catch(err => {
-        console.error('Error:', err);
-        showToast('Error de conexión ✗');
+        m.name = document.getElementById(`team-name-${i}`)?.value || m.name;
+        m.role = document.getElementById(`team-role-${i}`)?.value || m.role;
+        m.bio = document.getElementById(`team-bio-${i}`)?.value || '';
+        m.whatsapp = document.getElementById(`team-wa-${i}`)?.value || '';
     });
 }
 
@@ -364,79 +819,283 @@ function renderGallery() {
     list.innerHTML = '';
     galleryData.forEach((g, i) => {
         const card = document.createElement('div');
-        card.className = 'bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start';
+        card.className = 'bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col md:flex-row gap-4 items-start';
         card.innerHTML = `
-            <div class="flex flex-col items-center gap-3 shrink-0">
+            <div class="flex flex-col items-center gap-2 shrink-0">
                 <img id="gallery-photo-preview-${i}" src="${g.photo}" alt="Foto" class="gallery-thumb" onerror="this.style.display='none'" />
-                <label for="gallery-photo-file-${i}" class="upload-label text-xs text-slate-400 gap-2 px-3 py-2 w-full text-center">
-                    <span class="material-symbols-outlined text-sm">upload</span> Subir foto
+                <label for="gallery-photo-file-${i}" class="upload-label text-[10px] text-slate-400 gap-1 px-2 py-1 w-full text-center">
+                    <span class="material-symbols-outlined text-xs">upload</span> Foto
                 </label>
                 <input type="file" id="gallery-photo-file-${i}" accept="image/*" onchange="handleGalleryPhoto(${i}, this)" />
             </div>
-            <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 block">Título</label>
-                    <input type="text" id="gallery-title-${i}" value="${g.title}"
-                        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors" />
-                </div>
-                <div>
-                    <label class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1 block">Subtítulo</label>
-                    <input type="text" id="gallery-subtitle-${i}" value="${g.subtitle}"
-                        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors" />
-                </div>
+            <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
+                <div><label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Título</label><input type="text" id="gallery-title-${i}" value="${g.title}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs" /></div>
+                <div><label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Subtítulo</label><input type="text" id="gallery-subtitle-${i}" value="${g.subtitle}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs" /></div>
             </div>
-            <button onclick="removeGalleryItem(${i})" class="text-red-400 hover:text-red-300 hover:bg-red-900/30 p-2 rounded-lg transition-colors shrink-0" title="Eliminar">
-                <span class="material-symbols-outlined">delete</span>
-            </button>
+            <button onclick="removeGalleryItem(${i})" class="text-red-400 hover:bg-red-900/30 p-2 rounded-lg shrink-0"><span class="material-symbols-outlined">delete</span></button>
         `;
         list.appendChild(card);
     });
 }
-
 function handleGalleryPhoto(i, input) {
     if (!input.files[0]) return;
     readImageFile(input.files[0], data => {
         galleryData[i].photo = data;
         const preview = document.getElementById(`gallery-photo-preview-${i}`);
-        preview.src = data;
-        preview.style.display = 'block';
+        preview.src = data; preview.style.display = 'block';
     });
 }
-
-function addGalleryItem() {
-    galleryData.push({ title: 'Nuevo Momento', subtitle: 'MC Equipo', photo: '' });
-    renderGallery();
-}
-
-function removeGalleryItem(i) {
-    if (!confirm('¿Eliminar esta foto?')) return;
-    galleryData.splice(i, 1);
-    renderGallery();
-}
-
+function addGalleryItem() { galleryData.push({ title: 'Momento', subtitle: 'Desc', photo: '' }); renderGallery(); }
+function removeGalleryItem(i) { if(confirm('¿Eliminar?')){ galleryData.splice(i, 1); renderGallery(); } }
 function collectGallery() {
     galleryData.forEach((g, i) => {
-        g.title    = document.getElementById(`gallery-title-${i}`)?.value    || g.title;
+        g.title = document.getElementById(`gallery-title-${i}`)?.value || g.title;
         g.subtitle = document.getElementById(`gallery-subtitle-${i}`)?.value || g.subtitle;
     });
 }
 
-function saveGallery() {
+// ─── TESTIMONIALS RENDERING ────────────────────────────────────
+function renderTestimonials() {
+    const list = document.getElementById('testimonials-list');
+    if (!list) return;
+    list.innerHTML = '';
+    testimonialsData.forEach((t, i) => {
+        const card = document.createElement('div');
+        card.className = 'bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col md:flex-row gap-4 items-start';
+        card.innerHTML = `
+            <div class="flex flex-col items-center gap-2 shrink-0">
+                <img id="testimonial-photo-preview-${i}" src="${t.photo || 'https://lh3.googleusercontent.com/aida-public/AB6AXu81_t80eYHTFpGWzhGYq7T1ORukxaUmMnlOwldiwqeZ3TZs6RicSvr6sBLJE7LNbsPXvqVOnYFdmRzVkbMRwK8_ELgNC6LI2AW2PElnuwazHAf0epYo67iR8L4qQYWFvrSvBFE2UwTWcpLGeBOYGxE4SvcN0Y_wIFFR2jZllvHLTnScuYEMMtpngLDGxJCJxiFoQXXYRY6w54odANNxya4JZDRh50FE2W3vj2lZXBg0lybyrg5BzmB3qdz913gu80DPUUasCtkRFU'}" alt="Foto" class="gallery-thumb" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXu81_t80eYHTFpGWzhGYq7T1ORukxaUmMnlOwldiwqeZ3TZs6RicSvr6sBLJE7LNbsPXvqVOnYFdmRzVkbMRwK8_ELgNC6LI2AW2PElnuwazHAf0epYo67iR8L4qQYWFvrSvBFE2UwTWcpLGeBOYGxE4SvcN0Y_wIFFR2jZllvHLTnScuYEMMtpngLDGxJCJxiFoQXXYRY6w54odANNxya4JZDRh50FE2W3vj2lZXBg0lybyrg5BzmB3qdz913gu80DPUUasCtkRFU'" />
+                <label for="testimonial-photo-file-${i}" class="upload-label text-[10px] text-slate-400 gap-1 px-2 py-1 w-full text-center">
+                    <span class="material-symbols-outlined text-xs">upload</span> Foto
+                </label>
+                <input type="file" id="testimonial-photo-file-${i}" accept="image/*" onchange="handleTestimonialPhoto(${i}, this)" />
+            </div>
+            <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
+                <div class="md:col-span-1">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Nombre</label>
+                    <input type="text" id="testimonial-name-${i}" value="${t.name}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs" />
+                </div>
+                <div class="md:col-span-1">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Ubicación</label>
+                    <input type="text" id="testimonial-location-${i}" value="${t.location}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs" />
+                </div>
+                <div class="md:col-span-1">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Estrellas (1-5)</label>
+                    <input type="number" id="testimonial-stars-${i}" min="1" max="5" value="${t.stars || 5}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs" />
+                </div>
+                <div class="md:col-span-3">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Texto del Testimonio</label>
+                    <textarea id="testimonial-text-${i}" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs">${t.text}</textarea>
+                </div>
+            </div>
+            <button onclick="removeTestimonial(${i})" class="text-red-400 hover:bg-red-900/30 p-2 rounded-lg shrink-0"><span class="material-symbols-outlined">delete</span></button>
+        `;
+        list.appendChild(card);
+    });
+}
+function handleTestimonialPhoto(i, input) {
+    if (!input.files[0]) return;
+    readImageFile(input.files[0], data => {
+        testimonialsData[i].photo = data;
+        const preview = document.getElementById(`testimonial-photo-preview-${i}`);
+        preview.src = data; preview.style.display = 'block';
+    });
+}
+function addTestimonial() { testimonialsData.push({ stars: 5, text: 'Excelente servicio.', name: 'Cliente Satisfecho', location: 'Colombia', photo: '' }); renderTestimonials(); }
+function removeTestimonial(i) { if(confirm('¿Eliminar testimonio?')){ testimonialsData.splice(i, 1); renderTestimonials(); } }
+function collectTestimonials() {
+    testimonialsData.forEach((t, i) => {
+        t.name = document.getElementById(`testimonial-name-${i}`)?.value || t.name;
+        t.location = document.getElementById(`testimonial-location-${i}`)?.value || t.location;
+        t.stars = parseInt(document.getElementById(`testimonial-stars-${i}`)?.value) || 5;
+        t.text = document.getElementById(`testimonial-text-${i}`)?.value || t.text;
+    });
+}
+
+// ─── PRODUCTS RENDERING ────────────────────────────────────
+function renderProducts() {
+    const list = document.getElementById('products-list');
+    if (!list) return;
+    list.innerHTML = '';
+    
+    // Icon options
+    const icons = ['account_balance', 'analytics', 'trending_up', 'contact_support', 'gavel', 'school', 'payments', 'description', 'shield', 'assignment_ind', 'credit_score', 'account_balance_wallet'];
+    
+    productsData.forEach((p, i) => {
+        const card = document.createElement('div');
+        card.className = 'bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col md:flex-row gap-4 items-start';
+        
+        let iconOptionsHtml = icons.map(ico => `<option value="${ico}" ${p.icon === ico ? 'selected' : ''}>${ico}</option>`).join('');
+        
+        const photoUrl = p.photo || '';
+        
+        card.innerHTML = `
+            <div class="flex flex-col items-center gap-2 shrink-0">
+                <img id="product-photo-preview-${i}" src="${photoUrl}" alt="Foto" class="gallery-thumb" style="display: ${photoUrl ? 'block' : 'none'}; width: 120px; height: 80px; object-fit: cover;" />
+                <div id="product-photo-placeholder-${i}" class="gallery-thumb border-2 border-dashed border-slate-700 flex flex-col items-center justify-center text-[10px] text-slate-500" style="display: ${photoUrl ? 'none' : 'flex'}; width: 120px; height: 80px; border-radius: .75rem;">
+                    <span class="material-symbols-outlined text-lg mb-1">image</span>
+                    Subir Imagen
+                </div>
+                <label for="product-photo-file-${i}" class="upload-label text-[10px] text-slate-400 gap-1 px-2 py-1 w-full text-center">
+                    <span class="material-symbols-outlined text-xs">upload</span> Foto
+                </label>
+                <input type="file" id="product-photo-file-${i}" accept="image/*" onchange="handleProductPhoto(${i}, this)" />
+                ${photoUrl ? `<button onclick="removeProductPhoto(${i})" class="text-xs text-red-400 hover:underline">Quitar foto</button>` : ''}
+            </div>
+            <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
+                <div class="md:col-span-1">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Título</label>
+                    <input type="text" id="product-title-${i}" value="${p.title}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs" />
+                </div>
+                <div class="md:col-span-1">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Precio (COP)</label>
+                    <input type="number" id="product-price-${i}" value="${p.price}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs" />
+                </div>
+                <div class="md:col-span-1">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Categoría</label>
+                    <select id="product-category-${i}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                        <option value="asesorias" ${p.category === 'asesorias' ? 'selected' : ''}>Asesorías</option>
+                        <option value="tramites" ${p.category === 'tramites' ? 'selected' : ''}>Trámites Legales</option>
+                        <option value="planes" ${p.category === 'planes' ? 'selected' : ''}>Planes Integrales</option>
+                    </select>
+                </div>
+                <div class="md:col-span-1">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Etiqueta (Opcional)</label>
+                    <select id="product-tag-${i}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                        <option value="" ${p.tag === '' ? 'selected' : ''}>Ninguna</option>
+                        <option value="Más vendido" ${p.tag === 'Más vendido' ? 'selected' : ''}>Más vendido</option>
+                        <option value="Recomendado" ${p.tag === 'Recomendado' ? 'selected' : ''}>Recomendado</option>
+                    </select>
+                </div>
+                <div class="md:col-span-1">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Icono de Fallback (Material Symbols)</label>
+                    <select id="product-icon-${i}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white">
+                        ${iconOptionsHtml}
+                    </select>
+                </div>
+                <div class="md:col-span-3">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Descripción del Servicio</label>
+                    <textarea id="product-desc-${i}" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs">${p.desc}</textarea>
+                </div>
+            </div>
+            <button onclick="removeProduct(${i})" class="text-red-400 hover:bg-red-900/30 p-2 rounded-lg shrink-0 mt-4 md:mt-0"><span class="material-symbols-outlined">delete</span></button>
+        `;
+        list.appendChild(card);
+    });
+}
+function handleProductPhoto(i, input) {
+    if (!input.files[0]) return;
+    readImageFile(input.files[0], data => {
+        productsData[i].photo = data;
+        renderProducts();
+    });
+}
+function removeProductPhoto(i) {
+    productsData[i].photo = '';
+    renderProducts();
+}
+function addProduct() { 
+    productsData.push({ title: 'Nuevo Servicio', price: 100000, category: 'asesorias', desc: 'Descripción del servicio.', tag: '', icon: 'analytics', photo: '' }); 
+    renderProducts(); 
+}
+function removeProduct(i) { 
+    if(confirm('¿Eliminar este servicio?')){ 
+        productsData.splice(i, 1); 
+        renderProducts(); 
+    } 
+}
+function collectProducts() {
+    productsData.forEach((p, i) => {
+        p.title = document.getElementById(`product-title-${i}`)?.value || p.title;
+        p.price = parseInt(document.getElementById(`product-price-${i}`)?.value) || 0;
+        p.category = document.getElementById(`product-category-${i}`)?.value || p.category;
+        p.tag = document.getElementById(`product-tag-${i}`)?.value || '';
+        p.icon = document.getElementById(`product-icon-${i}`)?.value || p.icon;
+        p.desc = document.getElementById(`product-desc-${i}`)?.value || p.desc;
+    });
+}
+
+// ─── SAVING ──────────────────────────────────────────────
+function saveAll() {
+    if(!configData) return;
+    showToast('Guardando todo, por favor espera...');
+
+    // Collect Config
+    configData.colors.primary = document.getElementById('config-color-primary').value;
+    configData.colors.accentPink = document.getElementById('config-color-accent').value;
+    configData.colors.bgLight = document.getElementById('config-color-bgLight').value;
+    configData.colors.bgDark = document.getElementById('config-color-bgDark').value;
+    
+    configData.texts.hero_title = document.getElementById('config-text-hero-title').value;
+    configData.texts.hero_subtitle = document.getElementById('config-text-hero-subtitle').value;
+    configData.texts.whatsapp_phone = document.getElementById('config-text-wa').value;
+    configData.texts.contact_email = document.getElementById('config-text-email').value;
+    configData.texts.contact_address = document.getElementById('config-text-address').value;
+
+    if (!configData.texts.home) configData.texts.home = {};
+    ['services_pretitle', 'services_title', 'service1_title', 'service1_desc', 'service2_title', 'service2_desc', 'service3_title', 'service3_desc', 'service4_title', 'service4_desc',
+     'process_pretitle', 'process_title', 'process1_title', 'process1_desc', 'process2_title', 'process2_desc', 'process3_title', 'process3_desc', 'process4_title', 'process4_desc',
+     'diff_pretitle', 'diff_title', 'diff_desc', 'diff1_title', 'diff1_desc', 'diff2_title', 'diff2_desc', 'diff3_title', 'diff3_desc', 'diff4_title', 'diff4_desc', 'diff_item1', 'diff_item2', 'diff_item3',
+     'testimonials_pretitle', 'testimonials_title', 'cta_title', 'cta_desc'].forEach(k => {
+        const el = document.getElementById('config-home-' + k);
+        if (el) configData.texts.home[k] = el.value;
+    });
+
+    if (!configData.texts.about) configData.texts.about = {};
+    ['mission_vision_title', 'mission_vision_desc', 'team_pretitle', 'team_title', 'team_desc', 'map_iframe_url'].forEach(k => {
+        const el = document.getElementById('config-about-' + k);
+        if (el) configData.texts.about[k] = el.value;
+    });
+
+    if (!configData.texts.footer) configData.texts.footer = {};
+    ['desc', 'copyright', 'legal'].forEach(k => {
+        const el = document.getElementById('config-footer-' + k);
+        if (el) configData.texts.footer[k] = el.value;
+    });
+    
+    if (!configData.texts.aplicativos) configData.texts.aplicativos = {};
+    configData.texts.aplicativos.title = document.getElementById('config-aplicativos-title').value;
+    configData.texts.aplicativos.desc = document.getElementById('config-aplicativos-desc').value;
+    
+    const fields = [
+        'empleado_link', 'empleado_hero_title', 'empleado_hero_desc', 'empleado_gateway_title', 'empleado_gateway_desc',
+        'cliente_link', 'cliente_hero_title', 'cliente_hero_desc',
+        'cliente_step1_title', 'cliente_step1_desc', 'cliente_step2_title', 'cliente_step2_desc', 'cliente_step3_title', 'cliente_step3_desc',
+        'cliente_tools_title', 'cliente_tools_desc',
+        'autorizacion_title', 'autorizacion_subtitle',
+        'emailjs_public_key', 'emailjs_service_id', 'emailjs_template_autorizacion',
+        'pqrs_title', 'pqrs_subtitle', 'emailjs_template_pqrs'
+    ];
+    fields.forEach(f => {
+        const el = document.getElementById('config-aplicativos-' + f.replace(/_/g, '-'));
+        if (el) configData.texts.aplicativos[f] = el.value;
+    });
+
+    if (!configData.texts.tienda) configData.texts.tienda = {};
+    configData.texts.tienda.title = document.getElementById('config-tienda-title').value;
+    configData.texts.tienda.desc = document.getElementById('config-tienda-desc').value;
+
+    // Collect team and gallery
+    collectTeam();
     collectGallery();
-    
-    showToast('Guardando, por favor espera...');
-    
-    fetch('/api/data/gallery', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(galleryData)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            showToast('Galería guardada con éxito ✓');
+    collectTestimonials();
+    collectProducts();
+
+    // Promises
+    Promise.all([
+        fetch('/api/data/config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(configData) }),
+        fetch('/api/data/team', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(teamData) }),
+        fetch('/api/data/gallery', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(galleryData) }),
+        fetch('/api/data/testimonials', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(testimonialsData) }),
+        fetch('/api/data/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(productsData) })
+    ])
+    .then(responses => Promise.all(responses.map(res => res.json())))
+    .then(results => {
+        const allSuccess = results.every(r => r.success);
+        if (allSuccess) {
+            showToast('Todo guardado con éxito ✓');
         } else {
-            showToast('Error al guardar ✗');
+            showToast('Hubo algunos errores al guardar ✗');
         }
     })
     .catch(err => {

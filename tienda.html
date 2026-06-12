@@ -19,10 +19,10 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#eccb13",
-                        "accent-pink": "#f472b6",
-                        "background-light": "#f8f8f6",
-                        "background-dark": "#221f10",
+                        "primary": "var(--color-primary, #eccb13)",
+                        "accent-pink": "var(--color-accent-pink, #f472b6)",
+                        "background-light": "var(--color-bg-light, #f8f8f6)",
+                        "background-dark": "var(--color-bg-dark, #221f10)",
                     },
                     fontFamily: {
                         "display": ["Manrope"]
@@ -41,7 +41,7 @@
         class="sticky top-0 z-50 w-full border-b border-white/40 dark:border-white/10 bg-white/40 dark:bg-background-dark/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-500">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a class="flex items-center" href="code.html">
-                <img alt="Logo MC Innovación Financiera" class="h-12 w-auto object-contain" src="favicon.jpg" />
+                <img alt="Logo MC Innovación Financiera" class="h-12 w-auto object-contain" src="favicon.jpg" / data-edit="images.logo">
             </a>
             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider">
                 <a class="relative group hover:text-primary transition-all duration-300" href="code.html#">
@@ -74,7 +74,7 @@
                     <span class="material-symbols-outlined text-2xl">menu</span>
                 </button>
                 <div class="flex gap-4">
-                <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
+                <a href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank"
                     class="hidden sm:flex bg-primary text-background-dark px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm hover:brightness-110 hover:-translate-y-0.5 hover:shadow-primary/40 active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20">
                     Agenda Gratis
                 </a>
@@ -85,7 +85,7 @@
     <div id="mobile-menu-overlay" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
         <div id="mobile-menu-panel" class="absolute right-0 top-0 h-full w-72 bg-white dark:bg-slate-900 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
             <div class="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-800">
-                <img alt="Logo" class="h-8 w-auto object-contain" src="favicon.jpg" />
+                <img alt="Logo" class="h-8 w-auto object-contain" src="favicon.jpg" / data-edit="images.logo">
                 <button id="mobile-menu-close" class="size-10 rounded-lg flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                     <span class="material-symbols-outlined">close</span>
                 </button>
@@ -94,7 +94,7 @@
                 <ul class="space-y-1" id="mobile-nav-links"></ul>
             </nav>
             <div class="p-6 border-t border-slate-200 dark:border-slate-800">
-                <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
+                <a href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank"
                     class="w-full bg-primary text-background-dark py-3 rounded-xl font-bold text-center flex items-center justify-center gap-2 hover:brightness-110 transition-all">
                     <span class="material-symbols-outlined text-lg">chat</span> WhatsApp
                 </a>
@@ -202,129 +202,11 @@
                         <h3 class="text-xl font-bold text-slate-800 dark:text-slate-200 mb-2">No se encontraron servicios</h3>
                         <p class="text-slate-500">No hay servicios que coincidan con tu búsqueda o filtros actuales.</p>
                     </div>
-                    
-                    <!-- Tarjeta 1 -->
-                    <div class="producto-card group bg-white/60 dark:bg-slate-800/30 backdrop-blur-xl rounded-[2rem] border border-white/60 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.1)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col relative text-left" data-categoria="asesorias">
-                        <div class="absolute top-5 left-5 z-10">
-                            <span class="bg-primary text-background-dark text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg shadow-primary/30">Más vendido</span>
-                        </div>
-                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center relative overflow-hidden">
-                            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
-                            <div class="absolute w-32 h-32 bg-white/40 dark:bg-black/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
-                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-500 relative z-10 drop-shadow-sm">account_balance</span>
-                        </div>
-                        <div class="p-8 flex-1 flex flex-col">
-                            <h3 class="producto-titulo text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug">Diagnóstico Insolvencia Económica</h3>
-                            <p class="producto-desc text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">Evaluación técnica para personas naturales no comerciantes que buscan acogerse a la Ley de Insolvencia.</p>
-                            <div class="mt-auto">
-                                <p class="text-3xl font-extrabold mb-5 text-slate-900 dark:text-white tracking-tight">$250.000 <span class="text-sm font-semibold text-slate-400 tracking-normal">COP</span></p>
-                                <button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl border border-transparent hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> Añadir al Carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta 2 -->
-                    <div class="producto-card group bg-white/60 dark:bg-slate-800/30 backdrop-blur-xl rounded-[2rem] border border-white/60 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.1)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col relative text-left" data-categoria="asesorias">
-                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center relative overflow-hidden">
-                            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
-                            <div class="absolute w-32 h-32 bg-white/40 dark:bg-black/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
-                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-500 relative z-10 drop-shadow-sm">analytics</span>
-                        </div>
-                        <div class="p-8 flex-1 flex flex-col">
-                            <h3 class="producto-titulo text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug">Diagnóstico Financiero</h3>
-                            <p class="producto-desc text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">Análisis detallado de tu situación financiera actual y capacidad de endeudamiento.</p>
-                            <div class="mt-auto">
-                                <p class="text-3xl font-extrabold mb-5 text-slate-900 dark:text-white tracking-tight">$135.000 <span class="text-sm font-semibold text-slate-400 tracking-normal">COP</span></p>
-                                <button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl border border-transparent hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> Añadir al Carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta 3 -->
-                    <div class="producto-card group bg-white/60 dark:bg-slate-800/30 backdrop-blur-xl rounded-[2rem] border border-white/60 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.1)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col relative text-left" data-categoria="planes">
-                        <div class="absolute top-5 left-5 z-10">
-                            <span class="bg-accent-pink text-white text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg shadow-accent-pink/30">Recomendado</span>
-                        </div>
-                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center relative overflow-hidden">
-                            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
-                            <div class="absolute w-32 h-32 bg-white/40 dark:bg-black/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
-                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-500 relative z-10 drop-shadow-sm">trending_up</span>
-                        </div>
-                        <div class="p-8 flex-1 flex flex-col">
-                            <h3 class="producto-titulo text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug">Mejora de Score (No Reportados)</h3>
-                            <p class="producto-desc text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">Estrategia de optimización de perfil crediticio para usuarios sin reportes negativos que desean subir su puntaje.</p>
-                            <div class="mt-auto">
-                                <p class="text-3xl font-extrabold mb-5 text-slate-900 dark:text-white tracking-tight">$280.000 <span class="text-sm font-semibold text-slate-400 tracking-normal">COP</span></p>
-                                <button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl border border-transparent hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> Añadir al Carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta 4 -->
-                    <div class="producto-card group bg-white/60 dark:bg-slate-800/30 backdrop-blur-xl rounded-[2rem] border border-white/60 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.1)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col relative text-left" data-categoria="asesorias">
-                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center relative overflow-hidden">
-                            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
-                            <div class="absolute w-32 h-32 bg-white/40 dark:bg-black/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
-                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-500 relative z-10 drop-shadow-sm">contact_support</span>
-                        </div>
-                        <div class="p-8 flex-1 flex flex-col">
-                            <h3 class="producto-titulo text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug">Diagnóstico Ayuda del Crédito</h3>
-                            <p class="producto-desc text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">Asesoría especializada para la gestión y saneamiento de obligaciones crediticias.</p>
-                            <div class="mt-auto">
-                                <p class="text-3xl font-extrabold mb-5 text-slate-900 dark:text-white tracking-tight">$140.000 <span class="text-sm font-semibold text-slate-400 tracking-normal">COP</span></p>
-                                <button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl border border-transparent hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> Añadir al Carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta 5 -->
-                    <div class="producto-card group bg-white/60 dark:bg-slate-800/30 backdrop-blur-xl rounded-[2rem] border border-white/60 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.1)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col relative text-left" data-categoria="tramites">
-                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center relative overflow-hidden">
-                            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
-                            <div class="absolute w-32 h-32 bg-white/40 dark:bg-black/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
-                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-500 relative z-10 drop-shadow-sm">gavel</span>
-                        </div>
-                        <div class="p-8 flex-1 flex flex-col">
-                            <h3 class="producto-titulo text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug">Derecho de Petición (Eliminación de Reportes)</h3>
-                            <p class="producto-desc text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">Documento legal fundamentado en el Habeas Data (Ley 1266) para solicitar el retiro de reportes negativos injustos o caducados.</p>
-                            <div class="mt-auto">
-                                <p class="text-3xl font-extrabold mb-5 text-slate-900 dark:text-white tracking-tight">$80.000 <span class="text-sm font-semibold text-slate-400 tracking-normal">COP</span></p>
-                                <button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl border border-transparent hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> Añadir al Carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta 6 -->
-                    <div class="producto-card group bg-white/60 dark:bg-slate-800/30 backdrop-blur-xl rounded-[2rem] border border-white/60 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.1)] hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col relative text-left" data-categoria="planes">
-                        <div class="h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 flex items-center justify-center relative overflow-hidden">
-                            <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500"></div>
-                            <div class="absolute w-32 h-32 bg-white/40 dark:bg-black/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
-                            <span class="material-symbols-outlined text-6xl text-slate-300 dark:text-slate-600 group-hover:scale-110 group-hover:text-primary transition-all duration-500 relative z-10 drop-shadow-sm">school</span>
-                        </div>
-                        <div class="p-8 flex-1 flex flex-col">
-                            <h3 class="producto-titulo text-xl font-bold mb-3 text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug">Curso de Educación Financiera</h3>
-                            <p class="producto-desc text-slate-500 dark:text-slate-400 text-sm mb-8 line-clamp-3 leading-relaxed">Programa de formación integral para el manejo de deudas y alcanzar la libertad crediticia y financiera.</p>
-                            <div class="mt-auto">
-                                <p class="text-3xl font-extrabold mb-5 text-slate-900 dark:text-white tracking-tight">$310.000 <span class="text-sm font-semibold text-slate-400 tracking-normal">COP</span></p>
-                                <button class="w-full bg-primary text-background-dark font-bold py-3.5 rounded-xl border border-transparent hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(236,203,19,0.3)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
-                                    <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span> Añadir al Carrito
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Contenedor dinámico de productos -->
+                    <div id="dynamic-products-container" class="contents"></div>
 
                     <!-- Tarjeta 7 (Paga tu contrato) -->
-                    <div class="producto-card group col-span-1 md:col-span-2 lg:col-span-3 bg-gradient-to-r from-[#221f10] to-[#3a351b] dark:from-slate-900 dark:to-slate-800 rounded-[2rem] border-2 border-primary/40 shadow-[0_8px_30px_rgba(236,203,19,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.3)] transition-all duration-300 overflow-hidden flex flex-col md:flex-row relative text-left" data-categoria="tramites">
+                    <div class="producto-card group col-span-1 md:col-span-2 lg:col-span-3 bg-gradient-to-r from-background-dark to-[#3a351b] dark:from-slate-900 dark:to-slate-800 rounded-[2rem] border-2 border-primary/40 shadow-[0_8px_30px_rgba(236,203,19,0.15)] hover:shadow-[0_20px_40px_rgba(236,203,19,0.3)] transition-all duration-300 overflow-hidden flex flex-col md:flex-row relative text-left" data-categoria="tramites">
                         <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
                             <span class="material-symbols-outlined text-9xl text-primary transform rotate-12">receipt_long</span>
                         </div>
@@ -361,7 +243,7 @@
                         <img alt="MC Innovación Financiera Logo" class="h-10 w-auto object-contain"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpjdxyDnjePfx-lPxIMFBwngvqokIP38THxIWfdLxJNURWKxNtSwZB0ebyiaRPUdw81qN1QLq7ynS0PqlC-Ri3W_IJfDXqGFH-DUEwJHQbMwD6A2nTEz6mcfsMcgWNjK8OFHt7s6xjEtun574o1HCsN0_0GHqjpsrfU-r03pbYmeCfs_F_ywNO7Hgm1PMY_WC7pdXLc0TwP0T_TmPST8TNvBxvPeacp2QQjJR50k-f6okydjfDtv9TbQUGaDfVCODbjVFau8Ga8OE" />
                     </div>
-                    <p class="text-sm leading-relaxed">Expertos en asesoría financiera y soluciones de deuda en todo el
+                    <p class="text-sm leading-relaxed" data-edit="texts.footer.desc">Expertos en asesoría financiera y soluciones de deuda en todo el
                         territorio colombiano.</p>
                 </div>
                 <div>
@@ -377,13 +259,13 @@
                     <h4 class="text-white font-bold mb-6">Contacto</h4>
                     <ul class="space-y-4 text-sm">
                         <li class="flex items-center gap-3"><span
-                                class="material-symbols-outlined text-primary text-lg">mail</span> gerencia@mcinnovacionfinanciera.com
+                                class="material-symbols-outlined text-primary text-lg">mail</span> <span data-edit="texts.contact_email">gerencia@mcinnovacionfinanciera.com</span>
                         </li>
                         <li class="flex items-center gap-3"><span
-                                class="material-symbols-outlined text-primary text-lg">phone</span> +57 320 557 5195
+                                class="material-symbols-outlined text-primary text-lg">phone</span> <span data-edit="texts.whatsapp_phone">+57 320 557 5195</span>
                         </li>
                         <li class="flex items-center gap-3"><span
-                                class="material-symbols-outlined text-primary text-lg">location_on</span> Carrera 24 #51-21, Bogotá</li>
+                                class="material-symbols-outlined text-primary text-lg">location_on</span> <span data-edit="texts.contact_address">Carrera 24 #51-21, Bogotá</span></li>
                     </ul>
                 </div>
                 <div>
@@ -402,7 +284,7 @@
                             <span class="material-symbols-outlined">music_note</span>
                         </a>
                         <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
-                            href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank">
+                            href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank">
                             <span class="material-symbols-outlined">chat</span>
                         </a>
                     </div>
@@ -410,7 +292,7 @@
             </div>
             <div
                 class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium uppercase tracking-widest text-center">
-                <p>© 2024 MC Innovación Financiera. Todos los derechos reservados.</p>
+                <p data-edit="texts.footer.copyright">© 2024 MC Innovación Financiera. Todos los derechos reservados.</p>
                 <div class="mt-4 md:mt-0 text-[10px] md:text-xs text-slate-500 normal-case">
                     *Toda nuestra gestión se realiza bajo el estricto marco legal de la Ley 1266 de 2008 (Ley de Habeas Data) y la Ley 1581 de 2012.
                 </div>
@@ -477,20 +359,19 @@
             const cartTotalDisplay = document.getElementById('cart-total-display');
             const btnPagarWompi = document.getElementById('btn-pagar-wompi');
             
-            // Lógica para añadir elementos mediante los botones "Añadir al Carrito"
-            const buttons = document.querySelectorAll('button');
-            buttons.forEach(btn => {
-                if(btn.innerText.includes('Añadir al Carrito')) {
-                    btn.addEventListener('click', (e) => {
-                        const card = e.target.closest('.group');
-                        const title = card.querySelector('h3').innerText;
-                        // Extaer el precio numérico (ej. $150.000 -> 150000)
+            // Lógica para añadir elementos mediante los botones "Añadir al Carrito" (Delegación de eventos para soportar elementos dinámicos)
+            document.addEventListener('click', (e) => {
+                const btn = e.target.closest('button');
+                if (btn && btn.innerText.includes('Añadir al Carrito')) {
+                    const card = btn.closest('.producto-card');
+                    if (card) {
+                        const title = card.querySelector('.producto-titulo').innerText;
                         const priceText = card.querySelector('.text-3xl').innerText.replace(/[^0-9]/g, '');
                         const price = parseInt(priceText, 10);
                         
                         addToCart({ title, price });
                         openCart();
-                    });
+                    }
                 }
             });
 
@@ -634,12 +515,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             const searchInput = document.getElementById('search-input');
             const checkboxes = document.querySelectorAll('.filter-checkbox');
-            const productCards = document.querySelectorAll('.producto-card');
             const noResultsMsg = document.getElementById('no-results-msg');
 
             // Función principal de filtrado
             function filtrarServicios() {
                 const searchText = searchInput.value.toLowerCase().trim();
+                const productCards = document.querySelectorAll('.producto-card');
                 
                 // Obtener valores de checkboxes activos
                 const activeFilters = Array.from(checkboxes)
@@ -702,30 +583,34 @@
                         if (cbTodos) cbTodos.checked = true;
                     }
 
-            // Ejecutar filtro tras interactuar
+                    // Ejecutar filtro tras interactuar
                     filtrarServicios();
                 });
             });
 
-            // Trigger inicial por si hay caché en el browser
-            filtrarServicios();
+            // Guardar el orden original ("Más relevantes") al renderizarse
+            let originalOrder = [];
+            document.addEventListener('productsRendered', () => {
+                const dynamicProductsContainer = document.getElementById('dynamic-products-container');
+                if (dynamicProductsContainer) {
+                    originalOrder = Array.from(dynamicProductsContainer.querySelectorAll('.producto-card'));
+                }
+                filtrarServicios();
+            });
 
             // ==========================================
             // Lógica de Ordenamiento (Sort)
             // ==========================================
             const sortSelect = document.getElementById('sort-select');
-            const productsGrid = document.getElementById('products-grid');
-            
-            // Guardar el orden original ("Más relevantes")
-            const originalOrder = Array.from(productCards);
+            const dynamicContainer = document.getElementById('dynamic-products-container');
 
             sortSelect.addEventListener('change', (e) => {
                 const sortType = e.target.value;
-                const cardsArray = Array.from(document.querySelectorAll('.producto-card'));
+                if (!dynamicContainer) return;
+                const cardsArray = Array.from(dynamicContainer.querySelectorAll('.producto-card'));
                 
                 if (sortType === 'relevantes' || sortType === 'recientes') {
-                    // Para este ejemplo, relevantes y recientes usan el orden original
-                    originalOrder.forEach(card => productsGrid.appendChild(card));
+                    originalOrder.forEach(card => dynamicContainer.appendChild(card));
                 } 
                 else if (sortType === 'menor-precio') {
                     cardsArray.sort((a, b) => {
@@ -733,8 +618,7 @@
                         const priceB = parseInt(b.querySelector('.text-3xl').innerText.replace(/[^0-9]/g, ''));
                         return priceA - priceB;
                     });
-                    // Reordenar en el DOM
-                    cardsArray.forEach(card => productsGrid.appendChild(card));
+                    cardsArray.forEach(card => dynamicContainer.appendChild(card));
                 } 
                 else if (sortType === 'mayor-precio') {
                     cardsArray.sort((a, b) => {
@@ -742,10 +626,12 @@
                         const priceB = parseInt(b.querySelector('.text-3xl').innerText.replace(/[^0-9]/g, ''));
                         return priceB - priceA; // Inverso
                     });
-                    // Reordenar en el DOM
-                    cardsArray.forEach(card => productsGrid.appendChild(card));
+                    cardsArray.forEach(card => dynamicContainer.appendChild(card));
                 }
             });
+
+            // Trigger inicial por si hay caché en el browser
+            filtrarServicios();
         });
     </script>
 
@@ -801,6 +687,7 @@
         });
     });
     </script>
+    <script src="dynamic.js"></script>
 </body>
 
 </html>

@@ -22,10 +22,10 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#eccb13",
-                        "accent-pink": "#f472b6",
-                        "background-light": "#f8f8f6",
-                        "background-dark": "#221f10",
+                        "primary": "var(--color-primary, #eccb13)",
+                        "accent-pink": "var(--color-accent-pink, #f472b6)",
+                        "background-light": "var(--color-bg-light, #f8f8f6)",
+                        "background-dark": "var(--color-bg-dark, #221f10)",
                     },
                     fontFamily: {
                         "display": ["Manrope"]
@@ -44,7 +44,7 @@
         class="sticky top-0 z-50 w-full border-b border-white/40 dark:border-white/10 bg-white/40 dark:bg-background-dark/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-500">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <a class="flex items-center" href="/">
-                <img alt="Logo MC Innovación Financiera" class="h-12 w-auto object-contain" src="favicon.jpg" />
+                <img alt="Logo MC Innovación Financiera" class="h-12 w-auto object-contain" src="favicon.jpg" / data-edit="images.logo">
             </a>
             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider">
                 <a class="relative group hover:text-primary transition-all duration-300"
@@ -77,7 +77,7 @@
                     <span class="material-symbols-outlined text-2xl">menu</span>
                 </button>
                 <div class="flex gap-4">
-                <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
+                <a href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank"
                     class="hidden sm:flex bg-primary text-background-dark px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm hover:brightness-110 hover:-translate-y-0.5 hover:shadow-primary/40 active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20 items-center justify-center">
                     Agenda Gratis
                 </a>
@@ -88,7 +88,7 @@
     <div id="mobile-menu-overlay" class="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
         <div id="mobile-menu-panel" class="absolute right-0 top-0 h-full w-72 bg-white dark:bg-slate-900 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
             <div class="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-800">
-                <img alt="Logo" class="h-8 w-auto object-contain" src="favicon.jpg" />
+                <img alt="Logo" class="h-8 w-auto object-contain" src="favicon.jpg" / data-edit="images.logo">
                 <button id="mobile-menu-close" class="size-10 rounded-lg flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                     <span class="material-symbols-outlined">close</span>
                 </button>
@@ -97,7 +97,7 @@
                 <ul class="space-y-1" id="mobile-nav-links"></ul>
             </nav>
             <div class="p-6 border-t border-slate-200 dark:border-slate-800">
-                <a href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank"
+                <a href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank"
                     class="w-full bg-primary text-background-dark py-3 rounded-xl font-bold text-center flex items-center justify-center gap-2 hover:brightness-110 transition-all">
                     <span class="material-symbols-outlined text-lg">chat</span> WhatsApp
                 </a>
@@ -110,13 +110,11 @@
     <main class="flex-grow">
 
         <!-- Sección de Instrucciones (Cómo ingresar) -->
-        <section class="py-20 bg-[#f8f8f6] dark:bg-black/20">
+        <section class="py-20 bg-background-light dark:bg-black/20">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-[#221f10] dark:text-white mb-4">¿Cómo ingresar
-                        al portal?</h1>
-                    <p class="text-lg text-slate-500 dark:text-slate-400">Sigue estos simples pasos para acceder a tu
-                        cuenta centralizada.</p>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-background-dark dark:text-white mb-4" data-edit="texts.aplicativos.cliente_hero_title">¿Cómo ingresar al portal?</h1>
+                    <p class="text-lg text-slate-500 dark:text-slate-400" data-edit="texts.aplicativos.cliente_hero_desc">Sigue estos simples pasos para acceder a tu cuenta centralizada.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
@@ -128,47 +126,43 @@
                     <!-- Paso 01 -->
                     <div class="relative flex flex-col items-center text-center group">
                         <div
-                            class="text-6xl md:text-8xl font-black text-[#eccb13]/20 dark:text-[#eccb13]/10 mb-[-2rem] md:mb-[-3rem] select-none group-hover:text-[#eccb13]/40 transition-colors duration-500">
+                            class="text-6xl md:text-8xl font-black text-primary/20 dark:text-primary/10 mb-[-2rem] md:mb-[-3rem] select-none group-hover:text-primary/40 transition-colors duration-500">
                             01</div>
                         <div
                             class="relative z-10 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/50 dark:border-slate-800/50 w-full h-full flex flex-col items-center">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Solicita tus credenciales
-                            </h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Contacta a tu analista
-                                financiera para obtener tu usuario y contraseña de acceso al portal.</p>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3" data-edit="texts.aplicativos.cliente_step1_title">Solicita tus credenciales</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-edit="texts.aplicativos.cliente_step1_desc">Contacta a tu analista financiera para obtener tu usuario y contraseña de acceso al portal.</p>
                         </div>
                     </div>
 
                     <!-- Paso 02 -->
                     <div class="relative flex flex-col items-center text-center group">
                         <div
-                            class="text-6xl md:text-8xl font-black text-[#eccb13]/20 dark:text-[#eccb13]/10 mb-[-2rem] md:mb-[-3rem] select-none group-hover:text-[#eccb13]/40 transition-colors duration-500">
+                            class="text-6xl md:text-8xl font-black text-primary/20 dark:text-primary/10 mb-[-2rem] md:mb-[-3rem] select-none group-hover:text-primary/40 transition-colors duration-500">
                             02</div>
                         <div
                             class="relative z-10 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/50 dark:border-slate-800/50 w-full h-full flex flex-col items-center">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Ingresa al portal</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Utiliza las
-                                credenciales proporcionadas para acceder por primera vez al sistema.</p>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3" data-edit="texts.aplicativos.cliente_step2_title">Ingresa al portal</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-edit="texts.aplicativos.cliente_step2_desc">Utiliza las credenciales proporcionadas para acceder por primera vez al sistema.</p>
                         </div>
                     </div>
 
                     <!-- Paso 03 -->
                     <div class="relative flex flex-col items-center text-center group">
                         <div
-                            class="text-6xl md:text-8xl font-black text-[#eccb13]/20 dark:text-[#eccb13]/10 mb-[-2rem] md:mb-[-3rem] select-none group-hover:text-[#eccb13]/40 transition-colors duration-500">
+                            class="text-6xl md:text-8xl font-black text-primary/20 dark:text-primary/10 mb-[-2rem] md:mb-[-3rem] select-none group-hover:text-primary/40 transition-colors duration-500">
                             03</div>
                         <div
                             class="relative z-10 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-200/50 dark:border-slate-800/50 w-full h-full flex flex-col items-center">
-                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Cambia tu contraseña</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Por seguridad,
-                                actualiza la contraseña inicial que te fue asignada.</p>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3" data-edit="texts.aplicativos.cliente_step3_title">Cambia tu contraseña</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed" data-edit="texts.aplicativos.cliente_step3_desc">Por seguridad, actualiza la contraseña inicial que te fue asignada.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-16 text-center">
-                    <a href="https://www.mcinnovacionfinanciera.cloud/login"
-                        class="inline-flex bg-[#eccb13] text-[#221f10] h-16 px-12 rounded-xl font-bold text-lg items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-95 transition-all duration-300 w-full sm:w-auto">
+                    <a href="https://www.mcinnovacionfinanciera.cloud/login" data-edit-href="{texts.aplicativos.cliente_link}"
+                        class="inline-flex bg-primary text-background-dark h-16 px-12 rounded-xl font-bold text-lg items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-95 transition-all duration-300 w-full sm:w-auto">
                         ACCEDER AL SISTEMA <span class="material-symbols-outlined">login</span>
                     </a>
                 </div>
@@ -184,10 +178,8 @@
                         class="inline-flex items-center gap-2 bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 px-4 py-1.5 rounded-full text-sm font-semibold border border-slate-200 dark:border-slate-800 mb-6 font-display shadow-sm">
                         <span>⚖️ Una vez dentro del portal</span>
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-[#221f10] dark:text-white mb-4">¿Qué podrás
-                        hacer?</h2>
-                    <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Todas las herramientas que
-                        necesitas para dar seguimiento a tus casos legales e interactuar con nuestro equipo.</p>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-background-dark dark:text-white mb-4" data-edit="texts.aplicativos.cliente_tools_title">¿Qué podrás hacer?</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto" data-edit="texts.aplicativos.cliente_tools_desc">Todas las herramientas que necesitas para dar seguimiento a tus casos legales e interactuar con nuestro equipo.</p>
                 </div>
 
                 <!-- Tools Grid -->
@@ -268,7 +260,7 @@
         </section>
 
         <!-- Franja de Confianza (Trust Badges) -->
-        <section class="bg-[#221f10] py-6 relative z-10 border-t-4 border-primary">
+        <section class="bg-background-dark py-6 relative z-10 border-t-4 border-primary">
             <div class="max-w-7xl mx-auto px-6">
                 <div
                     class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-slate-800 text-white">
@@ -302,10 +294,10 @@
                     <div class="flex items-center mb-6">
                         <a href="code.html">
                             <img alt="MC Innovación Financiera Logo" class="h-10 w-auto object-contain"
-                                src="favicon.jpg" />
+                                src="favicon.jpg" / data-edit="images.logo">
                         </a>
                     </div>
-                    <p class="text-sm leading-relaxed">Expertos en asesoría financiera y soluciones de deuda en todo el
+                    <p class="text-sm leading-relaxed" data-edit="texts.footer.desc">Expertos en asesoría financiera y soluciones de deuda en todo el
                         territorio colombiano.</p>
                 </div>
                 <div>
@@ -323,13 +315,13 @@
                     <h4 class="text-white font-bold mb-6">Contacto</h4>
                     <ul class="space-y-4 text-sm">
                         <li class="flex items-center gap-3"><span
-                                class="material-symbols-outlined text-primary text-lg">mail</span> gerencia@mcinnovacionfinanciera.com
+                                class="material-symbols-outlined text-primary text-lg">mail</span> <span data-edit="texts.contact_email">gerencia@mcinnovacionfinanciera.com</span>
                         </li>
                         <li class="flex items-center gap-3"><span
-                                class="material-symbols-outlined text-primary text-lg">phone</span> +57 320 557 5195
+                                class="material-symbols-outlined text-primary text-lg">phone</span> <span data-edit="texts.whatsapp_phone">+57 320 557 5195</span>
                         </li>
                         <li class="flex items-center gap-3"><span
-                                class="material-symbols-outlined text-primary text-lg">location_on</span> Carrera 24 #51-21, Bogotá</li>
+                                class="material-symbols-outlined text-primary text-lg">location_on</span> <span data-edit="texts.contact_address">Carrera 24 #51-21, Bogotá</span></li>
                     </ul>
                 </div>
                 <div>
@@ -348,7 +340,7 @@
                             <span class="material-symbols-outlined">music_note</span>
                         </a>
                         <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
-                            href="https://wa.me/message/3BZP6CRYQZLZP1" target="_blank">
+                            href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank">
                             <span class="material-symbols-outlined">chat</span>
                         </a>
                     </div>
@@ -356,7 +348,7 @@
             </div>
             <div
                 class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium uppercase tracking-widest text-center">
-                <p>© 2024 MC Innovación Financiera. Todos los derechos reservados.</p>
+                <p data-edit="texts.footer.copyright">© 2024 MC Innovación Financiera. Todos los derechos reservados.</p>
                 <div class="mt-4 md:mt-0 text-[10px] md:text-xs text-slate-500 normal-case">
                     *Toda nuestra gestión se realiza bajo el estricto marco legal de la Ley 1266 de 2008 (Ley de Habeas Data) y la Ley 1581 de 2012.
                 </div>
@@ -421,6 +413,7 @@
         });
     });
     </script>
+    <script src="dynamic.js"></script>
 </body>
 
 </html>
