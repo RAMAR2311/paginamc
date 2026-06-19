@@ -1,0 +1,6 @@
+data.json
+users.json
+uploads/
+__pycache__/
+venv/
+.env
