@@ -246,57 +246,50 @@
     ],
     "team": [
         {
-            "bio": "",
             "name": "Alejandro Torres",
-            "photo": "advisor_portrait_man.png",
             "role": "Asesor Comercial Senior",
+            "bio": "Especialista en acuerdos comerciales de gran volumen.",
+            "photo": "advisor_portrait_man.png",
             "whatsapp": ""
         },
         {
-            "bio": "",
             "name": "Camila Gómez",
-            "photo": "advisor_portrait_woman.png",
             "role": "Asesora Comercial",
+            "bio": "Manejo de créditos hipotecarios y defensa legal.",
+            "photo": "advisor_portrait_woman.png",
             "whatsapp": ""
         },
         {
-            "bio": "",
             "name": "Santiago Mejía",
-            "photo": "advisor_portrait_man.png",
             "role": "Asesor Comercial",
+            "bio": "",
+            "photo": "advisor_portrait_man.png",
             "whatsapp": ""
         },
         {
-            "bio": "",
             "name": "Diana Ríos",
-            "photo": "advisor_portrait_woman.png",
             "role": "Asesora Comercial",
+            "bio": "",
+            "photo": "advisor_portrait_woman.png",
             "whatsapp": ""
         },
         {
-            "bio": "",
             "name": "Marlon López",
-            "photo": "advisor_portrait_man.png",
             "role": "Asesor Comercial",
+            "bio": "",
+            "photo": "advisor_portrait_man.png",
             "whatsapp": ""
         },
         {
-            "bio": "",
             "name": "Valeria Pineda",
-            "photo": "advisor_portrait_woman.png",
             "role": "Asesora Comercial",
-            "whatsapp": ""
-        },
-        {
             "bio": "",
-            "name": "Juan Carlos Ruiz",
-            "photo": "advisor_portrait_man.png",
-            "role": "Asesor Comercial",
+            "photo": "advisor_portrait_woman.png",
             "whatsapp": ""
         },
         {
-            "name": "Nuevo",
-            "role": "Rol",
+            "name": "Juan Carlos Ruiz",
+            "role": "Asesor Comercial",
             "bio": "",
             "photo": "advisor_portrait_man.png",
             "whatsapp": ""
@@ -304,19 +297,24 @@
     ],
     "gallery": [
         {
-            "photo": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
+            "title": "Capacitación Semanal",
+            "subtitle": "Cultura MC",
+            "photo": "https://images.unsplash.com/photo-1522071823991-b9671e3030e3?auto=format&fit=crop&q=80&w=800"
+        },
+        {
+            "title": "Trabajo en Equipo",
             "subtitle": "Colaboración",
-            "title": "Trabajo en Equipo"
+            "photo": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800"
         },
         {
-            "photo": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800",
+            "title": "Oficinas Centrales",
             "subtitle": "Instalaciones",
-            "title": "Oficinas Centrales"
+            "photo": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800"
         },
         {
-            "photo": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800",
+            "title": "Atención al Cliente",
             "subtitle": "Compromiso",
-            "title": "Atención al Cliente"
+            "photo": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800"
         }
     ],
     "testimonials": [
@@ -340,6 +338,13 @@
             "photo": "",
             "stars": 5,
             "text": "Excelente servicio."
+        },
+        {
+            "stars": 5,
+            "text": "Excelente servicio.",
+            "name": "Cliente Satisfecho",
+            "location": "Colombia",
+            "photo": ""
         }
     ],
     "products": [
@@ -415,9 +420,9 @@
             "title": "Educación financiera"
         },
         {
-            "title": "Nuevo Servicio",
             "desc": "Descripción del servicio.",
-            "icon": "handshake"
+            "icon": "handshake",
+            "title": "Nuevo Servicio"
         }
     ]
 }
