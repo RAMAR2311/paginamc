@@ -4,6 +4,35 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (!data.config) return;
             const config = data.config;
+            const courses = data.courses || [];
+
+            // If we are on curso.html, handle course selection and CTA linking
+            const urlParams = new URLSearchParams(window.location.search);
+            const courseId = urlParams.get('courseId');
+            
+            if (courses.length > 0 && config.texts && config.texts.curso) {
+                // Determine which course to show (requested or first one)
+                const selectedCourse = courseId ? courses.find(c => c.id === courseId) : courses[0];
+                
+                if (selectedCourse) {
+                    if (courseId) {
+                        // Override the config.texts.curso with the selected course if specifically requested
+                        config.texts.curso.title = selectedCourse.title;
+                        config.texts.curso.subtitle = selectedCourse.subtitle;
+                        config.texts.curso.price = selectedCourse.price;
+                        config.texts.curso.wompi_public_key = selectedCourse.wompi_public_key;
+                        config.texts.curso.benefits = selectedCourse.benefits || [];
+                        config.texts.curso.modules = selectedCourse.modules || [];
+                        config.texts.curso.pretitle = selectedCourse.pretitle || 'Formación Premium';
+                        config.texts.curso.photo = selectedCourse.photo;
+                    }
+                    
+                    const ctaBtn = document.getElementById('curso-cta-btn');
+                    if (ctaBtn) {
+                        ctaBtn.href = '/comprar-curso?courseId=' + selectedCourse.id;
+                    }
+                }
+            }
 
             // 1. Update CSS Variables for Tailwind Colors
             if (config.colors) {
@@ -65,6 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (testContainer && data.testimonials) {
                 renderTestimonialsList(testContainer, data.testimonials);
                 initTestimonialsCarousel();
+            }
+
+            // 4.5 Render Services if container exists
+            const servicesContainer = document.getElementById('services-container');
+            if (servicesContainer && data.services) {
+                renderServicesList(servicesContainer, data.services);
+                initServicesCarousel();
             }
 
             // 5. Render Store Products if container exists
@@ -135,6 +171,43 @@ function initTestimonialsCarousel() {
     const container = document.getElementById('testimonials-container');
     const prevBtn = document.getElementById('prev-testimonials');
     const nextBtn = document.getElementById('next-testimonials');
+
+    if (!container || !prevBtn || !nextBtn) return;
+
+    const getScrollAmount = () => {
+        const firstItem = container.querySelector('div');
+        if (!firstItem) return 0;
+        return firstItem.offsetWidth + 32; // width + gap
+    };
+
+    nextBtn.addEventListener('click', () => {
+        container.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+        container.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+}
+
+function renderServicesList(container, list) {
+    container.innerHTML = list.map(s => {
+        const iconName = s.icon || 'handshake';
+        return `
+            <div class="min-w-[260px] max-w-[280px] snap-start shrink-0 group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-primary dark:hover:border-primary transition-all hover:shadow-2xl hover:shadow-primary/5 flex flex-col">
+                <div class="size-12 bg-primary rounded-xl flex items-center justify-center text-background-dark mb-4 group-hover:rotate-6 transition-transform">
+                    <span class="material-symbols-outlined text-2xl">${iconName}</span>
+                </div>
+                <h4 class="text-lg font-bold mb-2 leading-tight">${s.title}</h4>
+                <p class="text-slate-600 dark:text-slate-400 text-xs leading-relaxed mt-auto">${s.desc}</p>
+            </div>
+        `;
+    }).join('');
+}
+
+function initServicesCarousel() {
+    const container = document.getElementById('services-container');
+    const prevBtn = document.getElementById('prev-services');
+    const nextBtn = document.getElementById('next-services');
 
     if (!container || !prevBtn || !nextBtn) return;
 

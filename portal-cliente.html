@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="es">
+<html class="scroll-smooth bg-slate-950" lang="es">
 
 <head>
     <link rel="icon" type="image/jpeg" href="favicon.jpg" />
@@ -81,9 +81,9 @@
                     <span class="material-symbols-outlined text-2xl">menu</span>
                 </button>
                 <div class="flex gap-4">
-                <a href="https://wa.me/message/3BZP6CRYQZLZP1" data-edit-href="https://wa.me/{texts.whatsapp_phone}" target="_blank"
+                <a href="/registro.html?mode=login"
                     class="hidden sm:flex bg-primary text-background-dark px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-bold text-xs sm:text-sm hover:brightness-110 hover:-translate-y-0.5 hover:shadow-primary/40 active:scale-95 transition-all duration-300 shadow-lg shadow-primary/20 items-center justify-center">
-                    Agenda Gratis
+                    Iniciar Sesión
                 </a>
             </div>
         </div>
@@ -164,10 +164,18 @@
                     </div>
                 </div>
 
-                <div class="mt-16 text-center">
+                <div class="mt-16 flex flex-col md:flex-row items-center justify-center gap-4">
                     <a href="https://www.mcinnovacionfinanciera.cloud/login" data-edit-href="{texts.aplicativos.cliente_link}"
-                        class="inline-flex bg-primary text-background-dark h-16 px-12 rounded-xl font-bold text-lg items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-95 transition-all duration-300 w-full sm:w-auto">
+                        class="inline-flex bg-primary text-background-dark h-16 px-8 rounded-xl font-bold text-sm md:text-base items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-95 transition-all duration-300 w-full md:w-auto">
                         ACCEDER AL SISTEMA <span class="material-symbols-outlined">login</span>
+                    </a>
+                    <a href="#" data-edit-href="{texts.aplicativos.cliente_avances_link}"
+                        class="inline-flex bg-primary text-background-dark h-16 px-8 rounded-xl font-bold text-sm md:text-base items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-95 transition-all duration-300 w-full md:w-auto text-center leading-tight">
+                        SOLICITUD DE AVANCES <span class="material-symbols-outlined">request_quote</span>
+                    </a>
+                    <a href="#" data-edit-href="{texts.aplicativos.cliente_negociacion_link}"
+                        class="inline-flex bg-primary text-background-dark h-16 px-8 rounded-xl font-bold text-sm md:text-base items-center justify-center gap-2 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/30 active:scale-95 transition-all duration-300 w-full md:w-auto text-center leading-tight">
+                        SOLICITUD DE NEGOCIACIÓN ADICIONAL <span class="material-symbols-outlined">handshake</span>
                     </a>
                 </div>
             </div>
@@ -291,7 +299,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-400 py-16" id="contacto">
+    <footer class="mt-auto bg-slate-950 text-slate-400 py-16" id="contacto">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 border-b border-slate-900 pb-16">
                 <div class="col-span-1 md:col-span-1">
@@ -332,15 +340,15 @@
                     <h4 class="text-white font-bold mb-6">Síguenos</h4>
                     <div class="flex gap-4">
                         <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
-                            href="https://www.facebook.com/share/1H8QWxxbe5/?mibextid=wwXIfr" target="_blank">
+                            href="https://www.facebook.com/share/1H8QWxxbe5/?mibextid=wwXIfr" data-edit-href="{texts.social_facebook}" target="_blank">
                             <span class="material-symbols-outlined">facebook</span>
                         </a>
                         <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
-                            href="https://www.instagram.com/mcinnovacionfinanciera?igsh=dXVubmQ4bGR0aHlu&utm_source=qr" target="_blank">
+                            href="https://www.instagram.com/mcinnovacionfinanciera?igsh=dXVubmQ4bGR0aHlu&utm_source=qr" data-edit-href="{texts.social_instagram}" target="_blank">
                             <span class="material-symbols-outlined">camera_alt</span>
                         </a>
                         <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"
-                            href="https://www.tiktok.com/@mcinnovacionfinanciera?_r=1&_t=ZS-95PGQr4PYXg" target="_blank">
+                            href="https://www.tiktok.com/@mcinnovacionfinanciera?_r=1&_t=ZS-95PGQr4PYXg" data-edit-href="{texts.social_tiktok}" target="_blank">
                             <span class="material-symbols-outlined">music_note</span>
                         </a>
                         <a class="size-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all"

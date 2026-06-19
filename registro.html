@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="es">
+<html class="bg-slate-950 scroll-smooth" lang="es">
 
 <head>
     <link rel="icon" type="image/jpeg" href="favicon.jpg" />
@@ -90,7 +90,7 @@
     </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center relative overflow-hidden">
+<body class="min-h-screen flex flex-col bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center relative py-12">
 
     <!-- Ambient Background -->
     <div class="fixed inset-0 pointer-events-none">
@@ -115,7 +115,8 @@
         </div>
 
         <!-- Auth Card -->
-        <div class="auth-card bg-white dark:bg-slate-900/50 backdrop-blur-2xl border border-slate-200 dark:border-slate-800 rounded-[2rem] p-8 sm:p-10 shadow-2xl animate-fadeInUp animate-delay-100">
+        <div class="animate-fadeInUp animate-delay-100">
+        <div class="auth-card bg-white dark:bg-slate-900/50 backdrop-blur-2xl border border-slate-200 dark:border-slate-800 rounded-[2rem] p-8 sm:p-10 shadow-2xl">
             
             <!-- Toggle Register / Login -->
             <div class="flex items-center justify-center gap-4 mb-8">
@@ -225,6 +226,7 @@
                 ¿Necesitas ayuda? Escríbenos
             </a>
         </div>
+        </div>
 
         <!-- Back to home -->
         <div class="text-center mt-6 animate-fadeInUp animate-delay-300">
@@ -283,8 +285,8 @@
             if (login) {
                 toggleSlider.style.transform = 'translateX(28px)';
                 toggleRegistro.classList.remove('text-primary');
-                toggleRegistro.classList.add('text-white/40');
-                toggleLogin.classList.remove('text-white/40');
+                toggleRegistro.classList.add('text-slate-400', 'dark:text-white/40');
+                toggleLogin.classList.remove('text-slate-400', 'dark:text-white/40');
                 toggleLogin.classList.add('text-primary');
                 formTitle.textContent = 'Bienvenido de vuelta';
                 formSubtitle.textContent = 'Ingresa con tu correo y contraseña para continuar.';
@@ -296,8 +298,8 @@
             } else {
                 toggleSlider.style.transform = 'translateX(0)';
                 toggleLogin.classList.remove('text-primary');
-                toggleLogin.classList.add('text-white/40');
-                toggleRegistro.classList.remove('text-white/40');
+                toggleLogin.classList.add('text-slate-400', 'dark:text-white/40');
+                toggleRegistro.classList.remove('text-slate-400', 'dark:text-white/40');
                 toggleRegistro.classList.add('text-primary');
                 formTitle.textContent = 'Crea tu cuenta';
                 formSubtitle.textContent = 'Regístrate para acceder a nuestros cursos y servicios exclusivos.';
@@ -477,12 +479,16 @@
         // CHECK IF ALREADY LOGGED IN
         // ========================================================
         (async () => {
+            // Check query parameter for mode
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('mode') === 'login' || params.get('login') === 'true') {
+                setMode(true);
+            }
             try {
                 const res = await fetch('/api/session');
                 const data = await res.json();
                 if (data.logged_in) {
                     // If there's a pending purchase redirect, go there
-                    const params = new URLSearchParams(window.location.search);
                     if (params.get('next')) {
                         window.location.href = params.get('next');
                     }

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html class="bg-slate-950 scroll-smooth" lang="es">
+
+<head>
+    <link rel="icon" type="image/jpeg" href="favicon.jpg" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Aula Virtual | MC Innovación Financiera</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "var(--color-primary, #eccb13)",
+                        "accent-pink": "var(--color-accent-pink, #f472b6)",
+                        "background-light": "var(--color-bg-light, #f8f8f6)",
+                        "background-dark": "var(--color-bg-dark, #221f10)",
+                    },
+                    fontFamily: { "display": ["Manrope"] },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .sidebar-scroll::-webkit-scrollbar { width: 6px; }
+        .sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark .sidebar-scroll::-webkit-scrollbar-thumb { background: #334155; }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 h-screen overflow-hidden flex flex-col">
+
+    <!-- Navbar -->
+    <header class="h-16 shrink-0 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-between px-4 sm:px-6 z-20">
+        <div class="flex items-center gap-4">
+            <button id="mobile-sidebar-btn" class="lg:hidden flex items-center justify-center p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <a href="code.html" class="flex items-center gap-3">
+                <img src="favicon.jpg" alt="MC Innovación Financiera" class="h-8 w-auto object-contain rounded-sm" />
+                <span class="font-bold hidden sm:block text-slate-900 dark:text-white">MC Innovación</span>
+            </a>
+            <div class="hidden sm:block w-px h-6 bg-slate-200 dark:bg-slate-700 mx-2"></div>
+            <h1 class="text-sm font-bold text-slate-600 dark:text-slate-300 truncate max-w-[200px] sm:max-w-md">Eliminación de Reportes Negativos</h1>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <!-- Progress -->
+            <div class="hidden md:flex items-center gap-3 mr-4">
+                <div class="flex flex-col items-end">
+                    <span class="text-xs font-bold text-slate-500">Tu progreso</span>
+                    <span id="progress-text" class="text-[10px] text-slate-400">0% (0 de 0)</span>
+                </div>
+                <div class="w-32 h-2.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                    <div id="progress-bar-fill" class="h-full bg-primary rounded-full w-[0%] transition-all duration-500"></div>
+                </div>
+            </div>
+            
+            <!-- Back to Courses -->
+            <a href="mis-cursos.html" class="flex items-center gap-2 text-sm font-bold text-primary bg-primary/10 hover:bg-primary/20 px-4 py-2 rounded-xl transition-colors hidden sm:flex">
+                <span class="material-symbols-outlined text-[18px]">arrow_back</span> Ver Mis Cursos
+            </a>
+            
+            <!-- User Menu -->
+            <button id="btn-logout" class="flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-red-500 transition-colors">
+                <span class="hidden sm:inline" id="user-name-display">Estudiante</span>
+                <span class="material-symbols-outlined">logout</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden relative">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="absolute lg:relative z-10 w-80 h-full bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col transition-transform duration-300 -translate-x-full lg:translate-x-0">
+            <div class="p-4 border-b border-slate-200 dark:border-slate-800 shrink-0">
+                <h2 class="font-bold text-lg text-slate-900 dark:text-white mb-1">Contenido del Curso</h2>
+                <p id="course-stats" class="text-xs text-slate-500">0 Módulos • 0 Lecciones</p>
+            </div>
+            
+            <div id="sidebar-modules-list" class="flex-1 overflow-y-auto sidebar-scroll p-2 space-y-2">
+                <!-- Generado por JS -->
+            </div>
+        </aside>
+
+        <!-- Sidebar Overlay (Mobile) -->
+        <div id="sidebar-overlay" class="absolute inset-0 bg-black/50 z-[5] hidden lg:hidden"></div>
+
+        <!-- Main Content area -->
+        <main class="flex-1 h-full overflow-y-auto bg-slate-50 dark:bg-background-dark">
+            <div class="max-w-5xl mx-auto w-full p-4 sm:p-6 lg:p-8">
+                
+                <!-- Video Player Container -->
+                <div id="video-container" class="bg-black rounded-2xl sm:rounded-3xl overflow-hidden aspect-video relative shadow-2xl group flex items-center justify-center">
+                    <div class="text-white flex flex-col items-center gap-2">
+                        <span class="material-symbols-outlined text-4xl">videocam_off</span>
+                        <p>Selecciona una lección para empezar</p>
+                    </div>
+                </div>
+
+                <!-- Lesson Info -->
+                <div class="mt-8 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-6 mb-6">
+                        <div>
+                            <div id="lesson-module-name" class="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-wider mb-2">
+                                <span class="material-symbols-outlined text-sm">folder_open</span>
+                                Módulo
+                            </div>
+                            <h2 id="lesson-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Bienvenido</h2>
+                        </div>
+                        <button id="btn-mark-completed" class="hidden shrink-0 bg-[#183984] hover:bg-[#122b64] text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg shadow-[#183984]/30 transition-all hover:-translate-y-0.5 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">check_circle</span>
+                            <span id="text-mark-completed">Marcar como completada</span>
+                        </button>
+                    </div>
+
+                    <div id="lesson-description" class="prose prose-slate dark:prose-invert max-w-none prose-p:leading-relaxed prose-a:text-primary hover:prose-a:text-primary/80">
+                        <p>Por favor, selecciona una lección del menú lateral izquierdo para comenzar a aprender.</p>
+                    </div>
+
+                    <!-- Resources (Hidden by default since we aren't supporting resources from admin yet, but structure is here) -->
+                    <div id="lesson-resources-section" class="hidden">
+                        <hr class="my-8 border-slate-200 dark:border-slate-800" />
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">download</span>
+                            Recursos Descargables
+                        </h4>
+                        <div id="lesson-resources-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="mt-6 flex items-center justify-between pb-8">
+                    <button id="btn-prev-lesson" disabled class="px-6 py-3 rounded-xl font-bold text-sm text-slate-400 bg-slate-100 dark:bg-slate-800 cursor-not-allowed flex items-center gap-2">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                        Lección Anterior
+                    </button>
+                    <button id="btn-next-lesson" disabled class="px-6 py-3 rounded-xl font-bold text-sm text-slate-400 bg-slate-100 dark:bg-slate-800 cursor-not-allowed flex items-center gap-2">
+                        Siguiente Lección
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Sidebar Mobile Toggle
+        const sidebar = document.getElementById('sidebar');
+        const sidebarBtn = document.getElementById('mobile-sidebar-btn');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            const isClosed = sidebar.classList.contains('-translate-x-full');
+            if (isClosed) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        sidebarBtn.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+
+        // Course logic
+        let courseData = [];
+        let completedLessons = [];
+        let expandedModules = new Set([0]);
+        let currentModuleIdx = -1;
+        let currentLessonIdx = -1;
+        let flatLessons = [];
+        let activeCourseId = null;
+
+        async function init() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                activeCourseId = urlParams.get('courseId');
+                
+                if (!activeCourseId) {
+                    window.location.href = '/mis-cursos.html';
+                    return;
+                }
+
+                const sessionRes = await fetch('/api/session');
+                const sessionData = await sessionRes.json();
+                
+                if (sessionData.logged_in) {
+                    const purchased = sessionData.user.purchased_courses || [];
+                    if (!purchased.includes(activeCourseId)) {
+                        window.location.href = '/mis-cursos.html';
+                        return;
+                    }
+                    document.getElementById('user-name-display').textContent = sessionData.user.nombre || 'Estudiante';
+                    const allCompleted = sessionData.user.completed_lessons || {};
+                    completedLessons = allCompleted[activeCourseId] || [];
+                } else {
+                    window.location.href = '/registro.html?mode=login';
+                    return;
+                }
+
+                const dataRes = await fetch('/api/data?_t=' + Date.now());
+                const dbData = await dataRes.json();
+                
+                const allCourses = dbData.courses || [];
+                const currentCourse = allCourses.find(c => c.id === activeCourseId);
+                
+                if (currentCourse && currentCourse.modules) {
+                    courseData = currentCourse.modules;
+                    document.title = currentCourse.title + ' - Contenido';
+                } else {
+                    alert('Curso no encontrado');
+                    window.location.href = '/mis-cursos.html';
+                    return;
+                }
+
+                buildFlatLessons();
+                renderSidebar();
+                
+                if (flatLessons.length > 0) {
+                    const firstUncompleted = flatLessons.find(fl => !completedLessons.includes(fl.lesson.id));
+                    if (firstUncompleted) {
+                        selectLesson(firstUncompleted.mIdx, firstUncompleted.lIdx);
+                    } else {
+                        selectLesson(0, 0);
+                    }
+                }
+                updateOverallProgress();
+
+            } catch (e) {
+                console.error('Error in init:', e);
+            }
+        }
+
+        function buildFlatLessons() {
+            flatLessons = [];
+            courseData.forEach((m, mIdx) => {
+                if(m.lessons) {
+                    m.lessons.forEach((l, lIdx) => {
+                        flatLessons.push({ mIdx, lIdx, module: m, lesson: l });
+                    });
+                }
+            });
+            
+            const totalModules = courseData.length;
+            const totalLessons = flatLessons.length;
+            document.getElementById('course-stats').textContent = `${totalModules} Módulos • ${totalLessons} Lecciones`;
+        }
+
+        function renderSidebar() {
+            const list = document.getElementById('sidebar-modules-list');
+            list.innerHTML = '';
+            
+            courseData.forEach((m, mIdx) => {
+                const isExpanded = expandedModules.has(mIdx);
+                let lessonsHtml = '';
+                
+                if (isExpanded && m.lessons) {
+                    m.lessons.forEach((l, lIdx) => {
+                        const isActive = (mIdx === currentModuleIdx && lIdx === currentLessonIdx);
+                        const isCompleted = completedLessons.includes(l.id);
+                        
+                        let btnClass = 'w-full flex items-start gap-3 p-3 pl-4 text-left border-l-2 transition-colors group ';
+                        let iconStr = '';
+                        let titleClass = '';
+                        
+                        if (isActive) {
+                            btnClass += 'bg-primary/10 border-primary hover:bg-primary/20';
+                            iconStr = `<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">play_circle</span>`;
+                            titleClass = 'text-sm font-semibold text-primary block group-hover:underline';
+                        } else if (isCompleted) {
+                            btnClass += 'border-transparent hover:bg-slate-50 dark:hover:bg-slate-800/50';
+                            iconStr = `<span class="material-symbols-outlined text-green-500 text-[20px] shrink-0 mt-0.5">check_circle</span>`;
+                            titleClass = 'text-sm font-medium text-slate-700 dark:text-slate-300';
+                        } else {
+                            btnClass += 'border-transparent hover:bg-slate-50 dark:hover:bg-slate-800/50';
+                            iconStr = `<span class="material-symbols-outlined text-slate-400 text-[20px] shrink-0 mt-0.5 group-hover:text-primary transition-colors">lock_open_right</span>`;
+                            titleClass = 'text-sm font-medium text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors';
+                        }
+                        
+                        lessonsHtml += `
+                            <button onclick="selectLesson(${mIdx}, ${lIdx})" class="${btnClass}">
+                                ${iconStr}
+                                <div>
+                                    <span class="${titleClass}">${lIdx + 1}. ${l.title}</span>
+                                    <span class="text-xs text-slate-500">${l.duration || '0:00'} min</span>
+                                </div>
+                            </button>
+                        `;
+                    });
+                }
+                
+                const modEl = document.createElement('div');
+                modEl.className = `rounded-xl bg-slate-50 dark:bg-slate-800/50 overflow-hidden border border-slate-200 dark:border-slate-700 ${!isExpanded ? 'opacity-75 hover:opacity-100' : ''}`;
+                modEl.innerHTML = `
+                    <button onclick="toggleModule(${mIdx})" class="w-full p-4 flex items-center justify-between text-left hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        <div>
+                            <span class="text-[10px] font-bold text-primary uppercase tracking-wider block mb-0.5">Módulo ${mIdx + 1}</span>
+                            <span class="font-semibold text-sm text-slate-900 dark:text-white">${m.title}</span>
+                        </div>
+                        <span class="material-symbols-outlined text-slate-400 text-sm">${isExpanded ? 'expand_less' : 'expand_more'}</span>
+                    </button>
+                    <div class="bg-white dark:bg-slate-900 ${isExpanded ? 'block' : 'hidden'}">
+                        ${lessonsHtml}
+                    </div>
+                `;
+                list.appendChild(modEl);
+            });
+        }
+
+        function toggleModule(mIdx) {
+            if (expandedModules.has(mIdx)) {
+                expandedModules.delete(mIdx);
+            } else {
+                expandedModules.add(mIdx);
+            }
+            renderSidebar();
+        }
+
+        function selectLesson(mIdx, lIdx) {
+            currentModuleIdx = mIdx;
+            currentLessonIdx = lIdx;
+            expandedModules.add(mIdx);
+            
+            renderSidebar();
+            
+            const m = courseData[mIdx];
+            const l = m.lessons[lIdx];
+            
+            document.getElementById('lesson-module-name').innerHTML = `<span class="material-symbols-outlined text-sm">folder_open</span> Módulo ${mIdx + 1}: ${m.title}`;
+            document.getElementById('lesson-title').textContent = `${lIdx + 1}. ${l.title}`;
+            document.getElementById('lesson-description').innerHTML = l.description || '<p>Sin descripción.</p>';
+            
+            const resSec = document.getElementById('lesson-resources-section');
+            const resCont = document.getElementById('lesson-resources-container');
+            if (l.resources && l.resources.length > 0) {
+                resSec.classList.remove('hidden');
+                let resHtml = '';
+                l.resources.forEach(r => {
+                    let iconStr = 'description';
+                    let bgClass = 'bg-slate-100 dark:bg-slate-800/30 text-slate-600';
+                    if (r.type === 'pdf') { iconStr = 'picture_as_pdf'; bgClass = 'bg-red-100 dark:bg-red-900/30 text-red-600'; }
+                    else if (r.type === 'xls' || r.type === 'xlsx' || r.type === 'csv') { iconStr = 'table_chart'; bgClass = 'bg-green-100 dark:bg-green-900/30 text-green-600'; }
+                    else if (r.type === 'doc' || r.type === 'docx') { iconStr = 'description'; bgClass = 'bg-blue-100 dark:bg-blue-900/30 text-blue-600'; }
+                    
+                    resHtml += `
+                        <a href="${r.url}" download="${r.title}" target="_blank" class="flex items-center gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group">
+                            <div class="size-10 rounded-lg ${bgClass} flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined">${iconStr}</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h5 class="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-primary transition-colors">${r.title}</h5>
+                                <p class="text-[10px] text-slate-500">Documento adjunto</p>
+                            </div>
+                        </a>
+                    `;
+                });
+                resCont.innerHTML = resHtml;
+            } else {
+                resSec.classList.add('hidden');
+                resCont.innerHTML = '';
+            }
+            
+            const vc = document.getElementById('video-container');
+            if (l.video_url) {
+                if (l.video_url.includes('youtube.com') || l.video_url.includes('youtu.be') || l.video_url.includes('vimeo.com')) {
+                    let embedUrl = l.video_url;
+                    if (embedUrl.includes('watch?v=')) {
+                        embedUrl = embedUrl.replace('watch?v=', 'embed/');
+                    } else if (embedUrl.includes('youtu.be/')) {
+                        embedUrl = embedUrl.replace('youtu.be/', 'youtube.com/embed/');
+                    }
+                    vc.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full absolute inset-0 border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                } else if (l.video_url.includes('drive.google.com')) {
+                    let driveUrl = l.video_url;
+                    if (driveUrl.includes('/view')) {
+                        driveUrl = driveUrl.replace(/\/view.*/, '/preview');
+                    } else if (!driveUrl.includes('/preview')) {
+                        driveUrl += (driveUrl.endsWith('/') ? 'preview' : '/preview');
+                    }
+                    vc.innerHTML = `<iframe src="${driveUrl}" class="w-full h-full absolute inset-0 border-0" allow="autoplay" allowfullscreen></iframe>`;
+                } else if (l.video_url.endsWith('.mp4')) {
+                    vc.innerHTML = `<video controls class="w-full h-full absolute inset-0 object-cover"><source src="${l.video_url}" type="video/mp4">Tu navegador no soporta video.</video>`;
+                } else {
+                    vc.innerHTML = `<iframe src="${l.video_url}" class="w-full h-full absolute inset-0 border-0" allowfullscreen></iframe>`;
+                }
+            } else {
+                vc.innerHTML = `<div class="text-white flex flex-col items-center gap-2"><span class="material-symbols-outlined text-4xl">videocam_off</span><p>Video no disponible</p></div>`;
+            }
+            
+            const btnMark = document.getElementById('btn-mark-completed');
+            btnMark.classList.remove('hidden');
+            if (completedLessons.includes(l.id)) {
+                btnMark.className = 'shrink-0 bg-green-500 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg shadow-green-500/30 flex items-center gap-2';
+                document.getElementById('text-mark-completed').textContent = 'Completada';
+                btnMark.disabled = true;
+                btnMark.onclick = null;
+            } else {
+                btnMark.className = 'shrink-0 bg-[#183984] hover:bg-[#122b64] text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg shadow-[#183984]/30 transition-all hover:-translate-y-0.5 flex items-center gap-2';
+                document.getElementById('text-mark-completed').textContent = 'Marcar como completada';
+                btnMark.disabled = false;
+                btnMark.onclick = () => markAsCompleted(l.id);
+            }
+            
+            const flatIdx = flatLessons.findIndex(fl => fl.mIdx === mIdx && fl.lIdx === lIdx);
+            const btnPrev = document.getElementById('btn-prev-lesson');
+            const btnNext = document.getElementById('btn-next-lesson');
+            
+            if (flatIdx > 0) {
+                btnPrev.disabled = false;
+                btnPrev.classList.remove('text-slate-400', 'cursor-not-allowed');
+                btnPrev.classList.add('hover:bg-slate-200', 'text-slate-700');
+                btnPrev.onclick = () => selectLesson(flatLessons[flatIdx - 1].mIdx, flatLessons[flatIdx - 1].lIdx);
+            } else {
+                btnPrev.disabled = true;
+                btnPrev.classList.add('text-slate-400', 'cursor-not-allowed');
+                btnPrev.classList.remove('hover:bg-slate-200', 'text-slate-700');
+                btnPrev.onclick = null;
+            }
+            
+            if (flatIdx < flatLessons.length - 1) {
+                btnNext.disabled = false;
+                btnNext.classList.remove('text-slate-400', 'cursor-not-allowed');
+                btnNext.classList.add('bg-primary', 'text-background-dark', 'hover:bg-primary/90', 'shadow-lg', 'shadow-primary/30', 'hover:-translate-y-0.5');
+                btnNext.onclick = () => selectLesson(flatLessons[flatIdx + 1].mIdx, flatLessons[flatIdx + 1].lIdx);
+            } else {
+                btnNext.disabled = true;
+                btnNext.classList.add('text-slate-400', 'cursor-not-allowed');
+                btnNext.classList.remove('bg-primary', 'text-background-dark', 'hover:bg-primary/90', 'shadow-lg', 'shadow-primary/30', 'hover:-translate-y-0.5');
+                btnNext.onclick = null;
+            }
+        }
+
+        async function markAsCompleted(lessonId) {
+            if (completedLessons.includes(lessonId)) return;
+            
+            try {
+                const res = await fetch('/api/lesson-complete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ course_id: activeCourseId, lesson_id: lessonId })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    completedLessons.push(lessonId);
+                    renderSidebar();
+                    selectLesson(currentModuleIdx, currentLessonIdx);
+                    updateOverallProgress();
+                    
+                    const flatIdx = flatLessons.findIndex(fl => fl.lesson.id === lessonId);
+                    if (flatIdx !== -1 && flatIdx < flatLessons.length - 1) {
+                        setTimeout(() => {
+                            selectLesson(flatLessons[flatIdx + 1].mIdx, flatLessons[flatIdx + 1].lIdx);
+                        }, 1000);
+                    }
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (e) {
+                console.error(e);
+                alert('Error al registrar progreso');
+            }
+        }
+
+        function updateOverallProgress() {
+            const bar = document.getElementById('progress-bar-fill');
+            const text = document.getElementById('progress-text');
+            if (!bar || !text) return;
+            if (flatLessons.length === 0) {
+                bar.style.width = '0%';
+                text.textContent = '0%';
+                return;
+            }
+            const percent = Math.round((completedLessons.length / flatLessons.length) * 100);
+            bar.style.width = `${percent}%`;
+            text.textContent = `${percent}% (${completedLessons.length} de ${flatLessons.length})`;
+        }
+        
+        document.getElementById('btn-logout').addEventListener('click', async () => {
+            try {
+                await fetch('/api/logout', { method: 'POST' });
+            } catch(e) {}
+            window.location.href = '/';
+        });
+
+        init();
+    </script>
+</body>
+</html>

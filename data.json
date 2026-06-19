@@ -119,16 +119,141 @@
             "hero_video": "video_oficina.mp4"
         }
     },
+    "courses": [
+        {
+            "benefits": [
+                "Fundamentos legales de la Ley 1266 (Habeas Data)",
+                "Redacción profesional de derechos de petición",
+                "Identificación de reportes eliminables",
+                "Plantillas listas para usar",
+                "Acceso de por vida al contenido",
+                "Certificado de finalización"
+            ],
+            "cta_text": "Compra tu curso ya",
+            "id": "c1",
+            "modules": [
+                {
+                    "id": "m1",
+                    "lessons": [
+                        {
+                            "description": "Conoce a fondo la Ley 1266 de 2008 y la Ley 2157 de 2021 (Borrón y Cuenta Nueva). Aprende cuáles son tus derechos fundamentales frente a las centrales de riesgo.",
+                            "duration": "15:00",
+                            "id": "l1",
+                            "resources": [
+                                {
+                                    "title": "CONTRATO MALLY CABRERA.docx",
+                                    "type": "docx",
+                                    "url": "/uploads/res_fc202e4f80514f608fcd35d3b294a3a8.docx"
+                                }
+                            ],
+                            "title": "Introducción a la Ley 1266 de 2008",
+                            "video_url": "https://drive.google.com/file/d/1hodzlnZvwuWRJNw-UDp5l8S4pqP24MQ-/view?usp=sharing"
+                        }
+                    ],
+                    "title": "Marco Legal del Habeas Data"
+                },
+                {
+                    "id": "m2",
+                    "lessons": [
+                        {
+                            "description": "Aprende a descargar, interpretar y desglosar tu historial crediticio en Datacrédito y TransUnion. Identifica qué reportes son viables de eliminar por caducidad o suplantación.",
+                            "duration": "20:00",
+                            "id": "l2",
+                            "resources": [
+                                {
+                                    "title": "prueba.xlsx",
+                                    "type": "xlsx",
+                                    "url": "/uploads/res_2b7723d3b1af4bf09791b21b2ac77c76.xlsx"
+                                }
+                            ],
+                            "title": "Cómo interpretar tu historial crediticio",
+                            "video_url": "https://drive.google.com/file/d/1hodzlnZvwuWRJNw-UDp5l8S4pqP24MQ-/view?usp=sharing"
+                        }
+                    ],
+                    "title": "Análisis de Reportes"
+                },
+                {
+                    "id": "m3",
+                    "lessons": [
+                        {
+                            "description": "Domina la redacción de derechos de petición efectivos dirigidos a bancos, cooperativas y centrales de riesgo. Incluye plantillas descargables y casos reales.",
+                            "duration": "25:00",
+                            "id": "l3",
+                            "resources": [],
+                            "title": "Plantillas y estrategias legales",
+                            "video_url": "https://drive.google.com/file/d/1hodzlnZvwuWRJNw-UDp5l8S4pqP24MQ-/view?usp=sharing"
+                        }
+                    ],
+                    "title": "Redacción de Derechos de Petición"
+                },
+                {
+                    "id": "m4",
+                    "lessons": [
+                        {
+                            "description": "Cuando el derecho de petición no es suficiente, aprende a interponer acciones de tutela y quejas ante la Superintendencia de Industria y Comercio.",
+                            "duration": "20:00",
+                            "id": "l4",
+                            "resources": [],
+                            "title": "Acciones de Tutela ante la SIC",
+                            "video_url": "https://drive.google.com/file/d/1hodzlnZvwuWRJNw-UDp5l8S4pqP24MQ-/view?usp=sharing"
+                        }
+                    ],
+                    "title": "Tutelas y Recursos Legales"
+                }
+            ],
+            "photo": "/uploads/course_f28445bd9e6d479891945089d96b298f.jpeg",
+            "pretitle": "Formación Premium",
+            "price": 150000,
+            "subtitle": "Aprende paso a paso cómo eliminar legalmente los reportes negativos de las centrales de riesgo usando la Ley 1266 de 2008.",
+            "title": "Eliminación de Reportes Negativos",
+            "wompi_public_key": "pub_prod_Yuk1dgVAVGEnEyNBiYpHDpJ0BBjTwCB5"
+        },
+        {
+            "benefits": [
+                "ODOISNOIDS",
+                "DSDFDSDFSA"
+            ],
+            "id": "c1781720644199",
+            "modules": [
+                {
+                    "id": "m1781720688078",
+                    "lessons": [
+                        {
+                            "description": "U9UEN8UGR0N8RGH08GR",
+                            "duration": "10:00",
+                            "id": "l1781720694034",
+                            "resources": [
+                                {
+                                    "title": "Prompts_Sprint1_Retos.docx",
+                                    "type": "docx",
+                                    "url": "/uploads/res_1ecfadec004b4ab595879e9b9ce38fba.docx"
+                                }
+                            ],
+                            "title": "DVSINIBDF",
+                            "video_url": "https://drive.google.com/file/d/12VdkzQHUVsN-sPFRpTPXjQfzLliM3DWx/view?usp=sharing"
+                        }
+                    ],
+                    "title": "DNSIUBUIS"
+                }
+            ],
+            "photo": "/uploads/course_eb8f7223d89c4bf28e4f032e3c86ccef.jpeg",
+            "pretitle": "BBDVIUBDVYIBFDY",
+            "price": 200000,
+            "subtitle": "BVOUSDBVUBUDAVB",
+            "title": "Nuevo Curso",
+            "wompi_public_key": ""
+        }
+    ],
     "team": [
         {
-            "bio": "Especialista en acuerdos comerciales de gran volumen.",
+            "bio": "",
             "name": "Alejandro Torres",
             "photo": "advisor_portrait_man.png",
             "role": "Asesor Comercial Senior",
             "whatsapp": ""
         },
         {
-            "bio": "Manejo de créditos hipotecarios y defensa legal.",
+            "bio": "",
             "name": "Camila Gómez",
             "photo": "advisor_portrait_woman.png",
             "role": "Asesora Comercial",
@@ -168,44 +293,53 @@
             "photo": "advisor_portrait_man.png",
             "role": "Asesor Comercial",
             "whatsapp": ""
+        },
+        {
+            "name": "Nuevo",
+            "role": "Rol",
+            "bio": "",
+            "photo": "advisor_portrait_man.png",
+            "whatsapp": ""
         }
     ],
     "gallery": [
         {
-            "title": "Capacitación Semanal",
-            "subtitle": "Cultura MC",
-            "photo": "https://images.unsplash.com/photo-1522071823991-b9671e3030e3?auto=format&fit=crop&q=80&w=800"
-        },
-        {
-            "title": "Trabajo en Equipo",
+            "photo": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
             "subtitle": "Colaboración",
-            "photo": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800"
+            "title": "Trabajo en Equipo"
         },
         {
-            "title": "Oficinas Centrales",
+            "photo": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800",
             "subtitle": "Instalaciones",
-            "photo": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=800"
+            "title": "Oficinas Centrales"
         },
         {
-            "title": "Atención al Cliente",
+            "photo": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800",
             "subtitle": "Compromiso",
-            "photo": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800"
+            "title": "Atención al Cliente"
         }
     ],
     "testimonials": [
         {
-            "stars": 5,
-            "text": "Logré negociar una deuda de 30 millones con solo 8 millones de pesos. Mi vida cambió totalmente gracias a MC Innovación.",
-            "name": "Carlos Rodriguez",
             "location": "Bogotá, D.C.",
-            "photo": "https://lh3.googleusercontent.com/aida-public/AB6AXuA81_t80eYHTFpGWzhGYq7T1ORukxaUmMnlOwldiwqeZ3TZs6RicSvr6sBLJE7LNbsPXvqVOnYFdmRzVkbMRwK8_ELgNC6LI2AW2PElnuwazHAf0epYo67iR8L4qQYWFvrSvBFE2UwTWcpLGeBOYGxE4SvcN0Y_wIFFR2jZllvHLTnScuYEMMtpngLDGxJCJxiFoQXXYRY6w54odANNxya4JZDRh50FE2W3vj2lZXBg0lybyrg5BzmB3qdz913gu80DPUUasCtkRFU"
+            "name": "Carlos Rodriguez",
+            "photo": "https://lh3.googleusercontent.com/aida-public/AB6AXuA81_t80eYHTFpGWzhGYq7T1ORukxaUmMnlOwldiwqeZ3TZs6RicSvr6sBLJE7LNbsPXvqVOnYFdmRzVkbMRwK8_ELgNC6LI2AW2PElnuwazHAf0epYo67iR8L4qQYWFvrSvBFE2UwTWcpLGeBOYGxE4SvcN0Y_wIFFR2jZllvHLTnScuYEMMtpngLDGxJCJxiFoQXXYRY6w54odANNxya4JZDRh50FE2W3vj2lZXBg0lybyrg5BzmB3qdz913gu80DPUUasCtkRFU",
+            "stars": 5,
+            "text": "Logré negociar una deuda de 30 millones con solo 8 millones de pesos. Mi vida cambió totalmente gracias a MC Innovación."
         },
         {
-            "stars": 5,
-            "text": "Excelente asesoría. Me explicaron todo de forma clara y sin presiones. Hoy ya tengo mi score de crédito recuperado.",
-            "name": "Ana María Holguín",
             "location": "Medellín",
-            "photo": "https://lh3.googleusercontent.com/aida-public/AB6AXuBwsp1RjyZ602UOsIqat-ZsgKjJqqDI3Fws01kYywMW4drO4Hy9GtGwNcZx4MXN6CogGCrSsTqQJGxbow5kyjvxIQpTgLvYJ26klQXt4hFMWEWFiDNgnTNQvgaLhgCI5s-MiFyvovNCf-KEJHBHtIBEpfiE_dXBsDnp5VKkYGVH98fy80lvyOBFgHdwaj55t3RqmWfrE0EWKwG6nUSMS4Eqo-JCY6V0fqd7S4Vki2LN3bBvmZScQUYi360I8tAERTYgNfyBIm5AiCs"
+            "name": "Ana María Holguín",
+            "photo": "https://lh3.googleusercontent.com/aida-public/AB6AXuBwsp1RjyZ602UOsIqat-ZsgKjJqqDI3Fws01kYywMW4drO4Hy9GtGwNcZx4MXN6CogGCrSsTqQJGxbow5kyjvxIQpTgLvYJ26klQXt4hFMWEWFiDNgnTNQvgaLhgCI5s-MiFyvovNCf-KEJHBHtIBEpfiE_dXBsDnp5VKkYGVH98fy80lvyOBFgHdwaj55t3RqmWfrE0EWKwG6nUSMS4Eqo-JCY6V0fqd7S4Vki2LN3bBvmZScQUYi360I8tAERTYgNfyBIm5AiCs",
+            "stars": 5,
+            "text": "Excelente asesoría. Me explicaron todo de forma clara y sin presiones. Hoy ya tengo mi score de crédito recuperado."
+        },
+        {
+            "location": "Colombia",
+            "name": "Cliente Satisfecho",
+            "photo": "",
+            "stars": 5,
+            "text": "Excelente servicio."
         }
     ],
     "products": [
@@ -213,32 +347,32 @@
             "category": "asesorias",
             "desc": "Evaluación técnica para personas naturales no comerciantes que buscan acogerse a la Ley de Insolvencia.",
             "icon": "account_balance",
-            "price": 250000,
-            "tag": "Más vendido",
+            "photo": "/uploads/product_54626aa33fdb4caa9ee3ed6462a6970a.jpeg",
+            "price": 0,
+            "tag": "",
             "title": "Diagnóstico Insolvencia Económica"
         },
         {
             "category": "asesorias",
             "desc": "Análisis detallado de tu situación financiera actual y capacidad de endeudamiento.",
             "icon": "analytics",
-            "price": 135000,
+            "price": 0,
             "tag": "",
-            "title": "Diagnóstico Financiero",
-            "photo": "/uploads/product_ada66f2b83294aefbc076dceffc66ae2.jpeg"
+            "title": "Diagnóstico Financiero"
         },
         {
             "category": "planes",
             "desc": "Estrategia de optimización de perfil crediticio para usuarios sin reportes negativos que desean subir su puntaje.",
             "icon": "trending_up",
-            "price": 280000,
-            "tag": "Recomendado",
+            "price": 0,
+            "tag": "",
             "title": "Mejora de Score (No Reportados)"
         },
         {
             "category": "asesorias",
             "desc": "Asesoría especializada para la gestión y saneamiento de obligaciones crediticias.",
             "icon": "contact_support",
-            "price": 140000,
+            "price": 0,
             "tag": "",
             "title": "Diagnóstico Ayuda del Crédito"
         },
@@ -246,7 +380,7 @@
             "category": "tramites",
             "desc": "Documento legal fundamentado en el Habeas Data (Ley 1266) para solicitar el retiro de reportes negativos injustos o caducados.",
             "icon": "gavel",
-            "price": 80000,
+            "price": 0,
             "tag": "",
             "title": "Derecho de Petición (Eliminación de Reportes)"
         },
@@ -254,9 +388,36 @@
             "category": "planes",
             "desc": "Programa de formación integral para el manejo de deudas y alcanzar la libertad crediticia y financiera.",
             "icon": "school",
-            "price": 310000,
+            "price": 0,
             "tag": "",
             "title": "Curso de Educación Financiera"
+        }
+    ],
+    "services": [
+        {
+            "desc": "Reducimos tus saldos pendientes mediante negociaciones directas con entidades bancarias.",
+            "icon": "handshake",
+            "title": "Negociación de deudas"
+        },
+        {
+            "desc": "Mejoramos tu score en centrales de riesgo para que vuelvas a ser sujeto de crédito.",
+            "icon": "credit_score",
+            "title": "Reparación de historial"
+        },
+        {
+            "desc": "Creamos un plan estratégico adaptado a tu realidad financiera y capacidad de pago.",
+            "icon": "psychology_alt",
+            "title": "Asesoría personalizada"
+        },
+        {
+            "desc": "Te brindamos las herramientas para que nunca vuelvas a caer en situaciones de sobreendeudamiento.",
+            "icon": "school",
+            "title": "Educación financiera"
+        },
+        {
+            "title": "Nuevo Servicio",
+            "desc": "Descripción del servicio.",
+            "icon": "handshake"
         }
     ]
 }

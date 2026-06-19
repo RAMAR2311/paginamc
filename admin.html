@@ -174,6 +174,29 @@
                         </div>
                     </div>
                     
+                    <!-- Redes Sociales -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-4">Redes Sociales</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Facebook URL</label>
+                                <input type="text" id="config-social-facebook" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="https://www.facebook.com/..." />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Instagram URL</label>
+                                <input type="text" id="config-social-instagram" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="https://www.instagram.com/..." />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">TikTok URL</label>
+                                <input type="text" id="config-social-tiktok" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="https://www.tiktok.com/..." />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">YouTube URL</label>
+                                <input type="text" id="config-social-youtube" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="https://www.youtube.com/..." />
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- Proceso -->
                     <details class="bg-slate-900 border border-slate-800 rounded-2xl group">
                         <summary class="p-6 text-lg font-bold cursor-pointer hover:bg-slate-800/50 transition-colors flex justify-between items-center outline-none">
@@ -313,14 +336,18 @@
                 
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
                     <h3 class="text-lg font-bold mb-4">Nuestros Servicios Premium</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 pb-6 border-b border-slate-800">
                         <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Pre-título</label><input type="text" id="config-home-services_pretitle" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
                         <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Título Principal</label><input type="text" id="config-home-services_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /></div>
-                        <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Servicio 1: Título</label><input type="text" id="config-home-service1_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-service1_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
-                        <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Servicio 2: Título</label><input type="text" id="config-home-service2_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-service2_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
-                        <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Servicio 3: Título</label><input type="text" id="config-home-service3_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-service3_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
-                        <div class="md:col-span-1"><label class="text-xs font-bold text-slate-400 mb-1 block">Servicio 4: Título</label><input type="text" id="config-home-service4_title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" /><textarea id="config-home-service4_desc" rows="2" class="w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm"></textarea></div>
                     </div>
+                    
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold">Listado de Servicios</h3>
+                        <button onclick="addService()" class="flex items-center gap-2 bg-slate-800 text-slate-200 px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-700 transition-all">
+                            <span class="material-symbols-outlined text-sm">add</span> Agregar Servicio
+                        </button>
+                    </div>
+                    <div id="services-list" class="space-y-4"></div>
                 </div>
             </div>
 
@@ -416,8 +443,16 @@
                         </summary>
                         <div class="p-6 border-t border-slate-800 bg-slate-900/50 space-y-4">
                             <div>
-                                <label class="text-xs font-bold text-slate-400 mb-1 block">Enlace / URL de Acceso</label>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Enlace / URL de Acceso (Sistema Principal)</label>
                                 <input type="text" id="config-aplicativos-cliente-link" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Enlace / URL de Solicitud de Avances</label>
+                                <input type="text" id="config-aplicativos-cliente-avances-link" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Enlace / URL de Solicitud de Negociación Adicional</label>
+                                <input type="text" id="config-aplicativos-cliente-negociacion-link" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-sm" />
                             </div>
                             <div>
                                 <label class="text-xs font-bold text-slate-400 mb-1 block">Título del Hero</label>
@@ -561,60 +596,92 @@
                 </div>
             </div>
 
+            
             <!-- ====== CURSO ====== -->
             <div id="panel-curso" class="hidden">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-extrabold flex items-center gap-2"><span class="material-symbols-outlined text-primary">school</span> Curso</h2>
-                    <button onclick="saveAll()" class="flex items-center gap-2 bg-primary text-background-dark px-6 py-2.5 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
-                        <span class="material-symbols-outlined text-sm">save</span> Guardar Todo
-                    </button>
-                </div>
-
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-                    <h3 class="text-lg font-bold mb-4">Configuración del Curso</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="text-xs font-bold text-slate-400 mb-1 block">Pretítulo</label>
-                            <input type="text" id="config-curso-pretitle" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Formación Premium" />
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-400 mb-1 block">Título del Curso</label>
-                            <input type="text" id="config-curso-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Eliminación de Reportes Negativos" />
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-400 mb-1 block">Subtítulo / Descripción</label>
-                            <textarea id="config-curso-subtitle" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Aprende paso a paso..."></textarea>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="text-xs font-bold text-slate-400 mb-1 block">Precio (COP)</label>
-                                <input type="number" id="config-curso-price" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="150000" />
-                            </div>
-                            <div>
-                                <label class="text-xs font-bold text-slate-400 mb-1 block">Llave Pública Wompi</label>
-                                <input type="text" id="config-curso-wompi-key" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="pub_prod_..." />
-                            </div>
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-400 mb-1 block">Texto del Botón CTA</label>
-                            <input type="text" id="config-curso-cta" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Compra tu curso ya" />
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Benefits -->
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mt-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-bold">Beneficios del Curso</h3>
-                        <button onclick="addCourseBenefit()" class="flex items-center gap-2 bg-slate-800 text-slate-200 px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-700 transition-all">
-                            <span class="material-symbols-outlined text-sm">add</span> Agregar Beneficio
+                <!-- VISTA LISTA DE CURSOS -->
+                <div id="cursos-list-view">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-extrabold flex items-center gap-2"><span class="material-symbols-outlined text-primary">school</span> Cursos</h2>
+                        <button onclick="createNewCourse()" class="flex items-center gap-2 bg-primary text-background-dark px-6 py-2.5 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                            <span class="material-symbols-outlined text-sm">add</span> Nuevo Curso
                         </button>
                     </div>
-                    <div id="curso-benefits-admin" class="space-y-3"></div>
+                    <div id="cursos-admin-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                </div>
+
+                <!-- VISTA EDITOR DE CURSO -->
+                <div id="curso-editor-view" class="hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="flex items-center gap-4">
+                            <button onclick="backToCoursesList()" class="bg-slate-800 text-slate-200 p-2 rounded-lg hover:bg-slate-700 transition-all"><span class="material-symbols-outlined">arrow_back</span></button>
+                            <h2 class="text-2xl font-extrabold flex items-center gap-2"><span class="material-symbols-outlined text-primary">edit</span> Editar Curso</h2>
+                        </div>
+                        <button onclick="saveAll()" class="flex items-center gap-2 bg-primary text-background-dark px-6 py-2.5 rounded-xl font-bold hover:brightness-110 active:scale-95 transition-all">
+                            <span class="material-symbols-outlined text-sm">save</span> Guardar Todo
+                        </button>
+                    </div>
+
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                        <h3 class="text-lg font-bold mb-4">Configuración del Curso</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Pretítulo</label>
+                                <input type="text" id="config-curso-pretitle" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Formación Premium" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Título del Curso</label>
+                                <input type="text" id="config-curso-title" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Eliminación de Reportes..." />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Subtítulo / Descripción</label>
+                                <textarea id="config-curso-subtitle" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="Aprende paso a paso..."></textarea>
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-400 mb-1 block">Foto del Curso</label>
+                                <div class="flex items-center gap-4">
+                                    <img id="config-curso-photo-preview" src="" class="w-24 h-16 object-cover rounded-lg bg-slate-800" />
+                                    <input type="file" id="config-curso-photo-input" accept="image/*" class="hidden" />
+                                    <button onclick="document.getElementById('config-curso-photo-input').click()" class="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg text-sm font-bold">Subir Foto</button>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-xs font-bold text-slate-400 mb-1 block">Precio (COP)</label>
+                                    <input type="number" id="config-curso-price" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="150000" />
+                                </div>
+                                <div>
+                                    <label class="text-xs font-bold text-slate-400 mb-1 block">Llave Pública Wompi</label>
+                                    <input type="text" id="config-curso-wompi-key" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" placeholder="pub_prod_..." />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Benefits -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mt-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-bold">Beneficios del Curso</h3>
+                            <button onclick="addCourseBenefit()" class="flex items-center gap-2 bg-slate-800 text-slate-200 px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-700 transition-all">
+                                <span class="material-symbols-outlined text-sm">add</span> Agregar Beneficio
+                            </button>
+                        </div>
+                        <div id="curso-benefits-admin" class="space-y-3"></div>
+                    </div>
+
+                    <!-- Modules & Lessons -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mt-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-bold">Módulos y Lecciones</h3>
+                            <button onclick="addModule()" class="flex items-center gap-2 bg-slate-800 text-slate-200 px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-700 transition-all">
+                                <span class="material-symbols-outlined text-sm">add</span> Agregar Módulo
+                            </button>
+                        </div>
+                        <div id="curso-modules-admin" class="space-y-6"></div>
+                    </div>
                 </div>
             </div>
-
-            <!-- ====== USUARIOS ====== -->
+<!-- ====== USUARIOS ====== -->
             <div id="panel-usuarios" class="hidden">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-extrabold flex items-center gap-2"><span class="material-symbols-outlined text-primary">group</span> Usuarios Registrados</h2>
@@ -672,6 +739,7 @@ let teamData = DEFAULT_TEAM;
 let galleryData = DEFAULT_GALLERY;
 let testimonialsData = DEFAULT_TESTIMONIALS;
 let productsData = [];
+let servicesData = [];
 
 // Cargar datos desde el backend
 fetch('/api/data?_t=' + Date.now())
@@ -682,6 +750,8 @@ fetch('/api/data?_t=' + Date.now())
         galleryData = data.gallery || DEFAULT_GALLERY;
         testimonialsData = data.testimonials || DEFAULT_TESTIMONIALS;
         productsData = data.products || [];
+        servicesData = data.services || [];
+        allAdminCourses = data.courses || [];
         if (!document.getElementById('admin-panel').classList.contains('hidden')) {
             renderAll();
         }
@@ -730,6 +800,16 @@ function showToast(msg = 'Guardado con éxito') {
 }
 
 // ─── IMAGE HELPER (CON COMPRESIÓN) ────────────────────────
+
+function readFileAsDataURL(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
+}
+
 function readImageFile(file, callback) {
     const reader = new FileReader();
     reader.onload = function(e) {
@@ -763,6 +843,8 @@ function renderAll() {
     renderGallery();
     renderTestimonials();
     renderProducts();
+    renderServices();
+    if(typeof renderCoursesList === 'function') renderCoursesList();
     loadUsers();
 }
 
@@ -778,9 +860,14 @@ function renderConfig() {
     document.getElementById('config-text-wa').value = configData.texts.whatsapp_phone || '';
     document.getElementById('config-text-email').value = configData.texts.contact_email || '';
     document.getElementById('config-text-address').value = configData.texts.contact_address || '';
+    
+    document.getElementById('config-social-facebook').value = configData.texts.social_facebook || '';
+    document.getElementById('config-social-instagram').value = configData.texts.social_instagram || '';
+    document.getElementById('config-social-tiktok').value = configData.texts.social_tiktok || '';
+    document.getElementById('config-social-youtube').value = configData.texts.social_youtube || '';
 
     if (configData.texts.home) {
-        ['services_pretitle', 'services_title', 'service1_title', 'service1_desc', 'service2_title', 'service2_desc', 'service3_title', 'service3_desc', 'service4_title', 'service4_desc',
+        ['services_pretitle', 'services_title',
          'process_pretitle', 'process_title', 'process1_title', 'process1_desc', 'process2_title', 'process2_desc', 'process3_title', 'process3_desc', 'process4_title', 'process4_desc',
          'diff_pretitle', 'diff_title', 'diff_desc', 'diff1_title', 'diff1_desc', 'diff2_title', 'diff2_desc', 'diff3_title', 'diff3_desc', 'diff4_title', 'diff4_desc', 'diff_item1', 'diff_item2', 'diff_item3',
          'testimonials_pretitle', 'testimonials_title', 'cta_title', 'cta_desc'].forEach(k => {
@@ -807,7 +894,7 @@ function renderConfig() {
         const apps = configData.texts.aplicativos;
         const fields = [
             'empleado_link', 'empleado_hero_title', 'empleado_hero_desc', 'empleado_gateway_title', 'empleado_gateway_desc',
-            'cliente_link', 'cliente_hero_title', 'cliente_hero_desc',
+            'cliente_link', 'cliente_avances_link', 'cliente_negociacion_link', 'cliente_hero_title', 'cliente_hero_desc',
             'cliente_step1_title', 'cliente_step1_desc', 'cliente_step2_title', 'cliente_step2_desc', 'cliente_step3_title', 'cliente_step3_desc',
             'cliente_tools_title', 'cliente_tools_desc',
             'autorizacion_title', 'autorizacion_subtitle',
@@ -1007,6 +1094,58 @@ function collectTestimonials() {
     });
 }
 
+// ─── SERVICES RENDERING ────────────────────────────────────
+function renderServices() {
+    const list = document.getElementById('services-list');
+    if (!list) return;
+    list.innerHTML = '';
+    servicesData.forEach((s, i) => {
+        const card = document.createElement('div');
+        card.className = 'bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col md:flex-row gap-4 items-start';
+        card.innerHTML = `
+            <div class="flex flex-col items-center gap-2 shrink-0 w-24">
+                <div class="size-14 bg-primary rounded-2xl flex items-center justify-center text-background-dark mb-2">
+                    <span class="material-symbols-outlined text-3xl" id="service-icon-preview-${i}">${s.icon || 'handshake'}</span>
+                </div>
+                <input type="text" id="service-icon-${i}" value="${s.icon || 'handshake'}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-[10px] text-center" placeholder="Icono" oninput="document.getElementById('service-icon-preview-${i}').textContent = this.value" />
+                <a href="https://fonts.google.com/icons" target="_blank" class="text-[9px] text-primary hover:underline">Ver Íconos</a>
+            </div>
+            <div class="flex-1 grid grid-cols-1 gap-3 w-full">
+                <div>
+                    <label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Título del Servicio</label>
+                    <input type="text" id="service-title-${i}" value="${s.title}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs" />
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase text-slate-400 mb-1 block">Descripción</label>
+                    <textarea id="service-desc-${i}" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs">${s.desc}</textarea>
+                </div>
+            </div>
+            <button onclick="removeService(${i})" class="text-red-400 hover:bg-red-900/30 p-2 rounded-lg shrink-0"><span class="material-symbols-outlined">delete</span></button>
+        `;
+        list.appendChild(card);
+    });
+}
+
+function addService() { 
+    servicesData.push({ title: 'Nuevo Servicio', desc: 'Descripción del servicio.', icon: 'handshake' }); 
+    renderServices(); 
+}
+
+function removeService(i) { 
+    if(confirm('¿Eliminar servicio?')){ 
+        servicesData.splice(i, 1); 
+        renderServices(); 
+    } 
+}
+
+function collectServices() {
+    servicesData.forEach((s, i) => {
+        s.title = document.getElementById(`service-title-${i}`)?.value || s.title;
+        s.desc = document.getElementById(`service-desc-${i}`)?.value || s.desc;
+        s.icon = document.getElementById(`service-icon-${i}`)?.value || s.icon;
+    });
+}
+
 // ─── PRODUCTS RENDERING ────────────────────────────────────
 function renderProducts() {
     const list = document.getElementById('products-list');
@@ -1126,9 +1265,14 @@ function saveAll() {
     configData.texts.whatsapp_phone = document.getElementById('config-text-wa').value;
     configData.texts.contact_email = document.getElementById('config-text-email').value;
     configData.texts.contact_address = document.getElementById('config-text-address').value;
+    
+    configData.texts.social_facebook = document.getElementById('config-social-facebook').value;
+    configData.texts.social_instagram = document.getElementById('config-social-instagram').value;
+    configData.texts.social_tiktok = document.getElementById('config-social-tiktok').value;
+    configData.texts.social_youtube = document.getElementById('config-social-youtube').value;
 
     if (!configData.texts.home) configData.texts.home = {};
-    ['services_pretitle', 'services_title', 'service1_title', 'service1_desc', 'service2_title', 'service2_desc', 'service3_title', 'service3_desc', 'service4_title', 'service4_desc',
+    ['services_pretitle', 'services_title',
      'process_pretitle', 'process_title', 'process1_title', 'process1_desc', 'process2_title', 'process2_desc', 'process3_title', 'process3_desc', 'process4_title', 'process4_desc',
      'diff_pretitle', 'diff_title', 'diff_desc', 'diff1_title', 'diff1_desc', 'diff2_title', 'diff2_desc', 'diff3_title', 'diff3_desc', 'diff4_title', 'diff4_desc', 'diff_item1', 'diff_item2', 'diff_item3',
      'testimonials_pretitle', 'testimonials_title', 'cta_title', 'cta_desc'].forEach(k => {
@@ -1154,7 +1298,7 @@ function saveAll() {
     
     const fields = [
         'empleado_link', 'empleado_hero_title', 'empleado_hero_desc', 'empleado_gateway_title', 'empleado_gateway_desc',
-        'cliente_link', 'cliente_hero_title', 'cliente_hero_desc',
+        'cliente_link', 'cliente_avances_link', 'cliente_negociacion_link', 'cliente_hero_title', 'cliente_hero_desc',
         'cliente_step1_title', 'cliente_step1_desc', 'cliente_step2_title', 'cliente_step2_desc', 'cliente_step3_title', 'cliente_step3_desc',
         'cliente_tools_title', 'cliente_tools_desc',
         'autorizacion_title', 'autorizacion_subtitle',
@@ -1171,20 +1315,14 @@ function saveAll() {
     configData.texts.tienda.desc = document.getElementById('config-tienda-desc').value;
 
     // Curso
-    if (!configData.texts.curso) configData.texts.curso = {};
-    configData.texts.curso.pretitle = document.getElementById('config-curso-pretitle').value;
-    configData.texts.curso.title = document.getElementById('config-curso-title').value;
-    configData.texts.curso.subtitle = document.getElementById('config-curso-subtitle').value;
-    configData.texts.curso.price = parseInt(document.getElementById('config-curso-price').value) || 150000;
-    configData.texts.curso.wompi_public_key = document.getElementById('config-curso-wompi-key').value;
-    configData.texts.curso.cta_text = document.getElementById('config-curso-cta').value;
-    configData.texts.curso.benefits = collectCourseBenefits();
+    if (activeAdminCourseIndex !== -1) saveCurrentCourseConfig();
 
     // Collect team and gallery
     collectTeam();
     collectGallery();
     collectTestimonials();
     collectProducts();
+    collectServices();
 
     // Promises
     Promise.all([
@@ -1192,7 +1330,9 @@ function saveAll() {
         fetch('/api/data/team', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(teamData) }),
         fetch('/api/data/gallery', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(galleryData) }),
         fetch('/api/data/testimonials', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(testimonialsData) }),
-        fetch('/api/data/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(productsData) })
+        fetch('/api/data/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(productsData) }),
+        fetch('/api/data/courses', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(allAdminCourses) }),
+        fetch('/api/data/services', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(servicesData) })
     ])
     .then(responses => Promise.all(responses.map(res => res.json())))
     .then(results => {
@@ -1248,6 +1388,262 @@ function collectCourseBenefits() {
 }
 
 // ─── USERS TABLE ────────────────────────────────────────────
+
+let allAdminCourses = [];
+let activeAdminCourseIndex = -1;
+
+function renderCoursesList() {
+    const list = document.getElementById('cursos-admin-list');
+    if (!list) return;
+    list.innerHTML = '';
+    
+    allAdminCourses.forEach((c, idx) => {
+        list.innerHTML += `
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between group hover:border-primary transition-colors">
+                <div class="flex gap-4 items-start mb-4">
+                    <img src="${c.photo || 'favicon.jpg'}" class="w-16 h-16 object-cover rounded-xl bg-slate-800 shrink-0" />
+                    <div>
+                        <h4 class="text-lg font-bold text-white leading-tight mb-1">${c.title || 'Curso Sin Nombre'}</h4>
+                        <p class="text-sm text-slate-400">${c.modules ? c.modules.length : 0} módulos</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mt-4 pt-4 border-t border-slate-800">
+                    <span class="text-primary font-bold">$${parseInt(c.price || 0).toLocaleString('es-CO')}</span>
+                    <div class="flex gap-2">
+                        <button onclick="editCourse(${idx})" class="bg-slate-800 text-white px-4 py-2 rounded-lg font-bold text-sm hover:bg-slate-700 transition-all">Editar</button>
+                        <button onclick="deleteCourse(${idx})" class="text-red-400 hover:text-red-300 p-2 rounded-lg transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+}
+
+function createNewCourse() {
+    allAdminCourses.push({
+        id: 'c' + Date.now(),
+        title: 'Nuevo Curso',
+        subtitle: '',
+        price: 0,
+        wompi_public_key: '',
+        benefits: [],
+        modules: [],
+        photo: ''
+    });
+    renderCoursesList();
+    editCourse(allAdminCourses.length - 1);
+}
+
+function deleteCourse(idx) {
+    if (confirm('¿Seguro que deseas eliminar este curso por completo?')) {
+        allAdminCourses.splice(idx, 1);
+        renderCoursesList();
+    }
+}
+
+function editCourse(idx) {
+    activeAdminCourseIndex = idx;
+    const c = allAdminCourses[idx];
+    
+    document.getElementById('cursos-list-view').classList.add('hidden');
+    document.getElementById('curso-editor-view').classList.remove('hidden');
+    
+    document.getElementById('config-curso-pretitle').value = c.pretitle || '';
+    document.getElementById('config-curso-title').value = c.title || '';
+    document.getElementById('config-curso-subtitle').value = c.subtitle || '';
+    document.getElementById('config-curso-price').value = c.price || 0;
+    document.getElementById('config-curso-wompi-key').value = c.wompi_public_key || '';
+    document.getElementById('config-curso-photo-preview').src = c.photo || '';
+    
+    const photoInput = document.getElementById('config-curso-photo-input');
+    photoInput.onchange = async (e) => {
+        if (e.target.files && e.target.files[0]) {
+            readImageFile(e.target.files[0], (b64) => {
+                allAdminCourses[activeAdminCourseIndex].photo = b64;
+                document.getElementById('config-curso-photo-preview').src = b64;
+            });
+        }
+    };
+    
+    renderCourseBenefits();
+    renderCourseModules();
+}
+
+function backToCoursesList() {
+    saveCurrentCourseConfig();
+    document.getElementById('curso-editor-view').classList.add('hidden');
+    document.getElementById('cursos-list-view').classList.remove('hidden');
+    activeAdminCourseIndex = -1;
+    renderCoursesList();
+}
+
+function saveCurrentCourseConfig() {
+    if (activeAdminCourseIndex === -1) return;
+    const c = allAdminCourses[activeAdminCourseIndex];
+    c.pretitle = document.getElementById('config-curso-pretitle').value;
+    c.title = document.getElementById('config-curso-title').value;
+    c.subtitle = document.getElementById('config-curso-subtitle').value;
+    c.price = parseInt(document.getElementById('config-curso-price').value) || 0;
+    c.wompi_public_key = document.getElementById('config-curso-wompi-key').value;
+    c.benefits = collectCourseBenefits();
+}
+
+function renderCourseBenefits() {
+    const container = document.getElementById('curso-benefits-admin');
+    if (!container) return;
+    container.innerHTML = '';
+    const benefits = allAdminCourses[activeAdminCourseIndex].benefits || [];
+    benefits.forEach(b => {
+        const row = document.createElement('div');
+        row.className = 'flex items-center gap-3 bg-slate-800 p-2 pl-4 rounded-xl';
+        row.innerHTML = `
+            <span class="material-symbols-outlined text-primary text-lg shrink-0">check_circle</span>
+            <input type="text" class="curso-benefit-input flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" value="${b.replace(/"/g, '&quot;')}" />
+            <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 transition-colors shrink-0">
+                <span class="material-symbols-outlined text-lg">delete</span>
+            </button>
+        `;
+        container.appendChild(row);
+    });
+}
+
+function addCourseBenefit() {
+    const container = document.getElementById('curso-benefits-admin');
+    const row = document.createElement('div');
+    row.className = 'flex items-center gap-3 bg-slate-800 p-2 pl-4 rounded-xl';
+    row.innerHTML = `
+        <span class="material-symbols-outlined text-primary text-lg shrink-0">check_circle</span>
+        <input type="text" class="curso-benefit-input flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm" value="" placeholder="Nuevo beneficio..." />
+        <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 transition-colors shrink-0">
+            <span class="material-symbols-outlined text-lg">delete</span>
+        </button>
+    `;
+    container.appendChild(row);
+    row.querySelector('input').focus();
+}
+
+function collectCourseBenefits() {
+    const inputs = document.querySelectorAll('.curso-benefit-input');
+    return Array.from(inputs).map(i => i.value).filter(v => v.trim() !== '');
+}
+
+function renderCourseModules() {
+    const list = document.getElementById('curso-modules-admin');
+    if (!list) return;
+    list.innerHTML = '';
+    const courseModulesData = allAdminCourses[activeAdminCourseIndex].modules || [];
+    
+    courseModulesData.forEach((m, mIdx) => {
+        const modEl = document.createElement('div');
+        modEl.className = 'bg-slate-800 border border-slate-700 rounded-xl p-4';
+        
+        let lessonsHtml = '';
+        if (m.lessons) {
+            m.lessons.forEach((l, lIdx) => {
+                let resHtml = '';
+                if (l.resources && l.resources.length > 0) {
+                    l.resources.forEach((r, rIdx) => {
+                        resHtml += `
+                            <div class="flex items-center gap-2 bg-slate-800 p-1.5 rounded mb-1">
+                                <span class="material-symbols-outlined text-[14px] text-primary">description</span>
+                                <span class="text-[10px] text-slate-300 truncate flex-1">${r.title}</span>
+                                <button onclick="removeCourseLessonResource(${mIdx}, ${lIdx}, ${rIdx})" title="Eliminar recurso" class="text-red-400 hover:text-red-300 p-0.5 rounded transition-colors"><span class="material-symbols-outlined text-[14px]">delete</span></button>
+                            </div>
+                        `;
+                    });
+                }
+                
+                lessonsHtml += `
+                    <div class="bg-slate-900 border border-slate-700 rounded-lg p-3 mt-3 flex flex-col gap-2 relative">
+                        <button onclick="removeCourseLesson(${mIdx}, ${lIdx})" class="absolute top-2 right-2 text-red-400 hover:bg-red-900/30 p-1 rounded"><span class="material-symbols-outlined text-xs">close</span></button>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div><label class="text-[10px] text-slate-400">Título de Lección</label><input type="text" value="${l.title || ''}" oninput="updateCourseLesson(${mIdx}, ${lIdx}, 'title', this.value)" class="w-full bg-slate-800 border border-slate-700 rounded p-1 text-xs" /></div>
+                            <div><label class="text-[10px] text-slate-400">Duración</label><input type="text" value="${l.duration || ''}" oninput="updateCourseLesson(${mIdx}, ${lIdx}, 'duration', this.value)" class="w-full bg-slate-800 border border-slate-700 rounded p-1 text-xs" /></div>
+                            <div class="md:col-span-2"><label class="text-[10px] text-slate-400">URL del Video</label><input type="text" value="${l.video_url || ''}" oninput="updateCourseLesson(${mIdx}, ${lIdx}, 'video_url', this.value)" class="w-full bg-slate-800 border border-slate-700 rounded p-1 text-xs" /></div>
+                            <div class="md:col-span-2"><label class="text-[10px] text-slate-400">Descripción</label><textarea rows="2" oninput="updateCourseLesson(${mIdx}, ${lIdx}, 'description', this.value)" class="w-full bg-slate-800 border border-slate-700 rounded p-1 text-xs">${l.description || ''}</textarea></div>
+                            <div class="md:col-span-2 border-t border-slate-700 pt-2 mt-1">
+                                <label class="text-[10px] font-bold text-slate-400 block mb-1">Recursos Descargables</label>
+                                <div class="mb-2">${resHtml}</div>
+                                <div class="flex items-center gap-2">
+                                    <input type="file" id="file-res-${mIdx}-${lIdx}" class="hidden" multiple onchange="addCourseLessonResources(${mIdx}, ${lIdx})" />
+                                    <button onclick="document.getElementById('file-res-${mIdx}-${lIdx}').click()" class="text-[10px] bg-primary text-slate-900 font-bold px-3 py-1.5 rounded hover:bg-primary/90 transition-colors flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[12px]">upload</span> Subir Archivos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        modEl.innerHTML = `
+            <div class="flex justify-between items-center mb-2">
+                <input type="text" value="${m.title || ''}" oninput="updateCourseModule(${mIdx}, 'title', this.value)" class="w-2/3 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm font-bold" placeholder="Título del Módulo" />
+                <div class="flex gap-2">
+                    <button onclick="addCourseLesson(${mIdx})" class="text-xs bg-slate-700 hover:bg-slate-600 px-3 py-1.5 rounded-lg flex items-center gap-1"><span class="material-symbols-outlined text-[10px]">add</span> Lección</button>
+                    <button onclick="removeCourseModule(${mIdx})" class="text-red-400 hover:bg-red-900/30 p-1.5 rounded-lg"><span class="material-symbols-outlined text-sm">delete</span></button>
+                </div>
+            </div>
+            <div class="pl-4 border-l-2 border-slate-700">
+                ${lessonsHtml}
+            </div>
+        `;
+        list.appendChild(modEl);
+    });
+}
+
+function addModule() {
+    allAdminCourses[activeAdminCourseIndex].modules.push({ id: 'm' + Date.now(), title: 'Nuevo Módulo', lessons: [] });
+    renderCourseModules();
+}
+function removeCourseModule(mIdx) {
+    if (confirm('¿Eliminar módulo?')) { allAdminCourses[activeAdminCourseIndex].modules.splice(mIdx, 1); renderCourseModules(); }
+}
+function updateCourseModule(mIdx, field, val) { allAdminCourses[activeAdminCourseIndex].modules[mIdx][field] = val; }
+
+function addCourseLesson(mIdx) {
+    if (!allAdminCourses[activeAdminCourseIndex].modules[mIdx].lessons) allAdminCourses[activeAdminCourseIndex].modules[mIdx].lessons = [];
+    allAdminCourses[activeAdminCourseIndex].modules[mIdx].lessons.push({ id: 'l' + Date.now(), title: 'Nueva Lección', duration: '10:00', video_url: '', description: '', resources: [] });
+    renderCourseModules();
+}
+function removeCourseLesson(mIdx, lIdx) {
+    if (confirm('¿Eliminar lección?')) { allAdminCourses[activeAdminCourseIndex].modules[mIdx].lessons.splice(lIdx, 1); renderCourseModules(); }
+}
+function updateCourseLesson(mIdx, lIdx, field, val) {
+    allAdminCourses[activeAdminCourseIndex].modules[mIdx].lessons[lIdx][field] = val;
+}
+
+async function addCourseLessonResources(mIdx, lIdx) {
+    const input = document.getElementById(`file-res-${mIdx}-${lIdx}`);
+    if (!input || !input.files || input.files.length === 0) return;
+    
+    if (!allAdminCourses[activeAdminCourseIndex].modules[mIdx].lessons[lIdx].resources) {
+        allAdminCourses[activeAdminCourseIndex].modules[mIdx].lessons[lIdx].resources = [];
+    }
+    
+    for (let i = 0; i < input.files.length; i++) {
+        const file = input.files[i];
+        try {
+            const base64Url = await readFileAsDataURL(file);
+            allAdminCourses[activeAdminCourseIndex].modules[mIdx].lessons[lIdx].resources.push({
+                title: file.name,
+                url: base64Url,
+                type: file.name.split('.').pop().toLowerCase()
+            });
+        } catch(e) { console.error(e); }
+    }
+    input.value = '';
+    renderCourseModules();
+}
+
+function removeCourseLessonResource(mIdx, lIdx, rIdx) {
+    if (confirm('¿Eliminar recurso?')) {
+        allAdminCourses[activeAdminCourseIndex].modules[mIdx].lessons[lIdx].resources.splice(rIdx, 1);
+        renderCourseModules();
+    }
+}
+
 function loadUsers() {
     fetch('/api/users?_t=' + Date.now())
         .then(res => res.json())

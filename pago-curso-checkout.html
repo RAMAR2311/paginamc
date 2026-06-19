@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="es">
+<html class="bg-slate-950 scroll-smooth" lang="es">
 
 <head>
     <link rel="icon" type="image/jpeg" href="favicon.jpg" />
@@ -47,7 +47,7 @@
     </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center relative overflow-hidden">
+<body class="min-h-screen flex flex-col bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center relative py-12">
 
     <!-- Ambient Background -->
     <div class="fixed inset-0 pointer-events-none">
@@ -71,7 +71,8 @@
         </div>
 
         <!-- Checkout Card -->
-        <div class="pulse-border bg-white dark:bg-slate-900/50 backdrop-blur-2xl border border-slate-200 dark:border-slate-800 rounded-[2rem] p-8 sm:p-10 shadow-2xl animate-fadeInUp animate-delay-100">
+        <div class="animate-fadeInUp animate-delay-100">
+        <div class="pulse-border bg-white dark:bg-slate-900/50 backdrop-blur-2xl border border-slate-200 dark:border-slate-800 rounded-[2rem] p-8 sm:p-10 shadow-2xl">
             
             <!-- Course Info -->
             <div class="text-center mb-8">
@@ -106,6 +107,13 @@
                 Pagar de forma segura con Wompi
             </button>
 
+            <!-- Botón de Simulación -->
+            <button id="btn-simular-pago" 
+                class="w-full mt-4 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold py-3 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 border border-slate-300 dark:border-slate-700">
+                <span class="material-symbols-outlined text-[20px]">science</span>
+                Simular Pago (Prueba de Flujo)
+            </button>
+
             <!-- Security badges -->
             <div class="flex items-center justify-center gap-6 mt-6 text-slate-500">
                 <div class="flex items-center gap-1.5 text-[10px] uppercase tracking-wider">
@@ -117,6 +125,7 @@
                     SSL 256-bit
                 </div>
             </div>
+        </div>
         </div>
 
         <!-- Logout / Back -->
@@ -137,8 +146,18 @@
         // VERIFY SESSION & LOAD COURSE DATA
         // ========================================================
         let cursoConfig = null;
+        let activeCourseId = null;
 
         async function init() {
+            const urlParams = new URLSearchParams(window.location.search);
+            activeCourseId = urlParams.get('courseId');
+
+            if (!activeCourseId) {
+                alert("No se especificó ningún curso.");
+                window.location.href = '/tienda.html';
+                return;
+            }
+
             // 1. Verify session
             try {
                 const sessionRes = await fetch('/api/session');
@@ -159,10 +178,12 @@
             try {
                 const dataRes = await fetch('/api/data');
                 const data = await dataRes.json();
-                cursoConfig = data.config?.texts?.curso;
+                
+                const allCourses = data.courses || [];
+                cursoConfig = allCourses.find(c => c.id === activeCourseId);
 
                 if (cursoConfig) {
-                    document.getElementById('curso-title').textContent = cursoConfig.title || 'Eliminación de Reportes Negativos';
+                    document.getElementById('curso-title').textContent = cursoConfig.title || 'Curso';
                     document.getElementById('curso-subtitle').textContent = cursoConfig.subtitle || '';
                     document.getElementById('curso-price').textContent = parseInt(cursoConfig.price || 150000).toLocaleString('es-CO');
 
@@ -200,14 +221,33 @@
                 console.log('Resultado de la Transacción:', transaction);
 
                 if (transaction.status === 'APPROVED') {
-                    alert('¡Pago aprobado exitosamente! Tu acceso al curso será activado. ID: ' + transaction.id);
-                    // Optionally redirect to a thank-you page
+                    fetch('/api/payment-success', { 
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ course_id: activeCourseId })
+                    }).then(() => {
+                        alert('¡Pago aprobado exitosamente! Tu acceso al curso será activado. ID: ' + transaction.id);
+                        window.location.href = '/mis-cursos.html';
+                    });
                 } else if (transaction.status === 'DECLINED') {
                     alert('El pago ha sido rechazado. Por favor, intenta con otro método de pago.');
                 } else {
                     alert('Estado de la transacción: ' + transaction.status);
                 }
             });
+        });
+
+        // ========================================================
+        // SIMULAR PAGO (PRUEBA)
+        // ========================================================
+        document.getElementById('btn-simular-pago').addEventListener('click', async () => {
+            alert('¡Pago simulado exitosamente! Simulando activación del curso...');
+            await fetch('/api/payment-success', { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ course_id: activeCourseId })
+            });
+            window.location.href = '/mis-cursos.html';
         });
 
         // ========================================================

@@ -1,1 +1,79 @@
-[]
+[
+    {
+        "id": "a0a8f78e8b1f42278c363cc3de28f836",
+        "nombre": "Marlon Stid Ramirez Villada",
+        "email": "marlonrami99@outlook.com",
+        "password_hash": "scrypt:32768:8:1$NA9sry3iQVLHMgS8$1b449b97fa815d9e86dfbe97502a2550bf50b9d08b594e821e0db10dc7c1e0b81eba6390e082dad1bc788092de8fd61f8aacf1cc814a2a844b692d8f40c891a8",
+        "fecha_registro": "2026-06-16T20:23:07.472841",
+        "has_paid": true,
+        "completed_lessons": {
+            "c1": [
+                "l1781665482534",
+                "l1781665502201",
+                "l1781665505760",
+                "l1781665497676",
+                "l1",
+                "l2",
+                "l3",
+                "l4"
+            ]
+        },
+        "purchased_courses": [
+            "c1",
+            "c1781671250972"
+        ]
+    },
+    {
+        "id": "961b67482cc94ba4bd94c4dbde31869b",
+        "nombre": "Marlon Ramirez",
+        "email": "marlonramr99@gmail.com",
+        "password_hash": "scrypt:32768:8:1$xF2QZb0xuUMjaZeV$8f8fcbdf80b5620caa26f08305463fb28c28287cbcc10fcd54003b839475daf4faaedc54a835533af0eb28fab159007d418aa62f87d36e343e565afd55eb89b1",
+        "fecha_registro": "2026-06-16T20:44:13.005354"
+    },
+    {
+        "id": "26c533695be546f2b96e76bde58b6e15",
+        "nombre": "Marlon Stid Ramirez Villada",
+        "email": "marlon.ramirez@zenic.com.co",
+        "password_hash": "scrypt:32768:8:1$HusWzHYv1kZ7ZkoY$81ae11466e6f5ffc4ebd1529bda6b040ca74d1ff7ff70db8a21de5b7bb5bdfb8fbf8cccfeca57f27ec0e4bc008b14401d6d4b45cb4bbfbb0ea7f1211fd48f9fc",
+        "fecha_registro": "2026-06-17T01:50:34.192194",
+        "has_paid": true,
+        "purchased_courses": [
+            "c1"
+        ],
+        "completed_lessons": {}
+    },
+    {
+        "id": "a9246ff3f84540c4b847595a16b48fdd",
+        "nombre": "JUAN PELAEZ MONQUERA",
+        "email": "juan@gmail.com",
+        "password_hash": "scrypt:32768:8:1$QA2vEnaEjVAKSb9C$aed9bb5db91442720c6b1cf0f1a90298259f798687449caec0bf84aefd40246ecbac4a224bbd279a13bfc8a4e33557caa01faaf461e8b4fcc8de763fed60fd3d",
+        "fecha_registro": "2026-06-17T10:18:03.488241",
+        "has_paid": true,
+        "purchased_courses": [
+            "c1"
+        ],
+        "completed_lessons": {
+            "c1": [
+                "l1"
+            ]
+        }
+    },
+    {
+        "id": "9bd4a262ad0843a4a09e8e9db244a15f",
+        "nombre": "MALLY CABRERA",
+        "email": "maryiyinethgarcia@hotmail.com",
+        "password_hash": "scrypt:32768:8:1$EH70PdQpeXezJE4k$0534f45966811d2a9fde678bcb94c05bbcabc95e3f6a1de081b3250d7531600fd87373838a27f82a19603be9ea11b2cf9ac410a9acd3939d34fa625d3ed8b6d1",
+        "fecha_registro": "2026-06-17T13:13:26.362798",
+        "has_paid": true,
+        "purchased_courses": [
+            "c1",
+            "c1781720644199"
+        ],
+        "completed_lessons": {
+            "c1": [
+                "l1",
+                "l2"
+            ]
+        }
+    }
+]

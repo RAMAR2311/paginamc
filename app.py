@@ -141,6 +141,7 @@ DEFAULT_DATA = {
             'hero_video': 'video_oficina.mp4'
         }
     },
+    'courses': [],
     'team': [
         { "name": "Alejandro Torres", "role": "Asesor Comercial Senior", "bio": "Especialista en acuerdos comerciales de gran volumen.", "photo": "advisor_portrait_man.png", "whatsapp": "" },
         { "name": "Camila Gómez",    "role": "Asesora Comercial",       "bio": "Manejo de créditos hipotecarios y defensa legal.",   "photo": "advisor_portrait_woman.png", "whatsapp": "" },
@@ -252,10 +253,60 @@ def update_gallery():
     save_data(data)
     return jsonify({"success": True, "message": "Galería guardada correctamente"})
 
+@app.route('/api/data/courses', methods=['POST'])
+def update_courses():
+    """Actualiza la lista de cursos y guarda los recursos en el disco"""
+    data = load_data()
+    courses_list = request.json
+    
+    for course in courses_list:
+        if course.get('photo', '').startswith('data:image'):
+            try:
+                import uuid
+                header, encoded = course['photo'].split(',', 1)
+                ext = header.split('/')[1].split(';')[0]
+                filename = f"course_{uuid.uuid4().hex}.{ext}"
+                filepath = os.path.join(UPLOAD_FOLDER, filename)
+                with open(filepath, 'wb') as f:
+                    f.write(base64.b64decode(encoded))
+                course['photo'] = f'/uploads/{filename}'
+            except Exception as e:
+                print("Error guardando foto del curso:", e)
+                
+        for module in course.get('modules', []):
+            for lesson in module.get('lessons', []):
+                for res in lesson.get('resources', []):
+                    url = res.get('url', '')
+                    if url.startswith('data:'):
+                        try:
+                            header, encoded = url.split(',', 1)
+                            ext = 'bin'
+                            if 'title' in res and '.' in res['title']:
+                                ext = res['title'].rsplit('.', 1)[-1]
+                            
+                            filename = f"res_{uuid.uuid4().hex}.{ext}"
+                            filepath = os.path.join(UPLOAD_FOLDER, filename)
+                            with open(filepath, 'wb') as f:
+                                f.write(base64.b64decode(encoded))
+                            res['url'] = f'/uploads/{filename}'
+                        except Exception as e:
+                            print("Error guardando recurso de curso:", e)
+    
+    data['courses'] = courses_list
+    save_data(data)
+    return jsonify({"success": True, "message": "Cursos guardados correctamente"})
+
+@app.route('/api/data/services', methods=['POST'])
+def update_services():
+    data = load_data()
+    services_list = request.json
+    data['services'] = services_list
+    save_data(data)
+    return jsonify({"success": True, "message": "Servicios guardados correctamente"})
+
 
 @app.route('/api/data/testimonials', methods=['POST'])
 def update_testimonials():
-    """Actualiza la lista de testimonios y guarda las fotos en el disco"""
     data = load_data()
     testimonials_list = request.json
     
@@ -367,6 +418,162 @@ def save_users(users):
         json.dump(users, f, ensure_ascii=False, indent=4)
 
 
+
+@app.route('/api/data/save-all', methods=['POST'])
+def save_all_data():
+    """Guarda toda la información (config, team, gallery, testimonials, products, courses) en un solo endpoint para evitar condiciones de carrera"""
+    try:
+        payload = request.json
+        data = load_data()
+        
+        # 1. Process Config
+        if 'config' in payload:
+            config_data = payload['config']
+            # Procesar logo
+            logo = config_data.get('images', {}).get('logo', '')
+            if logo.startswith('data:image'):
+                try:
+                    header, encoded = logo.split(',', 1)
+                    ext = header.split('/')[1].split(';')[0]
+                    filename = f"logo_{uuid.uuid4().hex}.{ext}"
+                    filepath = os.path.join(UPLOAD_FOLDER, filename)
+                    with open(filepath, 'wb') as f:
+                        f.write(base64.b64decode(encoded))
+                    config_data['images']['logo'] = f'/uploads/{filename}'
+                except Exception as e:
+                    print("Error guardando logo:", e)
+            
+            # Procesar video
+            video = config_data.get('images', {}).get('hero_video', '')
+            if video.startswith('data:video'):
+                try:
+                    header, encoded = video.split(',', 1)
+                    ext = header.split('/')[1].split(';')[0]
+                    filename = f"hero_video_{uuid.uuid4().hex}.{ext}"
+                    filepath = os.path.join(UPLOAD_FOLDER, filename)
+                    with open(filepath, 'wb') as f:
+                        f.write(base64.b64decode(encoded))
+                    config_data['images']['hero_video'] = f'/uploads/{filename}'
+                except Exception as e:
+                    print("Error guardando video:", e)
+            data['config'] = config_data
+
+        # 2. Process Team
+        if 'team' in payload:
+            team_list = payload['team']
+            for member in team_list:
+                if member.get('photo', '').startswith('data:image'):
+                    try:
+                        header, encoded = member['photo'].split(',', 1)
+                        ext = header.split('/')[1].split(';')[0]
+                        filename = f"team_{uuid.uuid4().hex}.{ext}"
+                        filepath = os.path.join(UPLOAD_FOLDER, filename)
+                        with open(filepath, 'wb') as f:
+                            f.write(base64.b64decode(encoded))
+                        member['photo'] = f'/uploads/{filename}'
+                    except Exception as e:
+                        print("Error guardando foto equipo:", e)
+            data['team'] = team_list
+
+        # 3. Process Gallery
+        if 'gallery' in payload:
+            gallery_list = payload['gallery']
+            for item in gallery_list:
+                if item.get('photo', '').startswith('data:image'):
+                    try:
+                        header, encoded = item.get('photo').split(',', 1)
+                        ext = header.split('/')[1].split(';')[0]
+                        filename = f"gallery_{uuid.uuid4().hex}.{ext}"
+                        filepath = os.path.join(UPLOAD_FOLDER, filename)
+                        with open(filepath, 'wb') as f:
+                            f.write(base64.b64decode(encoded))
+                        item['photo'] = f'/uploads/{filename}'
+                    except Exception as e:
+                        print("Error guardando foto galeria:", e)
+            data['gallery'] = gallery_list
+
+        # 4. Process Testimonials
+        if 'testimonials' in payload:
+            testimonials_list = payload['testimonials']
+            for item in testimonials_list:
+                if item.get('photo', '').startswith('data:image'):
+                    try:
+                        header, encoded = item.get('photo').split(',', 1)
+                        ext = header.split('/')[1].split(';')[0]
+                        filename = f"testimonial_{uuid.uuid4().hex}.{ext}"
+                        filepath = os.path.join(UPLOAD_FOLDER, filename)
+                        with open(filepath, 'wb') as f:
+                            f.write(base64.b64decode(encoded))
+                        item['photo'] = f'/uploads/{filename}'
+                    except Exception as e:
+                        print("Error guardando foto testimonio:", e)
+            data['testimonials'] = testimonials_list
+
+        # 5. Process Products
+        if 'products' in payload:
+            products_list = payload['products']
+            for prod in products_list:
+                prod['price'] = int(prod.get('price', 0))
+                if prod.get('photo', '').startswith('data:image'):
+                    try:
+                        header, encoded = prod['photo'].split(',', 1)
+                        ext = header.split('/')[1].split(';')[0]
+                        filename = f"product_{uuid.uuid4().hex}.{ext}"
+                        filepath = os.path.join(UPLOAD_FOLDER, filename)
+                        with open(filepath, 'wb') as f:
+                            f.write(base64.b64decode(encoded))
+                        prod['photo'] = f'/uploads/{filename}'
+                    except Exception as e:
+                        print("Error guardando foto producto:", e)
+            data['products'] = products_list
+
+        # 5.5 Process Services
+        if 'services' in payload:
+            data['services'] = payload['services']
+
+        # 6. Process Courses
+        if 'courses' in payload:
+            courses_list = payload['courses']
+            for course in courses_list:
+                if course.get('photo', '').startswith('data:image'):
+                    try:
+                        header, encoded = course['photo'].split(',', 1)
+                        ext = header.split('/')[1].split(';')[0]
+                        filename = f"course_{uuid.uuid4().hex}.{ext}"
+                        filepath = os.path.join(UPLOAD_FOLDER, filename)
+                        with open(filepath, 'wb') as f:
+                            f.write(base64.b64decode(encoded))
+                        course['photo'] = f'/uploads/{filename}'
+                    except Exception as e:
+                        print("Error guardando foto curso:", e)
+                
+                for module in course.get('modules', []):
+                    for lesson in module.get('lessons', []):
+                        for res in lesson.get('resources', []):
+                            url = res.get('url', '')
+                            if url.startswith('data:'):
+                                try:
+                                    header, encoded = url.split(',', 1)
+                                    ext = 'bin'
+                                    if 'title' in res and '.' in res['title']:
+                                        ext = res['title'].rsplit('.', 1)[-1]
+                                    
+                                    filename = f"res_{uuid.uuid4().hex}.{ext}"
+                                    filepath = os.path.join(UPLOAD_FOLDER, filename)
+                                    with open(filepath, 'wb') as f:
+                                        f.write(base64.b64decode(encoded))
+                                    res['url'] = f'/uploads/{filename}'
+                                except Exception as e:
+                                    print("Error guardando recurso curso:", e)
+            data['courses'] = courses_list
+
+        save_data(data)
+        return jsonify({"success": True, "message": "Todo guardado correctamente"})
+    except Exception as e:
+        print("Error general al guardar todo:", e)
+        return jsonify({"success": False, "error": str(e)})
+
+
 @app.route('/api/registro', methods=['POST'])
 def api_registro():
     """Crea una nueva cuenta de usuario"""
@@ -392,7 +599,10 @@ def api_registro():
         'nombre': nombre,
         'email': email,
         'password_hash': generate_password_hash(password),
-        'fecha_registro': datetime.now().isoformat()
+        'fecha_registro': datetime.now().isoformat(),
+        'has_paid': False, # Deprecated in favor of purchased_courses
+        'purchased_courses': [],
+        'completed_lessons': {}
     }
     users.append(new_user)
     save_users(users)
@@ -403,7 +613,9 @@ def api_registro():
     session['user_email'] = new_user['email']
 
     # Determinar redirección
-    redirect_url = session.pop('next_url', '/')
+    redirect_url = session.pop('next_url', None)
+    if not redirect_url:
+        redirect_url = '/mis-cursos.html'
 
     return jsonify({
         'success': True,
@@ -435,7 +647,9 @@ def api_login():
     session['user_email'] = user['email']
 
     # Determinar redirección
-    redirect_url = session.pop('next_url', '/')
+    redirect_url = session.pop('next_url', None)
+    if not redirect_url:
+        redirect_url = '/mis-cursos.html'
 
     return jsonify({
         'success': True,
@@ -456,39 +670,89 @@ def api_logout():
 def api_session():
     """Devuelve el estado de sesión actual"""
     if 'user_id' in session:
+        users = load_users()
+        user = next((u for u in users if u['id'] == session['user_id']), None)
+        has_paid = user.get('has_paid', False) if user else False
+        purchased_courses = user.get('purchased_courses', []) if user else []
+        completed_lessons = user.get('completed_lessons', {}) if user else {}
         return jsonify({
             'logged_in': True,
             'user': {
                 'nombre': session.get('user_nombre'),
-                'email': session.get('user_email')
+                'email': session.get('user_email'),
+                'has_paid': has_paid,
+                'purchased_courses': purchased_courses,
+                'completed_lessons': completed_lessons
             }
         })
     return jsonify({'logged_in': False})
 
+@app.route('/api/payment-success', methods=['POST'])
+def api_payment_success():
+    """Marca al usuario como que ha pagado un curso específico"""
+    if 'user_id' not in session:
+        return jsonify({'success': False, 'error': 'No autorizado'}), 401
+    
+    data = request.json
+    course_id = data.get('course_id')
+    if not course_id:
+        return jsonify({'success': False, 'error': 'course_id requerido'}), 400
+        
+    users = load_users()
+    for u in users:
+        if u['id'] == session['user_id']:
+            u['has_paid'] = True # Keep for backwards compatibility
+            if 'purchased_courses' not in u:
+                u['purchased_courses'] = []
+            if course_id not in u['purchased_courses']:
+                u['purchased_courses'].append(course_id)
+            break
+    save_users(users)
+    return jsonify({'success': True, 'message': 'Pago registrado exitosamente'})
+
+@app.route('/api/lesson-complete', methods=['POST'])
+def api_lesson_complete():
+    """Marca una lección como completada para un curso y usuario activo"""
+    if 'user_id' not in session:
+        return jsonify({'success': False, 'error': 'No autorizado'}), 401
+    
+    data = request.json
+    course_id = data.get('course_id')
+    lesson_id = data.get('lesson_id')
+    
+    if not course_id or not lesson_id:
+        return jsonify({'success': False, 'error': 'course_id y lesson_id requeridos'}), 400
+        
+    users = load_users()
+    for u in users:
+        if u['id'] == session['user_id']:
+            if 'completed_lessons' not in u or isinstance(u['completed_lessons'], list):
+                u['completed_lessons'] = {}
+            if course_id not in u['completed_lessons']:
+                u['completed_lessons'][course_id] = []
+            if lesson_id not in u['completed_lessons'][course_id]:
+                u['completed_lessons'][course_id].append(lesson_id)
+            break
+    save_users(users)
+    return jsonify({'success': True, 'message': 'Lección completada registrada'})
 
 @app.route('/comprar-curso')
 def comprar_curso():
-    """Intercepta la intención de compra del curso.
-    Si el usuario tiene sesión → redirige a /pago-curso.
-    Si no → guarda la intención y redirige a registro."""
+    course_id = request.args.get('courseId', '')
     if 'user_id' in session:
-        return redirect('/pago-curso')
+        return redirect(f'/pago-curso?courseId={course_id}')
     
-    # Guardar intención de compra
-    session['next_url'] = '/pago-curso'
+    session['next_url'] = f'/pago-curso?courseId={course_id}'
     return redirect('/registro.html')
-
 
 @app.route('/pago-curso')
 def pago_curso():
-    """Ruta protegida: redirige al widget de Wompi.
-    Solo accesible con sesión activa."""
+    course_id = request.args.get('courseId', '')
     if 'user_id' not in session:
-        session['next_url'] = '/pago-curso'
+        session['next_url'] = f'/pago-curso?courseId={course_id}'
         return redirect('/registro.html')
     
-    # Redirige a la página de pago del curso
-    return redirect('/pago-curso-checkout.html')
+    return redirect(f'/pago-curso-checkout.html?courseId={course_id}')
 
 
 @app.route('/api/users', methods=['GET'])
